@@ -116,7 +116,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
     linearDamping: 4,
   }
 
-  const { nodes, materials } = useGLTF("/card.glb") as GLTFResult
+  const { nodes, materials } = useGLTF("/card.glb") as any
   const texture = useTexture("/lanyard.png")
   const [curve] = useState(
       () =>
