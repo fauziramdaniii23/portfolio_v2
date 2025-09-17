@@ -96,12 +96,12 @@ interface BandProps {
 }
 
 function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
-  const band = useRef<THREE.Mesh>(undefined)
-  const fixed = useRef<RapierRigidBody>(null)
-  const j1 = useRef<RapierRigidBody>(null)
-  const j2 = useRef<RapierRigidBody>(null)
-  const j3 = useRef<RapierRigidBody>(null)
-  const card = useRef<RapierRigidBody>(null)
+  const band = useRef<THREE.Mesh>(null!)
+  const fixed = useRef<RapierRigidBody>(null!)
+  const j1 = useRef<RapierRigidBody>(null!)
+  const j2 = useRef<RapierRigidBody>(null!)
+  const j3 = useRef<RapierRigidBody>(null!)
+  const card = useRef<RapierRigidBody>(null!)
 
   const vec = new THREE.Vector3()
   const ang = new THREE.Vector3()
