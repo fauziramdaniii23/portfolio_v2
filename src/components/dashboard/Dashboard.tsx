@@ -1,5 +1,5 @@
 'use client'
-import {Sidebar} from "@/pages/dashboard/Sidebar";
+import {Sidebar} from "@/components/dashboard/Sidebar";
 import {ThemeProvider} from "@/components/theme-provider";
 
 type Props = {

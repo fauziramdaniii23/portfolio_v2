@@ -1,6 +1,6 @@
 'use client'
-import DashboardLayout from "@/pages/dashboard/Dashboard";
-import MainDashboard from "@/pages/dashboard/MainDashboard";
+import DashboardLayout from "@/components/dashboard/Dashboard";
+import MainDashboard from "@/components/dashboard/MainDashboard";
 
 export default function Dashboard() {
     return (

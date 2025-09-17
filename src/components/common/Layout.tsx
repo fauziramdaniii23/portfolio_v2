@@ -1,4 +1,4 @@
-import { Sidebar } from "@/pages/dashboard/Sidebar"
+import { Sidebar } from "@/components/dashboard/Sidebar"
 
 type Props = {
     children : React.ReactNode
