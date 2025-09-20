@@ -5,7 +5,6 @@ import {SparklesCore} from "@/components/ui/sparkles";
 import SplashCursor from "@/components/SplashCursor";
 import TextType from "@/components/TextType";
 import StarBorder from "@/components/StarBorder";
-import NProgress from '@/app/js/nprogress';
 import {useNavigate} from "@/lib/navigate";
 
 export default function Home() {
