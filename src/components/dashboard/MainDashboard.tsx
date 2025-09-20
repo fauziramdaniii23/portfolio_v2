@@ -8,7 +8,7 @@ export default function MainDashboard({className}: Props) {
     return (
         <div className={className}>
             <Card>
-                <CardHeader>
+                <CardHeader className="">
                     <CardTitle>Card Title</CardTitle>
                     <CardDescription>Card Description</CardDescription>
                     <CardAction>Card Action</CardAction>

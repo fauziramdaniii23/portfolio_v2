@@ -5,8 +5,12 @@ import {SparklesCore} from "@/components/ui/sparkles";
 import SplashCursor from "@/components/SplashCursor";
 import TextType from "@/components/TextType";
 import StarBorder from "@/components/StarBorder";
+import NProgress from '@/app/js/nprogress';
+import {useNavigate} from "@/lib/navigate";
 
 export default function Home() {
+    const navigate = useNavigate();
+
     return (
         <main className="relative flex bg-black w-full h-screen overflow-hidden">
             <SplashCursor/>
@@ -39,6 +43,7 @@ export default function Home() {
                 </div>
                 <div className="ml-44 mt-6">
                     <StarBorder
+                        onClick={() => navigate("/dashboard")}
                         as="button"
                         className="hover:scale-110 transition-all duration-200 transform hover:cursor-pointer"
                         color="white"
