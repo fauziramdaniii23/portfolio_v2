@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
@@ -15,8 +14,6 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
-// replace with your own imports, see the usage snippet for details
-
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 interface LanyardProps {
@@ -26,12 +23,7 @@ interface LanyardProps {
   transparent?: boolean;
 }
 
-export default function Lanyard({
-                                  position = [0, 0, 30],
-                                  gravity = [0, -40, 0],
-                                  fov = 20,
-                                  transparent = true
-                                }: LanyardProps) {
+export default function Lanyard({position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true}: LanyardProps) {
   return (
       <div className="relative z-0 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
         <Canvas
@@ -232,8 +224,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
           </RigidBody>
         </group>
         <mesh ref={band}>
-          <MeshLineGeometry />
-          <MeshLineMaterial
+          <meshLineGeometry />
+          <meshLineMaterial
               color="white"
               depthTest={false}
               resolution={isSmall ? [1000, 2000] : [1000, 1000]}
