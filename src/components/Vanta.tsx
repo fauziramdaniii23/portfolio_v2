@@ -9,25 +9,28 @@ export default function VantaBackground() {
     const [vantaEffect, setVantaEffect] = useState<any>(null)
 
     useEffect(() => {
-        if (!vantaEffect) {
-            setVantaEffect(
-                GLOBE({
-                    el: vantaRef.current,
-                    THREE: THREE,
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x696972,
-                    backgroundColor: 0x90909,
-                })
-            )
+        if (!vantaEffect && vantaRef.current) {
+            const effect = GLOBE({
+                el: vantaRef.current,
+                THREE: THREE,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x696972,
+                backgroundColor: 0x90909,
+            })
+
+            setVantaEffect(effect)
         }
+
         return () => {
-            if (vantaEffect) vantaEffect.destroy()
+            if (vantaEffect) {
+                vantaEffect.destroy()
+            }
         }
     }, [vantaEffect])
 

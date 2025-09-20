@@ -14,6 +14,7 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
+// Extend the fiber namespace with MeshLine components
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 interface LanyardProps {
@@ -224,15 +225,18 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
           </RigidBody>
         </group>
         <mesh ref={band}>
-          <meshLineGeometry />
-          <meshLineMaterial
-              color="white"
-              depthTest={false}
-              resolution={isSmall ? [1000, 2000] : [1000, 1000]}
-              useMap
-              map={texture}
-              repeat={[-4, 1]}
-              lineWidth={1}
+          <primitive object={new MeshLineGeometry()} attach="geometry" />
+          <primitive
+              object={new MeshLineMaterial({
+                color: "white",
+                // depthTest: false,
+                resolution: new THREE.Vector2(isSmall ? 1000 : 1000, isSmall ? 2000 : 1000),
+                useMap: 1,
+                map: texture,
+                repeat: new THREE.Vector2(-4, 1),
+                lineWidth: 1
+              })}
+              attach="material"
           />
         </mesh>
       </>
