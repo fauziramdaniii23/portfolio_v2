@@ -9,6 +9,7 @@ import { Home, Settings, Users, BarChart3, FileText, Mail, Calendar, ChevronLeft
 import { cn } from "@/lib/utils"
 import {Menus} from "@/app/constant/menus";
 import {useNavigate} from "@/lib/navigate";
+import ShinyText from "@/components/ShinyText";
 
 const menuItems = [
     { icon: Home, label: "Dashboard", active: true },
@@ -32,13 +33,11 @@ export function Sidebar() {
     return (
         <div
             className={cn(
-                "bg-transparent m-2 transition-all duration-300 ease-in-out flex flex-col",
+                "relative bg-transparent m-2 transition-all duration-300 ease-in-out flex flex-col flex-shrink-0",
                 isCollapsed ? "w-16" : "w-64",
             )}
         >
-            {/* Header with collapse toggle */}
-            <div className="p-4 border-b border-sidebar-border flex items-center justify-between">
-                {!isCollapsed && <h2 className="text-lg font-semibold text-sidebar-foreground">Dashboard</h2>}
+            <div className={cn("absolute bottom-10 bg-background rounded-2xl", isCollapsed ? "-right-3" : "right-0")}>
                 <Button
                     variant="ghost"
                     size="sm"
@@ -51,14 +50,14 @@ export function Sidebar() {
 
             {/* Profile Section */}
             <div className="p-4 border-b border-sidebar-border">
-                <div className="flex items-center space-x-3">
-                    <Avatar className="h-10 w-10">
+                <div className="flex flex-col gap-2 items-center">
+                    <Avatar className="h-16 w-16">
                         <AvatarImage src="/professional-profile.png" alt="Profile" />
-                        <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground">JD</AvatarFallback>
+                        <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground">FR</AvatarFallback>
                     </Avatar>
                     {!isCollapsed && (
-                        <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-sidebar-foreground truncate">John Doe</p>
+                        <div className="">
+                            <ShinyText text="Fauzi Ramdani" className="text-xl font-bold"/>
                             <div className="flex items-center space-x-2">
                                 <div className="h-2 w-2 bg-green-500 rounded-full"></div>
                                 <p className="text-xs text-sidebar-foreground/70">Online</p>
@@ -76,16 +75,16 @@ export function Sidebar() {
                         <Button
                             onClick={() => navigate(item.path)}
                             key={index}
-                            variant={isActive(item.path) ? "default" : "ghost"}
+                            variant="ghost"
                             className={cn(
-                                "group w-full justify-start text-left hover:scale-110 transition-all duration-200",
+                                "group w-full py-5 flex justify-center text-left hover:scale-110 transition-all duration-200",
                                 isActive(item.path)
-                                    ? "bg-gradient-to-r from-blue-600 to-transparent text-sidebar-primary-foreground "
-                                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                                    ? "bg-gradient-to-r from-blue-600 to-transparent text-foreground "
+                                    : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-foreground",
                                 isCollapsed && "justify-center px-2",
                             )}
                         >
-                            <Icon className="h-4 w-4 mr-2 group-hover:-rotate-12 transition-all duration-200" />
+                            <Icon className="h-6 w-6 mr-2 py group-hover:-rotate-12 transition-all duration-200 size-0.5" />
                             {!isCollapsed && (
                                 <>
                                     <span className="flex-1">{item.label}</span>
@@ -99,7 +98,7 @@ export function Sidebar() {
             {/* Footer */}
             {!isCollapsed && (
                 <div className="p-4 border-t border-sidebar-border">
-                    <div className="text-xs text-sidebar-foreground/50 text-center">© 2024 Dashboard App</div>
+                    <div className="text-xs text-sidebar-foreground/50 text-center">© 2025 Fauzi Ramdani</div>
                 </div>
             )}
         </div>

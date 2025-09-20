@@ -11,7 +11,7 @@ export default function DashboardLayout({children}: Props) {
         <ThemeProvider>
             <div className="flex h-screen">
                 <Sidebar/>
-                {children}
+                <div className="p-6 flex-1 overflow-auto">{children}</div>
             </div>
         </ThemeProvider>
     )

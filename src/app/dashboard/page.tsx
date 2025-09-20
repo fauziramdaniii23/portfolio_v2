@@ -5,7 +5,7 @@ import MainDashboard from "@/components/dashboard/MainDashboard";
 export default function Dashboard() {
     return (
         <DashboardLayout>
-            <MainDashboard className="p-4 w-full"/>
+            <MainDashboard/>
         </DashboardLayout>
     )
 }
