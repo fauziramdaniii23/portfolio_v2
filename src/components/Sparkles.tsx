@@ -5,13 +5,13 @@ import ShinyText from "@/components/ShinyText";
 
 export function SparklesPreview() {
     return (
-        <div className="mt-52">
+        <div className="lg:mt-44">
             <div className="h-full w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
             <ShinyText
                 text="Fauzi Ramdani"
                 disabled={false}
                 speed={10}
-                className='custom-class text-6xl'
+                className='custom-class text-4xl lg:text-6xl'
             />
             <div className="w-[40rem] h-40 relative">
                 {/* Gradients */}

@@ -52,15 +52,14 @@ export function Sidebar() {
             <div className="p-4 border-b border-sidebar-border">
                 <div className="flex flex-col gap-2 items-center">
                     <Avatar className="h-16 w-16">
-                        <AvatarImage src="/professional-profile.png" alt="Profile" />
+                        <AvatarImage src="/profile.png" alt="Profile" />
                         <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground">FR</AvatarFallback>
                     </Avatar>
                     {!isCollapsed && (
                         <div className="">
                             <ShinyText text="Fauzi Ramdani" className="text-xl font-bold"/>
-                            <div className="flex items-center space-x-2">
-                                <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                                <p className="text-xs text-sidebar-foreground/70">Online</p>
+                            <div className="flex items-center justify-center space-x-2">
+                                <p className="text-xs text-foreground italic">Sofware Egineer</p>
                             </div>
                         </div>
                     )}
