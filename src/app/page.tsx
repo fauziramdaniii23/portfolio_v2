@@ -30,7 +30,7 @@ export default function Home() {
             {/* Konten di atas background */}
             <div className="relative z-10 w-1/2">
                 <SparklesPreview />
-                <div className="ml-44 m">
+                <div className="ml-44">
                     <TextType
                         text={["Welcome to my Portfolio", "I am a software engineer", "Build Something Amazing"]}
                         typingSpeed={75}

@@ -99,7 +99,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
   };
 
   const { nodes, materials } = useGLTF("/card.glb") as any
-  const texture = useTexture("/lanyard.png")
+  const texture = useTexture("/lanyard.jpg")
   const [curve] = useState(
       () =>
           new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
