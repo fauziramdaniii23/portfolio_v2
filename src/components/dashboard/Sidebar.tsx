@@ -59,7 +59,7 @@ export function Sidebar() {
                         <div className="">
                             <ShinyText text="Fauzi Ramdani" className="text-xl font-bold"/>
                             <div className="flex items-center justify-center space-x-2">
-                                <p className="text-xs text-foreground italic">Sofware Egineer</p>
+                                <p className="text-xs text-foreground italic">Sofware Engineer</p>
                             </div>
                         </div>
                     )}

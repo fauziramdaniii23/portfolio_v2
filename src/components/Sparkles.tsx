@@ -5,7 +5,7 @@ import ShinyText from "@/components/ShinyText";
 
 export function SparklesPreview() {
     return (
-        <div className="lg:mt-44">
+        <div>
             <div className="h-full w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
             <ShinyText
                 text="Fauzi Ramdani"

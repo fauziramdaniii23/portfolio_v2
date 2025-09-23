@@ -6,6 +6,7 @@ import SplashCursor from "@/components/SplashCursor";
 import TextType from "@/components/TextType";
 import StarBorder from "@/components/StarBorder";
 import {useNavigate} from "@/lib/navigate";
+import {lobster, bitcount, alumniSans, geo} from "@/lib/font";
 
 export default function Home() {
     const navigate = useNavigate();
@@ -27,11 +28,11 @@ export default function Home() {
             </div>
 
             {/* Konten di atas background */}
-            <div className="lg:flex lg:flex-row-reverse w-full">
-                <div className="relative z-10 lg:w-1/2">
+            <div className="flex lg:flex-row-reverse w-full">
+                <div className="relative hidden lg:block z-10 lg:w-1/2">
                     <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
                 </div>
-                <div className="relative my-6 h-screen z-10 lg:w-1/2">
+                <div className="relative flex flex-col justify-center items-center h-screen z-10 w-full lg:w-1/2">
                     <SparklesPreview />
                     <div className="text-center lg:mt-10">
                         <TextType
@@ -41,6 +42,7 @@ export default function Home() {
                             showCursor={true}
                             cursorCharacter="|"
                             textColors={["#c8c6c6"]}
+                            className={`${geo.className} text-2xl`}
                         />
                     </div>
                     <div className="text-center mt-6">
