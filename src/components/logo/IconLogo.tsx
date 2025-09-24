@@ -35,7 +35,7 @@ export default function IconLogo({name, color, pathLogo, width, height }: IconLo
                     }`}
                 >
                     <div className={`${color} text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-xl` }>
-                        <div className="flex items-center gap-2">
+                        <div className="block items-center whitespace-nowrap gap-2">
                             {name}
                         </div>
                     </div>

@@ -13,3 +13,9 @@ export type IconLogos = {
     width?: number
     height?: number
 }
+
+export type TextServices = {
+    title: string
+    description: string
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}

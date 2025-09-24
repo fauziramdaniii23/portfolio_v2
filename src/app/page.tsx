@@ -6,7 +6,7 @@ import SplashCursor from "@/components/SplashCursor";
 import TextType from "@/components/TextType";
 import StarBorder from "@/components/StarBorder";
 import {useNavigate} from "@/lib/navigate";
-import {lobster, bitcount, alumniSans, geo} from "@/lib/font";
+import {geo} from "@/lib/font";
 
 export default function Home() {
     const navigate = useNavigate();

@@ -1,10 +1,12 @@
-import {Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import VantaBackground from "@/components/Vanta";
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
-import {Braces, MonitorCog} from "lucide-react";
+import {Braces, CircleStar, Library, PencilLine,} from "lucide-react";
 import IconLogo from "@/components/logo/IconLogo";
-import {ProgrammingLanguageIconLogos} from "@/app/constant/IconLogos";
+import {FrameworkIconLogos, ProgrammingLanguageIconLogos, ToolsIconLogos} from "@/app/constant/IconLogos";
+import {Services} from "@/app/constant/constant";
+import GradientText from "@/components/GradientText";
 
 type Props = {
     className?: string;
@@ -24,14 +26,14 @@ export default function MainDashboard({className}: Props) {
                     <VantaBackground className="h-full" size={0.80} minWidth={50} color={0xcfcfcf} backgroundColor={0x0A0A0A}/>
                 </div>
             </div>
-            <div className="mt-10">
-                <ShinyText text="Expertise" className="text-xl font-bold"/>
+            <div className="my-5 border-b py-5">
+                <ShinyText text="Expertise" className="text-2xl font-bold"/>
                 <p className="mt-2">I have extensive experience working with a variety of technologies, including:</p>
                 <div className="flex items-center gap-2 mt-4">
                     <Braces className="size-5"/>
                     <h1>Programming Language:</h1>
                 </div>
-                <div className="flex">
+                <div className="flex flex-wrap">
                     {ProgrammingLanguageIconLogos.map((data, index) => (
                         <IconLogo
                             key={index}
@@ -43,12 +45,67 @@ export default function MainDashboard({className}: Props) {
                         />
                     ))}
                 </div>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)">
-                        <div>
-
+                <div className="flex border-t pt-8 items-center gap-2 mt-4">
+                    <Library/>
+                    <h1>Framework & Library:</h1>
+                </div>
+                <div className="flex flex-wrap">
+                    {FrameworkIconLogos.map((data, index) => (
+                        <IconLogo
+                            key={index}
+                            name={data.name}
+                            color={data.color}
+                            pathLogo={data.pathLogo}
+                            width={data.width}
+                            height={data.height}
+                        />
+                    ))}
+                </div>
+                <div className="flex border-t pt-8 items-center gap-2 mt-4">
+                    <PencilLine/>
+                    <h1>Tools:</h1>
+                </div>
+                <div className="flex flex-wrap">
+                    {ToolsIconLogos.map((data, index) => (
+                        <IconLogo
+                            key={index}
+                            name={data.name}
+                            color={data.color}
+                            pathLogo={data.pathLogo}
+                            width={data.width}
+                            height={data.height}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="my-5 border-b py-5">
+                <ShinyText text="Services" className="text-2xl font-bold"/>
+                <p className="mt-2">My key practices in the workplace</p>
+                <div className="mt-4 grid grid-cols-4 gap-4">
+                    {Services.map((data, index) => {
+                        const Icon = data.icon;
+                        return (
+                            <div key={index}>
+                            <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)" className="w-full h-full">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-2 flex-col mb-2">
+                                        <Icon className="h-6 w-6"/>
+                                        <GradientText
+                                            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                                            animationSpeed={10}
+                                            showBorder={false}
+                                        >
+                                            {data.title}
+                                        </GradientText>
+                                    </CardTitle>
+                                    <CardDescription className="text-center">
+                                        {data.description}
+                                    </CardDescription>
+                                </CardHeader>
+                            </SpotlightCard>
                         </div>
-                    </SpotlightCard>
+                        )
+                    })}
                 </div>
             </div>
         </div>
