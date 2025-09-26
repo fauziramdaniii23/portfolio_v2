@@ -27,6 +27,11 @@ export const Menus : MenuItem[] = [
         icon : MessageCircleMore,
     },
     {
+        label : 'Discuss with me',
+        path : '/discuss',
+        icon : MessageCircleMore,
+    },
+    {
         label : 'Contact Me',
         path : '/contact',
         icon : Contact,

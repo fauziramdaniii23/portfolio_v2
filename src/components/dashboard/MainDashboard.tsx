@@ -4,9 +4,10 @@ import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
 import {Braces, CircleStar, Library, PencilLine,} from "lucide-react";
 import IconLogo from "@/components/logo/IconLogo";
-import {FrameworkIconLogos, ProgrammingLanguageIconLogos, ToolsIconLogos} from "@/app/constant/IconLogos";
+import {FrameworkIconLogos, ProgrammingLanguageIconLogos, techLogos, ToolsIconLogos} from "@/app/constant/IconLogos";
 import {Services} from "@/app/constant/constant";
 import GradientText from "@/components/GradientText";
+import LogoLoop from "@/components/LogoLoop";
 
 type Props = {
     className?: string;
@@ -108,6 +109,17 @@ export default function MainDashboard({className}: Props) {
                     })}
                 </div>
             </div>
+            <LogoLoop
+                logos={techLogos}
+                speed={50}
+                direction="left"
+                logoHeight={28}
+                gap={40}
+                pauseOnHover
+                scaleOnHover
+                fadeOut
+                ariaLabel="Technology partners"
+            />
         </div>
     )
 }

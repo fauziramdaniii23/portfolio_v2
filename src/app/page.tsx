@@ -50,6 +50,7 @@ export default function Home() {
                             onClick={() => navigate("/dashboard")}
                             as="button"
                             className="hover:scale-110 transition-all duration-200 transform hover:cursor-pointer"
+                            className2="bg-gradient-to-b from-black to-gray-900 border border-gray-800"
                             color="white"
                             speed="5s"
                         >

@@ -1,4 +1,67 @@
 import {IconLogos} from "@/app/type/type";
+import {
+    SiHtml5,
+    SiCss3,
+    SiJavascript,
+    SiTypescript,
+    SiPhp,
+    SiPython,
+    SiKotlin,
+    SiMysql,
+    SiQuasar,
+    SiReact,
+    SiNextdotjs,
+    SiLaravel,
+    SiDotnet,
+    SiTailwindcss,
+    SiBootstrap,
+    SiJquery,
+    SiSqlalchemy,
+    SiGit,
+    SiGithub,
+    SiGitlab,
+    SiDocker,
+    SiPostman,
+    SiJetbrains,
+    SiDbeaver, SiVuedotjs, SiSpring
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { TbBrandCSharp } from "react-icons/tb";
+import { VscVscode } from "react-icons/vsc";
+
+export const techLogos = [
+    { node: <SiHtml5 />, title: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+    { node: <SiCss3 />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+    { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiPhp />, title: "PHP", href: "https://www.php.net" },
+    { node: <SiPython />, title: "Python", href: "https://www.python.org" },
+    { node: <FaJava />, title: "Java", href: "https://www.java.com" },
+    { node: <TbBrandCSharp />, title: "C#", href: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+    { node: <SiKotlin />, title: "Kotlin", href: "https://kotlinlang.org" },
+    { node: <SiMysql />, title: "SQL", href: "https://www.mysql.com" },
+
+    { node: <SiVuedotjs />, title: "Vue", href: "https://vuejs.org" },
+    { node: <SiQuasar />, title: "Quasar", href: "https://quasar.dev" },
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiLaravel />, title: "Laravel", href: "https://laravel.com" },
+    { node: <SiSpring />, title: "Spring Boot", href: "https://spring.io/projects/spring-boot" },
+    { node: <SiDotnet />, title: ".NET", href: "https://dotnet.microsoft.com" },
+    { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+    { node: <SiBootstrap />, title: "Bootstrap", href: "https://getbootstrap.com" },
+    { node: <SiJquery />, title: "jQuery", href: "https://jquery.com" },
+    { node: <SiSqlalchemy />, title: "SQLAlchemy", href: "https://www.sqlalchemy.org" },
+
+    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
+    { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
+    { node: <SiGitlab />, title: "GitLab", href: "https://gitlab.com" },
+    { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
+    { node: <SiPostman />, title: "Postman", href: "https://www.postman.com" },
+    { node: <VscVscode />, title: "Visual Studio Code", href: "https://code.visualstudio.com" },
+    { node: <SiJetbrains />, title: "JetBrains", href: "https://www.jetbrains.com" },
+    { node: <SiDbeaver />, title: "DBeaver", href: "https://dbeaver.io" },
+];
 
 export const ProgrammingLanguageIconLogos: IconLogos[] = [
     {
@@ -155,6 +218,13 @@ export const FrameworkIconLogos: IconLogos[] = [
         name: 'SqlAlchemy',
         color: "bg-gradient-to-r from-blue-400/30 to-indigo-400/30",
         pathLogo: '/logo/libraries_framework/sqlalchemy.png',
+        width: 50,
+        height: 50,
+    },
+    {
+        name: 'Axios',
+        color: "bg-gradient-to-r from-blue-400/30 to-indigo-400/30",
+        pathLogo: '/logo/libraries_framework/axios.png',
         width: 50,
         height: 50,
     }
