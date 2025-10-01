@@ -1,11 +1,11 @@
-import {MenuItem} from "@/app/type/type";
+import {TMenuItem} from "@/app/type/type";
 import {
     Home,
     User,
     FolderOpenDot, MessageCircleMore, Contact
 } from "lucide-react"
 
-export const Menus : MenuItem[] = [
+export const Menus : TMenuItem[] = [
     {
         label : 'Home',
         path : '/dashboard',

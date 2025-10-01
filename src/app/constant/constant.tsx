@@ -1,4 +1,4 @@
-import {TextServices} from "@/app/type/type";
+import {TTextServices} from "@/app/type/type";
 import {
     BookCheck, BugPlay,
     ChartSpline,
@@ -6,7 +6,7 @@ import {
 } from "lucide-react"
 import { AiOutlineTeam } from "react-icons/ai";
 
-export const Services: TextServices[] = [
+export const Services: TTextServices[] = [
     {
         title: 'Problem Solving',
         description: 'Ability to solve technical problems logically and efficiently.',

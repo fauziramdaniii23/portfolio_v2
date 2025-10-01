@@ -2,7 +2,7 @@ import {CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import VantaBackground from "@/components/Vanta";
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
-import {Braces, CircleStar, Library, PencilLine,} from "lucide-react";
+import {Braces, Library, PencilLine,} from "lucide-react";
 import IconLogo from "@/components/logo/IconLogo";
 import {FrameworkIconLogos, ProgrammingLanguageIconLogos, techLogos, ToolsIconLogos} from "@/app/constant/IconLogos";
 import {Services} from "@/app/constant/constant";
@@ -13,7 +13,7 @@ type Props = {
     className?: string;
 }
 
-export default function MainDashboard({className}: Props) {
+export default function Home({className}: Props) {
     return (
         <div className={className}>
             <div className="overflow-hidden flex border-2 rounded-2xl">
@@ -87,24 +87,24 @@ export default function MainDashboard({className}: Props) {
                         const Icon = data.icon;
                         return (
                             <div key={index}>
-                            <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)" className="w-full h-full">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2 flex-col mb-2">
-                                        <Icon className="h-6 w-6"/>
-                                        <GradientText
-                                            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                                            animationSpeed={10}
-                                            showBorder={false}
-                                        >
-                                            {data.title}
-                                        </GradientText>
-                                    </CardTitle>
-                                    <CardDescription className="text-center">
-                                        {data.description}
-                                    </CardDescription>
-                                </CardHeader>
-                            </SpotlightCard>
-                        </div>
+                                <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)" className="w-full h-full">
+                                    <CardHeader>
+                                        <CardTitle className="flex items-center gap-2 flex-col mb-2">
+                                            <Icon className="h-6 w-6"/>
+                                            <GradientText
+                                                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                                                animationSpeed={10}
+                                                showBorder={false}
+                                            >
+                                                {data.title}
+                                            </GradientText>
+                                        </CardTitle>
+                                        <CardDescription className="text-center">
+                                            {data.description}
+                                        </CardDescription>
+                                    </CardHeader>
+                                </SpotlightCard>
+                            </div>
                         )
                     })}
                 </div>

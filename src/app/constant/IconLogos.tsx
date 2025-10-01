@@ -1,4 +1,4 @@
-import {IconLogos} from "@/app/type/type";
+import {TIconLogos} from "@/app/type/type";
 import {
     SiHtml5,
     SiCss3,
@@ -63,7 +63,7 @@ export const techLogos = [
     { node: <SiDbeaver />, title: "DBeaver", href: "https://dbeaver.io" },
 ];
 
-export const ProgrammingLanguageIconLogos: IconLogos[] = [
+export const ProgrammingLanguageIconLogos: TIconLogos[] = [
     {
         name: 'HTML',
         color: "bg-gradient-to-r from-orange-400/30 to-red-400/30",
@@ -136,7 +136,7 @@ export const ProgrammingLanguageIconLogos: IconLogos[] = [
     }
 ]
 
-export const FrameworkIconLogos: IconLogos[] = [
+export const FrameworkIconLogos: TIconLogos[] = [
     {
         name: "Vue",
         color: "bg-gradient-to-r from-emerald-400/30 to-green-400/30",
@@ -230,7 +230,7 @@ export const FrameworkIconLogos: IconLogos[] = [
     }
 ]
 
-export const ToolsIconLogos: IconLogos[] = [
+export const ToolsIconLogos: TIconLogos[] = [
     {
         name: "Git",
         color: "bg-gradient-to-r from-red-400/30 to-pink-400/30",

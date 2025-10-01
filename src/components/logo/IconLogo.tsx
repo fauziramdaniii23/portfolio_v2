@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import {IconLogos} from "@/app/type/type";
+import {TIconLogos} from "@/app/type/type";
 
-export default function IconLogo({name, color, pathLogo, width, height }: IconLogos) {
+export default function IconLogo({name, color, pathLogo, width, height }: TIconLogos) {
     const [isHovered, setIsHovered] = useState(false)
 
     return (
         <div className="relative w-fit m-7 flex items-center justify-center">
-            <div className={`relative transition-all duration-500 cursor-pointer select-none`}
+            <div className={`relative group transition-all duration-500 cursor-pointer select-none`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -30,7 +30,7 @@ export default function IconLogo({name, color, pathLogo, width, height }: IconLo
                     />
                 </div>
 
-                <div className={`absolute -bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-400 z-10 ${
+                <div className={`absolute hidden group-hover:block -bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-400 z-10 ${
                         isHovered ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
                     }`}
                 >
