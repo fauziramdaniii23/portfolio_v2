@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import './css/nprogress.css';
+@import '../lib/css/nprogress.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -4,22 +4,11 @@ import { useState } from "react"
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Home, Settings, Users, BarChart3, FileText, Mail, Calendar, ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {Menus} from "@/app/constant/menus";
 import {useNavigate} from "@/lib/navigate";
 import ShinyText from "@/components/ShinyText";
-
-const menuItems = [
-    { icon: Home, label: "Dashboard", active: true },
-    { icon: BarChart3, label: "Analytics" },
-    { icon: Users, label: "Users" },
-    { icon: FileText, label: "Reports" },
-    { icon: Mail, label: "Messages", badge: "3" },
-    { icon: Calendar, label: "Calendar" },
-    { icon: Settings, label: "Settings" },
-]
 
 export function Sidebar() {
     const pathname = usePathname();
@@ -27,7 +16,7 @@ export function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false)
 
     const isActive = (path: string) => {
-        return pathname === path;
+        return pathname === path || pathname.startsWith(`${path}/`);
     }
 
     return (

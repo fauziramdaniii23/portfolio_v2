@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import {TIconLogos} from "@/app/type/type";
+import {TIconLogos} from "@/type/type";
 
 export default function IconLogo({name, color, pathLogo, width, height }: TIconLogos) {
     const [isHovered, setIsHovered] = useState(false)

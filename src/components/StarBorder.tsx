@@ -44,7 +44,7 @@ const StarBorder = <T extends React.ElementType = 'button'>({
           animationDuration: speed
         }}
       ></div>
-      <div className={`relative z-1 bg-background text-white text-[16px] py-[16px] px-[26px] rounded-[20px] ${className2}`}>
+      <div className={`relative z-1 bg-background text-white text-[16px] py-[16px] rounded-[20px] ${className2}`}>
         {children}
       </div>
     </Component>

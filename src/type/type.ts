@@ -1,5 +1,15 @@
 import {StaticImageData} from "next/image";
 
+export type TUser = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    email_verified_at: Date | null;
+    role: string;
+    created_at: Date;
+    updated_at: Date;
+}
 export type TMenuItem = {
     label: string;
     path: string;
@@ -28,8 +38,7 @@ export type TExperience = {
     location?: string
     summary: string
     achievements?: string[]
-    skills?: string[]
-    logo?: string | StaticImageData
+    logo?: string
 }
 
 export type TEducation = {
@@ -39,5 +48,19 @@ export type TEducation = {
     period: string
     location?: string
     summary?: string
-    logo?: string | StaticImageData
+    logo?: string
 }
+
+export type TProject = {
+    id: string
+    title: string
+    description: string
+    category: string
+    year: string
+    image: string
+    tags: string[]
+    summary: string[]
+    link: string
+    featured?: boolean
+}
+

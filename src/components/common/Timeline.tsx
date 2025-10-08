@@ -1,10 +1,11 @@
-import {TEducation, TExperience} from "@/app/type/type";
-import {BriefcaseBusiness} from "lucide-react";
+import {TEducation, TExperience} from "@/type/type";
+import {BriefcaseBusiness, GraduationCap} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import SpotlightCard from "@/components/SpotlightCard";
 import GradientText from "@/components/GradientText";
+import Image from "next/image"
 
 type PropsWorkExperience = {
     experience: TExperience
@@ -17,7 +18,7 @@ export const Timeline = ({experience}: PropsWorkExperience) => {
         <div className="flex mx-5">
             <div className="relative border-l-2 ml-4">
                 <div className="absolute -left-6 top-8 bg-background rounded-full border border-border w-12 h-12 flex items-center justify-center">
-                    <BriefcaseBusiness/>
+                    {experience.logo ? <Image src={experience.logo} alt="Work Experience" width={32} height={32}/> : <BriefcaseBusiness/>}
                 </div>
             </div>
             <div className="ml-12 flex-1">
@@ -61,16 +62,6 @@ export const Timeline = ({experience}: PropsWorkExperience) => {
                                 </AccordionItem>
                             </Accordion>
                         )}
-
-                        {experience.skills && experience.skills.length > 0 && (
-                            <div className="flex flex-wrap gap-2" aria-label="Keahlian yang digunakan">
-                                {experience.skills.map((skill) => (
-                                    <Badge key={skill} variant="outline">
-                                        {skill}
-                                    </Badge>
-                                ))}
-                            </div>
-                        )}
                     </CardContent>
                 </SpotlightCard>
                 </div>
@@ -84,7 +75,7 @@ export const TimelineEducations = ({education}: PropsEducations) => {
         <div className="flex mx-5">
             <div className="relative border-l-2 ml-4">
                 <div className="absolute -left-6 top-8 bg-background rounded-full border border-border w-12 h-12 flex items-center justify-center">
-                    <BriefcaseBusiness/>
+                    {education.logo ? <Image src={education.logo} alt="Work Experience" width={32} height={32}/> : <GraduationCap/>}
                 </div>
             </div>
             <div className="ml-12 flex-1">

@@ -1,5 +1,4 @@
 import {CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import VantaBackground from "@/components/Vanta";
 import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
 import {Braces, Library, PencilLine,} from "lucide-react";
@@ -8,6 +7,7 @@ import {FrameworkIconLogos, ProgrammingLanguageIconLogos, techLogos, ToolsIconLo
 import {Services} from "@/app/constant/constant";
 import GradientText from "@/components/GradientText";
 import LogoLoop from "@/components/LogoLoop";
+import {VantaGlobe} from "@/components/Vanta";
 
 type Props = {
     className?: string;
@@ -24,7 +24,7 @@ export default function Home({className}: Props) {
                     <p className="text-foreground text-sm">Saya Seorang Software Engineer dengan pengalaman lebih dari dua tahun dalam mengembangkan solusi perangkat lunak yang efisien, skalabel, dan ramah pengguna. Saat ini bekerja di PT. Akhdani Reka Solusi dan terbuka untuk pekerjaan jarak jauh, lepas, atau paruh waktu, serta peluang baru yang mendukung pertumbuhan profesional dan pengembangan karier jangka panjang.</p>
                 </div>
                 <div className="w-1/2 h-full">
-                    <VantaBackground className="h-full" size={0.80} minWidth={50} color={0xcfcfcf} backgroundColor={0x0A0A0A}/>
+                    <VantaGlobe className="h-full" size={0.80} minWidth={50} color={0xcfcfcf} backgroundColor={0x0A0A0A}/>
                 </div>
             </div>
             <div className="my-5 border-b py-5">

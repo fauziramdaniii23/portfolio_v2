@@ -1,4 +1,4 @@
-import {TIconLogos} from "@/app/type/type";
+import {TIconLogos} from "@/type/type";
 import {
     SiHtml5,
     SiCss3,
