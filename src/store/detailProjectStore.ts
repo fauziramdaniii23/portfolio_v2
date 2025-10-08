@@ -20,6 +20,7 @@ export const useDetailProjectStore= create<ProjectState>()(
                 year: '',
                 image: '',
                 tags: [],
+                summary: [],
                 link: '',
             },
             setDetailProject: (data : TProject ) =>
@@ -36,6 +37,7 @@ export const useDetailProjectStore= create<ProjectState>()(
                         year: '',
                         image: '',
                         tags: [],
+                        summary: [],
                         link: '',
                     },
                 })
