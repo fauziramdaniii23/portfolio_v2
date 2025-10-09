@@ -1,6 +1,7 @@
 'use client'
 
 import DashboardLayout from "@/components/dashboard/Dashboard";
+import UserList from "@/components/serverComponent";
 
 export default function About() {
     return (
@@ -9,6 +10,7 @@ export default function About() {
             <p>
                 This is the contact me page of the application.
             </p>
+            <UserList />
         </DashboardLayout>
     )
 }

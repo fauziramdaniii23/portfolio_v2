@@ -1,4 +1,4 @@
-import {TEducation, TExperience} from "@/type/type";
+import {TEducation, TExperience} from "@/types/type";
 import {BriefcaseBusiness, GraduationCap} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";

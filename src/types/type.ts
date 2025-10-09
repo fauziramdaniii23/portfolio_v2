@@ -1,15 +1,12 @@
 import {StaticImageData} from "next/image";
 
 export type TUser = {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-    email_verified_at: Date | null;
-    role: string;
-    created_at: Date;
-    updated_at: Date;
-}
+  id?: string;
+  name: string;
+  email: string;
+  image?: string | null;
+};
+
 export type TMenuItem = {
     label: string;
     path: string;

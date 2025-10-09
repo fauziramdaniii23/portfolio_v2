@@ -1,4 +1,4 @@
-import {TMenuItem} from "@/type/type";
+import {TMenuItem} from "@/types/type";
 import {
     Home,
     User,

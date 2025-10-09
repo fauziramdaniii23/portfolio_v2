@@ -1,6 +1,6 @@
 'use client'
 import {Sidebar} from "@/components/dashboard/Sidebar";
-import {ThemeProvider} from "@/components/theme-provider";
+import {ThemeProvider} from "@/components/providers/theme-provider";
 
 type Props = {
     children: React.ReactNode

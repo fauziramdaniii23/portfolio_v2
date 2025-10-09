@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 import {createEncryptedStorage} from "@/lib/encryptor";
-import {TProject} from "@/type/type";
+import {TProject} from "@/types/type";
 
 type ProjectState = {
     data: TProject;

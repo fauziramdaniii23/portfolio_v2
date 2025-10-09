@@ -1,4 +1,4 @@
-import {TTextServices} from "@/type/type";
+import {TTextServices} from "@/types/type";
 import {
     BookCheck, BugPlay,
     ChartSpline,

@@ -1,4 +1,4 @@
-import {TProject} from "@/type/type";
+import {TProject} from "@/types/type";
 export const projects: TProject[] = [
     {
         id: "1",

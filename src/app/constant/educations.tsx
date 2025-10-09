@@ -1,4 +1,4 @@
-import {TEducation} from "@/type/type";
+import {TEducation} from "@/types/type";
 
 export const educations: TEducation[] = [
     {

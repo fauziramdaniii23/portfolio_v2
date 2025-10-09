@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink } from "lucide-react"
-import {TProject} from "@/type/type";
+import {TProject} from "@/types/type";
 import {useNavigate} from "@/lib/navigate";
 import {useDetailProjectStore} from "@/store/detailProjectStore";
 

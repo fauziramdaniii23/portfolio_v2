@@ -1,14 +1,12 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 import {createEncryptedStorage} from "@/lib/encryptor";
-import {TUser} from "@/type/type";
+import {TUser} from "@/types/type";
 
 type AuthState = {
     isAuthenticated: boolean;
-    token: string | null;
     user: TUser | null;
     login: (data: {
-        token: string;
         user : TUser;
     }) => void;
     logout: () => void;
@@ -20,16 +18,14 @@ export const useAuthStore = create<AuthState>()(
             isAuthenticated: false,
             token: null,
             user: null,
-            login: ({token, user}) =>
+            login: ({user}) =>
                 set({
                     isAuthenticated: true,
-                    token: token,
                     user : user
                 }),
             logout: () =>
                 set({
                     isAuthenticated: false,
-                    token: null,
                     user: null,
                 }),
         }),
@@ -38,7 +34,6 @@ export const useAuthStore = create<AuthState>()(
             storage: createEncryptedStorage(),
             partialize: (state) => ({
                 isAuthenticated: state.isAuthenticated,
-                token: state.token,
                 user: state.user,
             }) as AuthState,
         }
