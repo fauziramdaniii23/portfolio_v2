@@ -6,20 +6,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TUser } from "@/types/type";
 
-type Message = {
+type TMessage = {
   id: number;
   message: string;
-  user: {
-    name: string;
-    image?: string;
-  };
+  userId: number;
+  replyToId?: number;
+  user: TUser;
   createdAt: string;
+  replyTo?: TMessage;
   isMine?: boolean;
 };
 
-export default function ChatRoom() {
-  const [messages, setMessages] = useState<Message[]>([]);
+export default function Chat() {
+  const [messages, setMessages] = useState<TMessage[]>([]);
   const [text, setText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -52,11 +53,13 @@ export default function ChatRoom() {
       {/* Header */}
       <div className="flex justify-between items-center border-b pb-3 mb-3">
         <h2 className="text-lg font-semibold">💬 Chat Room</h2>
-        <Button variant="outline" size="sm">Logout</Button>
+        <Button variant="outline" size="sm">
+          Logout
+        </Button>
       </div>
 
       {/* Chat List */}
-      <ScrollArea className="flex-1 space-y-3 pr-2">
+      <ScrollArea className="flex-1 h-96 pr-2">
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -64,14 +67,18 @@ export default function ChatRoom() {
               msg.isMine ? "justify-end text-right" : "justify-start"
             }`}
           >
-            {!msg.isMine && (
+            {msg.isMine && msg.user && (
               <Avatar className="w-8 h-8">
-                <AvatarImage src={msg.user.image} />
+                <AvatarImage
+                  src={msg.user.image ?? undefined}
+                  alt={msg.user.name ?? "User"}
+                />
                 <AvatarFallback>
-                  {msg.user.name?.[0]?.toUpperCase()}
+                  {msg.user.name ? msg.user.name[0].toUpperCase() : "U"}
                 </AvatarFallback>
               </Avatar>
             )}
+
             <div
               className={`rounded-2xl px-4 py-2 max-w-[70%] ${
                 msg.isMine
@@ -79,7 +86,7 @@ export default function ChatRoom() {
                   : "bg-muted text-foreground"
               }`}
             >
-              {!msg.isMine && (
+              {!msg.isMine &&  msg.user && (
                 <p className="text-xs font-medium mb-1">{msg.user.name}</p>
               )}
               <p>{msg.message}</p>

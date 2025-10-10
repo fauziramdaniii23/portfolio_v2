@@ -5,6 +5,8 @@ export type TUser = {
   name: string;
   email: string;
   image?: string | null;
+  emailVerified?: string | null;
+  createdAt?: string;
 };
 
 export type TMenuItem = {

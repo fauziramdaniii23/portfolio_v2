@@ -4,6 +4,7 @@ import DashboardLayout from "@/components/dashboard/Dashboard";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
 import { useEffect } from "react";
+import Chat from "@/components/chat/Chat";
 
 export default function ChatRoom() {
   const { data: session } = useSession();
@@ -55,6 +56,7 @@ export default function ChatRoom() {
             </pre>
           </div>
         </div>
+        <Chat />
       </DashboardLayout>
     );
   }
