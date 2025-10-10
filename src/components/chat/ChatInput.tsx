@@ -5,6 +5,7 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { TMessage } from "@/types/type";
 import {SendHorizontal } from "lucide-react";
 
 type ChatInputProps = {
@@ -12,9 +13,10 @@ type ChatInputProps = {
   onChange: (v: string) => void;
   onSubmit: () => void;
   className?: string;
+  reply?: TMessage;
 };
 
-export function ChatInput({value, onChange, onSubmit, className}: ChatInputProps) {
+export function ChatInput({value, onChange, onSubmit, className, reply}: ChatInputProps) {
   return (
     <div
       className={cn(
@@ -22,6 +24,15 @@ export function ChatInput({value, onChange, onSubmit, className}: ChatInputProps
         className
       )}
     >
+        {
+            reply && (
+                <div>
+                    <p className="text-sm text-muted-foreground">
+                        {reply.message}
+                    </p>
+                </div>
+            )
+        }
       <TooltipProvider>
         <form
           onSubmit={(e) => {

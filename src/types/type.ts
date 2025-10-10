@@ -63,3 +63,14 @@ export type TProject = {
     featured?: boolean
 }
 
+export type TMessage = {
+  id: number;
+  message: string;
+  userId: number;
+  replyToId?: number;
+  user: TUser;
+  createdAt: string;
+  replyTo?: TMessage;
+  isMine: boolean;
+};
+
