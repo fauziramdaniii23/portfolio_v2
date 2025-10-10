@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chat from "@/components/chat/Chat";
 
 export default function ChatRoom() {
@@ -25,9 +25,11 @@ export default function ChatRoom() {
     }
   }, [session, login, logout]);
 
-  if (isAuthenticated && user) {
-    return (
-      <DashboardLayout>
+  return (
+    <DashboardLayout>
+      <h1 className="text-2xl font-bold mb-4">Chat Room Page</h1>
+      <p>This is the chat room page of the application.</p>
+      {isAuthenticated && user && (
         <div className="p-6 flex flex-col items-center space-y-4">
           <div className="flex flex-col items-center space-y-2">
             <img
@@ -49,23 +51,19 @@ export default function ChatRoom() {
             Logout
           </Button>
 
-          <div className="mt-6 w-full bg-gray-100 p-4 rounded-md text-sm">
+          {/* <div className="mt-6 w-full bg-gray-100 p-4 rounded-md text-sm">
             <h3 className="font-semibold mb-2">Data lengkap session:</h3>
             <pre className="bg-white p-3 rounded-md border overflow-x-auto">
               {JSON.stringify({ session, zustandUser: user }, null, 2)}
             </pre>
-          </div>
+          </div> */}
         </div>
+      )}
+      
         <Chat />
-      </DashboardLayout>
-    );
-  }
 
-  return (
-    <DashboardLayout>
-      <h1 className="text-2xl font-bold mb-4">Chat Room Page</h1>
-      <p>This is the chat room page of the application.</p>
-      <Button onClick={() => signIn("google")}>Login with Google</Button>
+      <div className="w-full max-w-sm">
+    </div>
     </DashboardLayout>
   );
 }

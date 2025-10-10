@@ -3,10 +3,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TUser } from "@/types/type";
+import { ChatInput } from "./ChatInput";
+import { useAuthStore } from "@/store/authStore";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { GoogleSignInButton } from "../ButtonSignWithGoogle";
 
 type TMessage = {
   id: number;
@@ -20,6 +23,8 @@ type TMessage = {
 };
 
 export default function Chat() {
+  const { data: session } = useSession();
+  const {isAuthenticated} = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [text, setText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -48,6 +53,23 @@ export default function Chat() {
     setText("");
   };
 
+  
+  const [loading, setLoading] = useState(false)
+  
+   const handleClick = async () => {
+    setLoading(true)
+    
+    const result = await signIn("google", { redirect: false })
+    
+    setLoading(false)
+    
+    if (result?.error) {
+      console.error(result.error)
+    } else if (result?.url) {
+      window.location.href = result.url
+    }
+  }
+
   return (
     <div className="flex flex-col h-[80vh] border rounded-xl p-4 bg-background shadow-md">
       {/* Header */}
@@ -59,16 +81,14 @@ export default function Chat() {
       </div>
 
       {/* Chat List */}
-      <ScrollArea className="flex-1 h-96 pr-2">
+      <ScrollArea className="flex-1 h-96 p-2">
         {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`flex items-start gap-3 ${
+          <div key={msg.id} className={`flex items-start gap-3 m-2 ${
               msg.isMine ? "justify-end text-right" : "justify-start"
             }`}
           >
-            {msg.isMine && msg.user && (
-              <Avatar className="w-8 h-8">
+              <div className={`w-full gap-4 ${msg.isMine ? "flex flex-row-reverse" : "flex"}`}>
+                <Avatar className="w-8 h-8 mt-2">
                 <AvatarImage
                   src={msg.user.image ?? undefined}
                   alt={msg.user.name ?? "User"}
@@ -76,39 +96,34 @@ export default function Chat() {
                 <AvatarFallback>
                   {msg.user.name ? msg.user.name[0].toUpperCase() : "U"}
                 </AvatarFallback>
-              </Avatar>
-            )}
-
-            <div
-              className={`rounded-2xl px-4 py-2 max-w-[70%] ${
-                msg.isMine
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-foreground"
-              }`}
-            >
-              {!msg.isMine &&  msg.user && (
-                <p className="text-xs font-medium mb-1">{msg.user.name}</p>
-              )}
-              <p>{msg.message}</p>
-              <p className="text-[10px] opacity-70 mt-1">
-                {new Date(msg.createdAt).toLocaleTimeString()}
-              </p>
-            </div>
+                </Avatar>
+           
+                <div className="max-w-[70%]">
+                    <p className="text-left ml-2 mb-2">{msg.user.name}</p>
+                    <div className={`rounded-2xl px-4 py-2 ${
+                      msg.isMine
+                        ? "bg-primary text-primary-foreground text-left"
+                        : "bg-muted text-foreground"
+                    }`}
+                  >
+                    <p>{msg.message}</p>
+                    <p className="text-[10px] opacity-70 mt-1">
+                      {new Date(msg.createdAt).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
           </div>
         ))}
         <div ref={messagesEndRef} />
       </ScrollArea>
 
-      {/* Input Box */}
-      <div className="flex gap-2 mt-3">
-        <Input
-          placeholder="Ketik pesan..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        />
-        <Button onClick={handleSend}>Kirim</Button>
-      </div>
+      {isAuthenticated ? (
+        <ChatInput value={text} onChange={setText} onSubmit={handleSend} />
+      ) : (
+      <GoogleSignInButton onClick={handleClick} isLoading={loading} fullWidth text="Sign in with Google" />
+      )}
+
     </div>
   );
 }
