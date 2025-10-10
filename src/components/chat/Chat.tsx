@@ -99,18 +99,23 @@ export default function Chat() {
                 </Avatar>
            
                 <div className="max-w-[70%]">
-                    <p className="text-left ml-2 mb-2">{msg.user.name}</p>
-                    <div className={`rounded-2xl px-4 py-2 ${
-                      msg.isMine
-                        ? "bg-primary text-primary-foreground text-left"
-                        : "bg-muted text-foreground"
-                    }`}
-                  >
-                    <p>{msg.message}</p>
-                    <p className="text-[10px] opacity-70 mt-1">
-                      {new Date(msg.createdAt).toLocaleTimeString()}
-                    </p>
-                  </div>
+                    <p className={`mb-2 ${msg.isMine ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
+                    <div className="w-full relative overflow-y-hidden">
+                      <div className={`absolute w-6 h-6 -top-3 rotate-45 ${msg.isMine ? "right-1.5 bg-primary" : "left-1 bg-muted"}`}>
+
+                      </div>
+                      <div className={`rounded-lg px-4 py-2 ${
+                          msg.isMine
+                            ? "bg-primary mr-2 text-primary-foreground text-left"
+                            : "bg-muted text-foreground ml-2"
+                            }`}
+                          >
+                          <p>{msg.message}</p>
+                          <p className="text-[10px] opacity-70 mt-1">
+                            {new Date(msg.createdAt).toLocaleTimeString()}
+                          </p>
+                      </div>
+                    </div>
                 </div>
               </div>
           </div>
