@@ -7,14 +7,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { TMessage } from "@/types/type"
 import { EllipsisVertical } from "lucide-react"
 import { FaCopy, FaEdit, FaReplyAll, FaTrash } from "react-icons/fa"
 
 type Props = {
-  isMine: boolean
+  message: TMessage
+  onReply: (message: TMessage) => void
 }
 
-export function ChatAction({isMine}: Props) {
+export function ChatAction({message, onReply}: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -22,7 +24,7 @@ export function ChatAction({isMine}: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => onReply(message)}>
             <FaReplyAll /> Reply
           </DropdownMenuItem>
           <DropdownMenuSeparator />
@@ -30,7 +32,7 @@ export function ChatAction({isMine}: Props) {
             <FaCopy /> Copy
           </DropdownMenuItem>
           {
-            isMine && (
+            message.isMine && (
               <>
                 <DropdownMenuItem>
                   <FaEdit /> Edit

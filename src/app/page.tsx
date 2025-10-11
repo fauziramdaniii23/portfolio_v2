@@ -54,7 +54,7 @@ export default function Home() {
                             color="white"
                             speed="5s"
                         >
-                            <button className="hover:cursor-pointer">My Dashboard</button>
+                            <p className="hover:cursor-pointer">My Dashboard</p>
                         </StarBorder>
                     </div>
                 </div>
