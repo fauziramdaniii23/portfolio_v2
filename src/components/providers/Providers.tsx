@@ -1,15 +1,11 @@
-'use client';
+"use client";
 
 import { SessionProvider } from "next-auth/react";
-import {ThemeProvider} from "@/components/providers/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
-export default function Providers({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
+    <SessionProvider basePath="/api/auth" refetchInterval={0}>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

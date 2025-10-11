@@ -4,6 +4,7 @@ import {
     User,
     FolderOpenDot, MessageCircleMore, Contact
 } from "lucide-react"
+import { MdGroups3 } from "react-icons/md";
 
 export const Menus : TMenuItem[] = [
     {
@@ -24,7 +25,7 @@ export const Menus : TMenuItem[] = [
     {
         label : 'Chat Room',
         path : '/chat-room',
-        icon : MessageCircleMore,
+        icon : MdGroups3,
     },
     {
         label : 'Discuss with me',

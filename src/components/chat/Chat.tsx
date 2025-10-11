@@ -1,25 +1,24 @@
-// components/chat/ChatWindow.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ChatInput } from "./ChatInput";
+import { useAuthStore } from "@/store/authStore";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { GoogleSignInButton } from "../ButtonSignWithGoogle";
+import NotificationBell from "../Dialogue";
+import { TMessage } from "@/types/type";
+import { ChatAction } from "./ChatAction";
+import { MdGroups3 } from "react-icons/md";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { LogOut } from "lucide-react";
 
-type Message = {
-  id: number;
-  message: string;
-  user: {
-    name: string;
-    image?: string;
-  };
-  createdAt: string;
-  isMine?: boolean;
-};
-
-export default function ChatRoom() {
-  const [messages, setMessages] = useState<Message[]>([]);
+export default function Chat() {
+  const { data: session } = useSession();  
+  const { user, isAuthenticated, login, logout } = useAuthStore();
+  const [messages, setMessages] = useState<TMessage[]>([]);
+  const [replyChat, setReplyChat] = useState<TMessage>();
   const [text, setText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +31,21 @@ export default function ChatRoom() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+   useEffect(() => {
+      if (session?.user) {
+        login({
+          user: {
+            id: session.user.id || "",
+            name: session.user.name || "",
+            email: session.user.email || "",
+            image: session.user.image || "",
+          },
+        });
+      } else {
+        logout();
+      }
+    }, [session, login, logout]);
 
   const handleSend = async () => {
     if (!text.trim()) return;
@@ -47,61 +61,144 @@ export default function ChatRoom() {
     setText("");
   };
 
+  
+  const [loading, setLoading] = useState(false)
+  
+   const handleSign = async () => {
+    setLoading(true)
+    
+    const result = await signIn("google", { redirect: false })
+    
+    setLoading(false)
+    
+    if (result?.error) {
+      console.error(result.error)
+    } else if (result?.url) {
+      window.location.href = result.url
+    }
+  }
+  const handleLogout = async () => {
+    await signOut()
+    logout()
+  }
+
+  const [hoveredMessageId, setHoveredMessageId] = useState<number | null>(null)
+
   return (
-    <div className="flex flex-col h-[80vh] border rounded-xl p-4 bg-background shadow-md">
+    <div className="border rounded-xl p-4 bg-background shadow-md">
       {/* Header */}
       <div className="flex justify-between items-center border-b pb-3 mb-3">
-        <h2 className="text-lg font-semibold">💬 Chat Room</h2>
-        <Button variant="outline" size="sm">Logout</Button>
+        <div className="flex">
+          <div className="flex gap-2">
+            <MdGroups3 size={28}/>
+            <h2 className="text-lg font-semibold"> Chat Room</h2>
+          </div>
+          {
+            isAuthenticated && (
+              <div className="flex gap-2 justify-center align-center items-center mx-2 border-l pl-2">
+                <Avatar>
+                  <AvatarImage
+                  src={session?.user.image ?? undefined}
+                  alt={session?.user.name ?? "User"}
+                />
+                  <AvatarFallback>
+                    {session?.user.name ? session.user.name[0].toUpperCase() : "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <p>{session?.user.name}</p>
+              </div>
+            )
+          }
+          
+        </div>
+        {
+          isAuthenticated && (
+            <div className="flex gap-2 mx-2">
+              <NotificationBell notifications={[]}/>
+              <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button onClick={handleLogout} ><LogOut/></button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Logout</p>
+                  </TooltipContent>
+                </Tooltip>
+            </div>
+          )
+        }
       </div>
 
       {/* Chat List */}
-      <ScrollArea className="flex-1 space-y-3 pr-2">
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`flex items-start gap-3 ${
-              msg.isMine ? "justify-end text-right" : "justify-start"
-            }`}
-          >
-            {!msg.isMine && (
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={msg.user.image} />
-                <AvatarFallback>
-                  {msg.user.name?.[0]?.toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-            )}
-            <div
-              className={`rounded-2xl px-4 py-2 max-w-[70%] ${
-                msg.isMine
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-foreground"
+      <div className="">
+          <ScrollArea className="flex-1 h-[60vh] p-2">
+          {messages.map((msg) => (
+            <div key={msg.id} className={`flex items-start gap-3 m-2 ${
+                msg.isMine ? "justify-end text-right" : "justify-start"
               }`}
             >
-              {!msg.isMine && (
-                <p className="text-xs font-medium mb-1">{msg.user.name}</p>
-              )}
-              <p>{msg.message}</p>
-              <p className="text-[10px] opacity-70 mt-1">
-                {new Date(msg.createdAt).toLocaleTimeString()}
-              </p>
+                <div className={`group w-full gap-4 ${msg.isMine ? "flex flex-row-reverse" : "flex"}`}>
+                  <Avatar className="w-8 h-8 mt-2">
+                    <AvatarImage
+                      src={msg.user.image ?? undefined}
+                      alt={msg.user.name ?? "User"}
+                    />
+                    <AvatarFallback>
+                      {msg.user.name ? msg.user.name[0].toUpperCase() : "U"}
+                    </AvatarFallback>
+                  </Avatar>
+            
+                  <div className="max-w-[60%]">
+                      <p className={`mb-2 ${msg.isMine ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
+                      <div className="w-full relative overflow-y-hidden">
+                        <div className={`absolute w-6 h-6 -top-3 rotate-45 ${msg.isMine ? "right-1.5 bg-primary" : "left-1 bg-muted"}`}>
+                        </div>                   
+                      <div className={`flex gap-2 ${
+                          msg.isMine
+                            ? "flex-row-reverse"
+                            : ""
+                            }`}
+                            onMouseEnter={() => setHoveredMessageId(msg.id)}
+                            onMouseLeave={() => setHoveredMessageId(null)}
+                            >
+                          <div className={`rounded-lg px-4 py-2 ${
+                          msg.isMine
+                            ? "bg-primary mr-2 text-primary-foreground text-left"
+                            : "bg-muted text-foreground ml-2"
+                            }`}                     
+                          >
+                              <p>{msg.message}</p>
+                              <p className="text-[10px] opacity-70 mt-1">
+                                {new Date(msg.createdAt).toLocaleTimeString()}
+                              </p>
+                          </div> 
+                          <div
+                            className={`transition-opacity duration-200 ${
+                              hoveredMessageId === msg.id ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                            }`}
+                          >
+                            {
+                              isAuthenticated && (
+                                <ChatAction message={msg} onReply={setReplyChat}/>
+                              )
+                            }
+                          </div> 
+                      </div>                  
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </ScrollArea>
-
-      {/* Input Box */}
-      <div className="flex gap-2 mt-3">
-        <Input
-          placeholder="Ketik pesan..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        />
-        <Button onClick={handleSend}>Kirim</Button>
+          ))}
+          <div ref={messagesEndRef} />
+        </ScrollArea>
       </div>
+      
+
+      {isAuthenticated ? (
+        <ChatInput value={text} onChange={setText} onSubmit={handleSend} reply={replyChat} cancelReply={() => setReplyChat(undefined)}/>
+      ) : (
+      <GoogleSignInButton onClick={handleSign} isLoading={loading} fullWidth text="Sign in with Google" />
+      )}
+
     </div>
   );
 }

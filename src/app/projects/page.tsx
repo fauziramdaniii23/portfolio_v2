@@ -3,10 +3,9 @@
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import {useState} from "react";
 import {categories, projects} from "@/app/constant/projects";
-import { ProjectCard } from "@/components/project-card"
-import { ProjectFilter } from "@/components/project-filter"
-import { ProjectStats } from "@/components/project-stats"
 import ShinyText from "@/components/ShinyText";
+import { ProjectFilter } from "@/components/project/ProjectFilter";
+import { ProjectCard } from "@/components/project/ProjectCard";
 
 export default function Project() {
     const [activeCategory, setActiveCategory] = useState("All")
