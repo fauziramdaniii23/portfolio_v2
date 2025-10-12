@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInput } from "./ChatInput";
@@ -8,7 +8,7 @@ import { useAuthStore } from "@/store/authStore";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { GoogleSignInButton } from "../ButtonSignWithGoogle";
 import NotificationBell from "../Dialogue";
-import { TMessage } from "@/types/type";
+import { TCurrentMessage, TMessage } from "@/types/type";
 import { ChatAction } from "./ChatAction";
 import { MdGroups3 } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -21,6 +21,22 @@ export default function Chat() {
   const [replyChat, setReplyChat] = useState<TMessage>();
   const [text, setText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const currentMessage = useMemo<TCurrentMessage | null>(() => {
+    if (!session?.user || !text.trim()) return null;
+
+    return {
+      message: text,
+      userId: Number(session.user.id),
+      replyToId: replyChat?.id,
+      user: {
+        id: session.user.id,
+        name: session.user.name ?? '',
+        email: session.user.email ?? '',
+      },
+      replyTo: replyChat,
+    };
+  }, [text, session, replyChat]);
 
   useEffect(() => {
     fetch("/api/chat")
@@ -53,12 +69,13 @@ export default function Chat() {
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text }),
+      body: JSON.stringify({ currentMessage }),
     });
 
     const newMsg = await res.json();
-    setMessages((prev) => [...prev, newMsg]);
+    setMessages((prev) => [...prev, {...newMsg, isMine: true}]);
     setText("");
+    setReplyChat(undefined);
   };
 
   
@@ -83,6 +100,20 @@ export default function Chat() {
   }
 
   const [hoveredMessageId, setHoveredMessageId] = useState<number | null>(null)
+
+  const handleEdit = (updatedMsg: TMessage) => {
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === updatedMsg.id ? { ...msg, ...updatedMsg } : msg
+      )
+    );
+  };
+
+  const handleDelete = (deletedMsg: TMessage) => {
+    setMessages((prevMessages) =>
+      prevMessages.filter((msg) => msg.id !== deletedMsg.id)
+    );
+  };
 
   return (
     <div className="border rounded-xl p-4 bg-background shadow-md">
@@ -147,7 +178,7 @@ export default function Chat() {
                     </AvatarFallback>
                   </Avatar>
             
-                  <div className="max-w-[60%]">
+                  <div className="max-w-[80%]">
                       <p className={`mb-2 ${msg.isMine ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
                       <div className="w-full relative overflow-y-hidden">
                         <div className={`absolute w-6 h-6 -top-3 rotate-45 ${msg.isMine ? "right-1.5 bg-primary" : "left-1 bg-muted"}`}>
@@ -161,14 +192,27 @@ export default function Chat() {
                             onMouseLeave={() => setHoveredMessageId(null)}
                             >
                           <div className={`rounded-lg px-4 py-2 ${
-                          msg.isMine
-                            ? "bg-primary mr-2 text-primary-foreground text-left"
-                            : "bg-muted text-foreground ml-2"
-                            }`}                     
-                          >
-                              <p>{msg.message}</p>
+                              msg.isMine
+                                ? "bg-primary mr-2 text-primary-foreground text-left"
+                                : "bg-muted text-foreground ml-2"
+                                }`}                     
+                              >{
+                                msg.replyTo && (
+                                  <div className={`border rounded-md border-l-6 p-2 ${msg.isMine ? "border-muted" : "border-l-blue-500"}`}>
+                                    <p className="font-bolde">{msg.replyTo.user.name}</p>
+                                    <p className="whitespace-pre-line">{msg.replyTo.message.length > msg.message.length ? msg.replyTo.message.slice(0, msg.message.length) + "..." : msg.replyTo.message}</p>
+                                  </div>
+                                )
+                              }
+                              <p className="whitespace-pre-line">{msg.message}</p>
                               <p className="text-[10px] opacity-70 mt-1">
-                                {new Date(msg.createdAt).toLocaleTimeString()}
+                                {new Date(msg.createdAt).toLocaleString("id-ID", {
+                                  day: "2-digit",
+                                  month: "2-digit",
+                                  year: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
                               </p>
                           </div> 
                           <div
@@ -178,7 +222,7 @@ export default function Chat() {
                           >
                             {
                               isAuthenticated && (
-                                <ChatAction message={msg} onReply={setReplyChat}/>
+                                <ChatAction message={msg} onReply={setReplyChat} onEdit={handleEdit} onDelete={handleDelete}/>
                               )
                             }
                           </div> 

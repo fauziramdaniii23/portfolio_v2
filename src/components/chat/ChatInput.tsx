@@ -30,14 +30,12 @@ export function ChatInput({value, onChange, onSubmit, className, reply, cancelRe
         
       {
         reply && (
-          <div className="relative w-full flex mx-2 mt-4 gap-2">
-          <FaReplyAll />
+          <div className="relative max-w-[90%] flex mx-2 mt-4 gap-2">
+          <FaReplyAll className="flex-shrink-0 mt-1"/>
             <div className="border w-full p-2 rounded-2xl border-l-8">
               <p className="font-bold">{reply.user.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {reply.message.length > 200
-                  ? reply.message.slice(0, 200) + "..."
-                  : reply.message}
+              <p className="text-sm text-muted-foreground truncate">
+                {reply.message}
               </p>
             </div>
             <button onClick={cancelReply} className="absolute right-2 top-2"><X className="w-4 h-4"/></button>

@@ -19,6 +19,11 @@ export function Sidebar() {
         return pathname === path || pathname.startsWith(`${path}/`);
     }
 
+    const handleNavigate = (path: string) => {
+        if(pathname === path) return
+        navigate(path);
+    }
+
     return (
         <div
             className={cn(
@@ -61,7 +66,7 @@ export function Sidebar() {
                     const Icon = item.icon;
                     return (
                         <Button
-                            onClick={() => navigate(item.path)}
+                            onClick={() => handleNavigate(item.path)}
                             key={index}
                             variant="ghost"
                             className={cn(

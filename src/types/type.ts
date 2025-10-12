@@ -74,3 +74,12 @@ export type TMessage = {
   isMine: boolean;
 };
 
+export type TCurrentMessage = {
+  message: string;
+  userId: number;
+  replyToId?: number;
+  user: TUser;
+  replyTo?: TMessage;
+  isMine?: boolean;
+};
+
