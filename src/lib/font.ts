@@ -1,11 +1,7 @@
 'use client';
 
-import { Lobster, Bitcount, Alumni_Sans, Geo } from 'next/font/google'
+import { Lobster, Alumni_Sans, Geo } from 'next/font/google'
 export const lobster = Lobster({
-    subsets: ['latin'],
-    weight: '400',
-})
-export const bitcount = Bitcount({
     subsets: ['latin'],
     weight: '400',
 })

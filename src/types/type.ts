@@ -1,5 +1,11 @@
 import {StaticImageData} from "next/image";
 
+export type TAuthor = {
+  name: string;
+  email: string;
+  image: string;
+}
+
 export type TUser = {
   id?: string;
   name: string;

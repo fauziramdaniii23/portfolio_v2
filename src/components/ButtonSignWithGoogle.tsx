@@ -55,16 +55,12 @@ export const GoogleSignInButton = forwardRef<HTMLButtonElement, GoogleSignInButt
         aria-label={text}
         disabled={isLoading || disabled}
         className={cn(
-          // Surface styling via tokens
           "bg-background text-foreground border-input",
           // Motion & feel
           "gap-2 font-medium shadow-sm transition-all",
-          "hover:-translate-y-0.5 hover:shadow-md",
+          "-translate-y-0.5 hover:shadow-md",
           "active:translate-y-0",
-          // Focus ring accessibility
           "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-          // Layout
-          fullWidth && "w-full",
           className,
         )}
         {...props}

@@ -5,18 +5,21 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInput } from "./ChatInput";
 import { useAuthStore } from "@/store/authStore";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { GoogleSignInButton } from "../ButtonSignWithGoogle";
+import { signOut, useSession } from "next-auth/react";
 import NotificationBell from "../Dialogue";
 import { TCurrentMessage, TMessage } from "@/types/type";
 import { ChatAction } from "./ChatAction";
 import { MdGroups3 } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { LogOut } from "lucide-react";
+import ButtonAuth from "../button/ButtonAuth";
+import { isAuthor } from "@/lib/utils";
+import { Author } from "@/app/constant/constant";
+import { GoShieldCheck } from "react-icons/go";
 
 export default function Chat() {
   const { data: session } = useSession();  
-  const { user, isAuthenticated, login, logout } = useAuthStore();
+  const { isAuthenticated, logout } = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [replyChat, setReplyChat] = useState<TMessage>();
   const [text, setText] = useState("");
@@ -48,21 +51,6 @@ export default function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-   useEffect(() => {
-      if (session?.user) {
-        login({
-          user: {
-            id: session.user.id || "",
-            name: session.user.name || "",
-            email: session.user.email || "",
-            image: session.user.image || "",
-          },
-        });
-      } else {
-        logout();
-      }
-    }, [session, login, logout]);
-
   const handleSend = async () => {
     if (!text.trim()) return;
 
@@ -77,23 +65,7 @@ export default function Chat() {
     setText("");
     setReplyChat(undefined);
   };
-
-  
-  const [loading, setLoading] = useState(false)
-  
-   const handleSign = async () => {
-    setLoading(true)
-    
-    const result = await signIn("google", { redirect: false })
-    
-    setLoading(false)
-    
-    if (result?.error) {
-      console.error(result.error)
-    } else if (result?.url) {
-      window.location.href = result.url
-    }
-  }
+ 
   const handleLogout = async () => {
     await signOut()
     logout()
@@ -129,7 +101,7 @@ export default function Chat() {
               <div className="flex gap-2 justify-center align-center items-center mx-2 border-l pl-2">
                 <Avatar>
                   <AvatarImage
-                  src={session?.user.image ?? undefined}
+                  src={isAuthor(session?.user.email) ? Author.image : session?.user.image ?? ""}
                   alt={session?.user.name ?? "User"}
                 />
                   <AvatarFallback>
@@ -145,7 +117,7 @@ export default function Chat() {
         {
           isAuthenticated && (
             <div className="flex gap-2 mx-2">
-              <NotificationBell notifications={[]}/>
+              {/* <NotificationBell notifications={[]}/> */}
               <Tooltip>
                   <TooltipTrigger asChild>
                     <button onClick={handleLogout} ><LogOut/></button>
@@ -163,14 +135,14 @@ export default function Chat() {
       <div className="">
           <ScrollArea className="flex-1 h-[60vh] p-2">
           {messages.map((msg) => (
-            <div key={msg.id} className={`flex items-start gap-3 m-2 ${
+            <div key={msg.id} className={`flex items-start gap-3 mx-2 my-4 ${
                 msg.isMine ? "justify-end text-right" : "justify-start"
               }`}
             >
                 <div className={`group w-full gap-4 ${msg.isMine ? "flex flex-row-reverse" : "flex"}`}>
                   <Avatar className="w-8 h-8 mt-2">
                     <AvatarImage
-                      src={msg.user.image ?? undefined}
+                      src={isAuthor(msg.user.email) ? Author.image : msg.user.image ?? ""}
                       alt={msg.user.name ?? "User"}
                     />
                     <AvatarFallback>
@@ -179,7 +151,17 @@ export default function Chat() {
                   </Avatar>
             
                   <div className="max-w-[80%]">
-                      <p className={`mb-2 ${msg.isMine ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
+                      <div className={`flex gap-2 ${msg.isMine ? "justify-end" : "justify-start"}`}>
+                        <p className={`mb-2 ${msg.isMine && !isAuthor(msg.user.email) ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
+                        {
+                          isAuthor(msg.user.email) && (
+                            <div className="flex justify-center align-center items-center gap-1 mb-2 rounded-2xl bg-blue-500/50 px-2">
+                              <GoShieldCheck className="text-blue-500 "/>
+                              <p className="text-xs italic">Author</p>
+                            </div>
+                          )
+                        }
+                      </div>
                       <div className="w-full relative overflow-y-hidden">
                         <div className={`absolute w-6 h-6 -top-3 rotate-45 ${msg.isMine ? "right-1.5 bg-primary" : "left-1 bg-muted"}`}>
                         </div>                   
@@ -240,7 +222,7 @@ export default function Chat() {
       {isAuthenticated ? (
         <ChatInput value={text} onChange={setText} onSubmit={handleSend} reply={replyChat} cancelReply={() => setReplyChat(undefined)}/>
       ) : (
-      <GoogleSignInButton onClick={handleSign} isLoading={loading} fullWidth text="Sign in with Google" />
+        <ButtonAuth/>
       )}
 
     </div>
