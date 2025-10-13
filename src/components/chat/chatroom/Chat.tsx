@@ -3,16 +3,16 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChatInput } from "./ChatInput";
+import { ChatInput } from "../ChatInput";
 import { useAuthStore } from "@/store/authStore";
 import { signOut, useSession } from "next-auth/react";
-import NotificationBell from "../Dialogue";
+import NotificationBell from "../../Dialogue";
 import { TCurrentMessage, TMessage } from "@/types/type";
-import { ChatAction } from "./ChatAction";
+import { ChatAction } from "../ChatAction";
 import { MdGroups3 } from "react-icons/md";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { LogOut } from "lucide-react";
-import ButtonAuth from "../button/ButtonAuth";
+import ButtonAuth from "../../button/ButtonAuth";
 import { isAuthor } from "@/lib/utils";
 import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
@@ -42,7 +42,7 @@ export default function Chat() {
   }, [text, session, replyChat]);
 
   useEffect(() => {
-    fetch("/api/chat")
+    fetch("/api/chat-room")
       .then((res) => res.json())
       .then(setMessages);
   }, []);
@@ -54,7 +54,7 @@ export default function Chat() {
   const handleSend = async () => {
     if (!text.trim()) return;
 
-    const res = await fetch("/api/chat", {
+    const res = await fetch("/api/chat-room", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ currentMessage }),
@@ -152,12 +152,12 @@ export default function Chat() {
             
                   <div className="max-w-[80%]">
                       <div className={`flex gap-2 ${msg.isMine ? "justify-end" : "justify-start"}`}>
-                        <p className={`mb-2 ${msg.isMine && !isAuthor(msg.user.email) ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
+                        <p className={`mb-2 font-bold ${msg.isMine && !isAuthor(msg.user.email) ? "text-right mr-2" : "text-left ml-2"}`}>{msg.user.name}</p>
                         {
                           isAuthor(msg.user.email) && (
                             <div className="flex justify-center align-center items-center gap-1 mb-2 rounded-2xl bg-blue-500/50 px-2">
-                              <GoShieldCheck className="text-blue-500 "/>
-                              <p className="text-xs italic">Author</p>
+                              <GoShieldCheck className="text-blue-500 text-xs"/>
+                              <p className="text-[10px] italic">Author</p>
                             </div>
                           )
                         }
@@ -181,7 +181,18 @@ export default function Chat() {
                               >{
                                 msg.replyTo && (
                                   <div className={`border rounded-md border-l-6 p-2 ${msg.isMine ? "border-muted" : "border-l-blue-500"}`}>
-                                    <p className="font-bolde">{msg.replyTo.user.name}</p>
+                                    <div className="flex gap-2">
+                                        <p className="font-bold">{msg.replyTo.user.name}</p>
+                                        {
+                                          isAuthor(msg.replyTo.user.email) && (
+                                            <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
+                                              <GoShieldCheck className="text-blue-500 text-xs"/>
+                                              <p className="text-[10px] italic text-center">Author</p>
+                                            </div>
+                                          )
+                                        }
+                                    </div>
+                                    
                                     <p className="whitespace-pre-line">{msg.replyTo.message.length > msg.message.length ? msg.replyTo.message.slice(0, msg.message.length) + "..." : msg.replyTo.message}</p>
                                   </div>
                                 )

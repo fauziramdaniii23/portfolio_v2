@@ -34,7 +34,7 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
     console.log('edit',editText)
     if(!editText.trim()) return
 
-    const res = await fetch("/api/chat", {
+    const res = await fetch("/api/chat-room", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, editText }),
@@ -47,7 +47,7 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
   }
 
   const handleDelete = async () => {
-    const res = await fetch("/api/chat", {
+    const res = await fetch("/api/chat-room", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id : message.id }),

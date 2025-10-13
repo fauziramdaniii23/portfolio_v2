@@ -11,55 +11,61 @@ datasource db {
 // 👤 USER
 //
 model User {
-  id        Int        @id @default(autoincrement())
-  name      String?
-  email     String?    @unique
-  image     String?
-  emailVerified  DateTime?
-  createdAt DateTime   @default(now())
+  id            Int       @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  image         String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
 
   // ✅ relasi ke fitur autentikasi (NextAuth)
-  accounts  Account[]
-  sessions  Session[]
+  accounts Account[]
+  sessions Session[]
 
   // ✅ relasi ke fitur chat
-  chats     Chat[]
-  mentions  Mention[]  @relation("UserMentions")
+  chats    Chat[]
+  mentions Mention[] @relation("UserMentions")
+
+  personalChats1 PersonalChat[] @relation("User1Chats")
+  personalChats2 PersonalChat[] @relation("User2Chats")
 }
 
 //
 // 💬 CHAT
 //
 model Chat {
-  id         Int         @id @default(autoincrement())
-  message    String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  deletedAt  DateTime?   // null = pesan aktif
+  id        Int       @id @default(autoincrement())
+  message   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // null = pesan aktif
 
-  user       User        @relation(fields: [userId], references: [id])
-  userId     Int
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
 
-  replyTo    Chat?       @relation("ChatReplies", fields: [replyToId], references: [id])
-  replyToId  Int?
-  replies    Chat[]      @relation("ChatReplies")
+  replyTo   Chat?   @relation("ChatReplies", fields: [replyToId], references: [id])
+  replyToId Int?
+  replies   Chat[]  @relation("ChatReplies")
+  isRead    Boolean @default(false)
 
-  mentions   Mention[]
+  mentions       Mention[]
+  personalChat   PersonalChat? @relation("PersonalChatMessages", fields: [personalChatId], references: [id])
+  personalChatId Int?
 }
 
 //
 // 🏷️ MENTION
 //
 model Mention {
-  id          Int       @id @default(autoincrement())
-  chat        Chat      @relation(fields: [chatId], references: [id])
-  chatId      Int
+  id     Int  @id @default(autoincrement())
+  chat   Chat @relation(fields: [chatId], references: [id])
+  chatId Int
 
-  mentioned   User      @relation("UserMentions", fields: [mentionedId], references: [id])
+  mentioned   User @relation("UserMentions", fields: [mentionedId], references: [id])
   mentionedId Int
 
-  readAt      DateTime?
-  createdAt   DateTime  @default(now())
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
 }
 
 //
@@ -67,19 +73,19 @@ model Mention {
 //
 
 model Account {
-  id                Int       @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   userId            Int
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?   @db.Text
-  access_token      String?   @db.Text
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?   @db.Text
+  id_token          String? @db.Text
   session_state     String?
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -98,4 +104,19 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model PersonalChat {
+  id        Int       @id @default(autoincrement())
+  user1Id   Int
+  user2Id   Int
+  content   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user1 User @relation("User1Chats", fields: [user1Id], references: [id])
+  user2 User @relation("User2Chats", fields: [user2Id], references: [id])
+
+  chats Chat[] @relation("PersonalChatMessages")
 }
