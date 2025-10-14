@@ -13,7 +13,7 @@ import { MdGroups3 } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
 import { LogOut } from "lucide-react";
 import ButtonAuth from "../../button/ButtonAuth";
-import { isAuthor } from "@/lib/utils";
+import { getMessageReply, isAuthor } from "@/lib/utils";
 import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
@@ -214,7 +214,8 @@ export default function Chat() {
                                         }
                                     </div>
                                     
-                                    <p className="whitespace-pre-line">{msg.replyTo.message.length > msg.message.length ? msg.replyTo.message.slice(0, msg.message.length) + "..." : msg.replyTo.message}</p>
+                                    {/* <p className="whitespace-pre-line">{msg.replyTo.message.length > msg.message.length ? msg.replyTo.message.slice(0, msg.message.length) + "..." : msg.replyTo.message}</p> */}
+                                    <p className="whitespace-pre-line">{getMessageReply(msg.message, msg.replyTo.message)}</p>
                                   </div>
                                 )
                               }
