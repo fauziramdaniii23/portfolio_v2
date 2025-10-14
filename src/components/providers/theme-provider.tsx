@@ -11,18 +11,10 @@ export function ThemeProvider({
   ...props
 }: React.ComponentProps<typeof NextThemesProvider>) {
   const pathname = usePathname();
-  const [mounted, setMounted] = React.useState(false);
 
   useEffect(() => {
     NProgress.done();
   }, [pathname]);
-
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) {
-    // hindari mismatch antara SSR dan client
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
 
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
