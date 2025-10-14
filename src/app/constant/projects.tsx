@@ -75,7 +75,7 @@ export const projects: TProject[] = [
         description: "Aplikasi management pengelolaan jasa studio photografi",
         category: "Web Development",
         year: "2023",
-        image: "/fitness-app-dashboard.png",
+        image: "/projects/ciherang.png",
         tags: ["Flutter", "Firebase", "HealthKit", "Charts"],
         summary: [
             'Pengelolaan jasa studio',

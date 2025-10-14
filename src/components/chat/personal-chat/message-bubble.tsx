@@ -23,17 +23,6 @@ export function MessageBubble({
         )}
       >
         <p className="whitespace-pre-wrap text-pretty">{content}</p>
-        {createdAt ? (
-          <time
-            className={cn(
-              "block mt-1 text-[10px] opacity-70",
-              isMe ? "text-primary-foreground" : "text-muted-foreground",
-            )}
-            dateTime={createdAt}
-          >
-            {new Date(createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-          </time>
-        ) : null}
       </div>
     </div>
   )
