@@ -9,6 +9,7 @@ import { TMessage } from "@/types/type";
 import {SendHorizontal, X } from "lucide-react";
 import { useEffect } from "react";
 import { FaReplyAll } from "react-icons/fa";
+import { Spinner } from "../ui/spinner";
 
 type ChatInputProps = {
   value: string;
@@ -17,9 +18,10 @@ type ChatInputProps = {
   className?: string;
   reply?: TMessage;
   cancelReply: () => void
+  loadingSend: boolean
 };
 
-export function ChatInput({value, onChange, onSubmit, className, reply, cancelReply}: ChatInputProps) {
+export function ChatInput({value, onChange, onSubmit, className, reply, cancelReply, loadingSend}: ChatInputProps) {
   return (
     <div
       className={cn(
@@ -66,7 +68,7 @@ export function ChatInput({value, onChange, onSubmit, className, reply, cancelRe
           />
           <div className="flex items-center justify-between">
             <Button type="submit">
-              Kirim <SendHorizontal/>
+              Kirim {loadingSend ? <Spinner/> : <SendHorizontal/>}
             </Button>
           </div>
         </form>

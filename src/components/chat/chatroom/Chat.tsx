@@ -16,6 +16,7 @@ import ButtonAuth from "../../button/ButtonAuth";
 import { isAuthor } from "@/lib/utils";
 import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
+import { pusherClient } from "@/lib/pusher/pusherClient";
 
 export default function Chat() {
   const { data: session } = useSession();  
@@ -24,6 +25,7 @@ export default function Chat() {
   const [replyChat, setReplyChat] = useState<TMessage>();
   const [text, setText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [loadingSend, setLoadingSend] = useState(false);
 
   const currentMessage = useMemo<TCurrentMessage | null>(() => {
     if (!session?.user || !text.trim()) return null;
@@ -53,6 +55,7 @@ export default function Chat() {
 
   const handleSend = async () => {
     if (!text.trim()) return;
+    setLoadingSend(true);
 
     const res = await fetch("/api/chat-room", {
       method: "POST",
@@ -60,10 +63,11 @@ export default function Chat() {
       body: JSON.stringify({ currentMessage }),
     });
 
-    const newMsg = await res.json();
-    setMessages((prev) => [...prev, {...newMsg, isMine: true}]);
+    // const newMsg = await res.json();
+    // setMessages((prev) => [...prev, {...newMsg, isMine: true}]);
     setText("");
     setReplyChat(undefined);
+    setLoadingSend(false);
   };
  
   const handleLogout = async () => {
@@ -86,6 +90,21 @@ export default function Chat() {
       prevMessages.filter((msg) => msg.id !== deletedMsg.id)
     );
   };
+
+  useEffect(() => {
+    const channel = pusherClient.subscribe("chat-room");
+
+    channel.bind("chat", (data: any) => {
+      console.log(data);
+      const newMsg = data.newMsg;
+      setMessages((prev) => [...prev, {...newMsg, isMine: newMsg.user.email === session?.user.email}]);
+    });
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="border rounded-xl p-4 bg-background shadow-md">
@@ -231,7 +250,13 @@ export default function Chat() {
       
 
       {isAuthenticated ? (
-        <ChatInput value={text} onChange={setText} onSubmit={handleSend} reply={replyChat} cancelReply={() => setReplyChat(undefined)}/>
+        <ChatInput 
+          value={text} 
+          onChange={setText} 
+          onSubmit={handleSend} 
+          reply={replyChat} 
+          cancelReply={() => setReplyChat(undefined)}
+          loadingSend={loadingSend}/>
       ) : (
         <ButtonAuth/>
       )}

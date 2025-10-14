@@ -2,6 +2,7 @@
 import { forwardRef } from "react"
 import { Button, type ButtonProps } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Spinner } from "./ui/spinner"
 
 type GoogleSignInButtonProps = Omit<ButtonProps, "variant" | "size"> & {
   isLoading?: boolean
@@ -30,18 +31,6 @@ function GoogleIcon({ className }: { className?: string }) {
         d="M9 18c2.43 0 4.47-.8 5.96-2.17l-2.83-2.2c-.76.53-1.78.9-3.13.9-2.41 0-4.45-1.62-5.13-3.77L.96 13.1C2.44 16.01 5.48 18 9 18z"
       />
     </svg>
-  )
-}
-
-function Spinner({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent",
-        className,
-      )}
-    />
   )
 }
 
