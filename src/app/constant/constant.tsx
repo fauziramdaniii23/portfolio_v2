@@ -1,10 +1,16 @@
-import {TTextServices} from "@/types/type";
+import {TAuthor, TTextServices} from "@/types/type";
 import {
     BookCheck, BugPlay,
     ChartSpline,
     CircleStar, Speech, StepForward, Timer
 } from "lucide-react"
 import { AiOutlineTeam } from "react-icons/ai";
+
+export const Author: TAuthor = {
+    name: 'Fauzi Ramdani',
+    email: 'fauziramdani234@gmail.com',
+    image: '/profile.png'
+}
 
 export const Services: TTextServices[] = [
     {

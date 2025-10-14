@@ -28,8 +28,8 @@ export const Menus : TMenuItem[] = [
         icon : MdGroups3,
     },
     {
-        label : 'Discuss with me',
-        path : '/discuss',
+        label : 'Personal Chat',
+        path : '/personal-chat',
         icon : MessageCircleMore,
     },
     {

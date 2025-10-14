@@ -24,12 +24,47 @@ export const chatService = {
     });
     if (!user) throw new Error("User not found");
 
-    return prisma.chat.create({
+    const newMsg = await prisma.chat.create({
       data: {
         message: data.message,
         userId: user.id,
         replyToId: data.replyToId || null,
       },
+      include: {
+        user: true,
+        replyTo: { include: { user: true } },
+        replies: true,
+        mentions: { include: { mentioned: true } },
+      },
     });
+    return newMsg;
   },
+
+  async updateMessage(id: number, text: string) {
+    const newMsg = await prisma.chat.update({
+      where: { id },
+      data: {  message: text },
+      include: {
+        user: true,
+        replyTo: { include: { user: true } },
+        replies: true,
+        mentions: { include: { mentioned: true } },
+      }
+    });
+    return newMsg
+  },
+
+  async softDeleteMessage(id: number) {
+    const deletedMsg = await prisma.chat.update({
+      where: { id },
+      data: { deletedAt: new Date() },
+      include: {
+        user: true,
+        replyTo: { include: { user: true } },
+        replies: true,
+        mentions: { include: { mentioned: true } },
+      },
+    });
+    return deletedMsg;
+  }
 };

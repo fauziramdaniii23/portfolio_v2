@@ -1,5 +1,11 @@
 import {StaticImageData} from "next/image";
 
+export type TAuthor = {
+  name: string;
+  email: string;
+  image: string;
+}
+
 export type TUser = {
   id?: string;
   name: string;
@@ -72,5 +78,14 @@ export type TMessage = {
   createdAt: string;
   replyTo?: TMessage;
   isMine: boolean;
+};
+
+export type TCurrentMessage = {
+  message: string;
+  userId: number;
+  replyToId?: number;
+  user: TUser;
+  replyTo?: TMessage;
+  isMine?: boolean;
 };
 

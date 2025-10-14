@@ -2,6 +2,7 @@
 import { chatService } from "@/services/chatService";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { TCurrentMessage, TMessage } from "@/types/type";
 
 export const chatController = {
   async getAllChats() {
@@ -19,16 +20,32 @@ export const chatController = {
     return formatted;
   },
 
-  async createChat(body: { message: string; replyToId?: number }) {
+  async createChat(currentMessage: TCurrentMessage ) {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) throw new Error("Unauthorized");
 
     const newMessage = await chatService.createMessage({
-      message: body.message,
+      message: currentMessage.message,
       userEmail: session.user.email,
-      replyToId: body.replyToId,
+      replyToId: currentMessage.replyToId,
     });
 
     return newMessage;
   },
+
+  async updateMessage(message : TMessage, editText: string) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) throw new Error("Unauthorized");
+
+    const updatedMessage = await chatService.updateMessage(message.id, editText)
+    return updatedMessage
+  },
+
+  async softDeleteMessage(messageId : number) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) throw new Error("Unauthorized");
+
+    const deletedMessage = await chatService.softDeleteMessage(messageId)
+    return deletedMessage
+  }
 };
