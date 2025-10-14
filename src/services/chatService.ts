@@ -1,5 +1,6 @@
 // src/services/chatService.ts
 import { prisma } from "@/lib/prisma";
+import { pusher } from "@/lib/pusher/pusherServer";
 
 export const chatService = {
   async getAllMessages() {
@@ -37,6 +38,8 @@ export const chatService = {
         mentions: { include: { mentioned: true } },
       },
     });
+
+    await pusher.trigger("chat-room", "chat", { newMsg });
     return newMsg;
   },
 
