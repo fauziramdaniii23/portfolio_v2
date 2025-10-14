@@ -20,7 +20,7 @@ import { pusherClient } from "@/lib/pusher/pusherClient";
 
 export default function Chat() {
   const { data: session } = useSession();  
-  const { isAuthenticated, logout } = useAuthStore();
+  const { user, isAuthenticated, logout } = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [replyChat, setReplyChat] = useState<TMessage>();
   const [text, setText] = useState("");
@@ -92,11 +92,13 @@ export default function Chat() {
   };
 
   useEffect(() => {
+    if (!session?.user?.email) return;
     const channel = pusherClient.subscribe("chat-room");
 
     channel.bind("chat", (data: any) => {
-      console.log(data);
+      // console.log(data);
       const newMsg = data.newMsg;
+      console.log('newMsg', newMsg.user.email, session?.user.email);
       setMessages((prev) => [...prev, {...newMsg, isMine: newMsg.user.email === session?.user.email}]);
     });
 
@@ -104,7 +106,7 @@ export default function Chat() {
       channel.unbind_all();
       channel.unsubscribe();
     };
-  }, []);
+  }, [session]);
 
   return (
     <div className="border rounded-xl p-4 bg-background shadow-md">

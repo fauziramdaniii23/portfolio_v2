@@ -7,7 +7,7 @@ import {
 import { cn } from "@/lib/utils";
 import { TMessage } from "@/types/type";
 import {SendHorizontal, X } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FaReplyAll } from "react-icons/fa";
 import { Spinner } from "../ui/spinner";
 
@@ -22,6 +22,16 @@ type ChatInputProps = {
 };
 
 export function ChatInput({value, onChange, onSubmit, className, reply, cancelReply, loadingSend}: ChatInputProps) {
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+  if (textareaRef.current) {
+    setTimeout(() => {
+      textareaRef.current?.focus();
+    }, 200);
+  }
+}, [reply]);
+
   return (
     <div
       className={cn(
@@ -55,6 +65,8 @@ export function ChatInput({value, onChange, onSubmit, className, reply, cancelRe
           aria-label="Form input chat"
         >
           <Textarea
+            ref={textareaRef}
+            disabled={loadingSend}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="Tulis pesan Anda..."
