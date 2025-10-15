@@ -44,11 +44,11 @@ export const chatController = {
     return deletedMessage
   },
 
-  async getChatList() {
+  async getChatList(userId: number) {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) throw new Error("Unauthorized");
 
-    const chatList = await chatService.getChatList()
+    const chatList = await chatService.getChatList(userId)
     const data = filterChatList(Number(session.user.id), chatList as unknown as TPersonalChat[]);
 
     return data

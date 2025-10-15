@@ -19,7 +19,6 @@ import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
 
 export default function Chat() {
-  const { data: session } = useSession();  
   const { user, isAuthenticated, logout } = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [replyChat, setReplyChat] = useState<TMessage>();
@@ -28,20 +27,20 @@ export default function Chat() {
   const [loadingSend, setLoadingSend] = useState(false);
 
   const currentMessage = useMemo<TCurrentMessage | null>(() => {
-    if (!session?.user || !text.trim()) return null;
+    if ( user === null || !text.trim()) return null;
 
     return {
       message: text,
-      userId: Number(session.user.id),
+      userId: Number(user.id),
       replyToId: replyChat?.id,
       user: {
-        id: session.user.id,
-        name: session.user.name ?? '',
-        email: session.user.email ?? '',
+        id: user?.id,
+        name: user.name ?? '',
+        email: user.email ?? '',
       },
       replyTo: replyChat,
     };
-  }, [text, session, replyChat]);
+  }, [text, user, replyChat]);
 
   useEffect(() => {
     fetch("/api/chat-room")
@@ -81,55 +80,54 @@ export default function Chat() {
     setMessages((prevMessages) =>
       prevMessages.map((msg) =>
         msg.id === updatedMsg.id ? { ...msg, ...updatedMsg } : msg
-      )
-    );
-  };
+        )
+      );
+    };
 
-  const handleDelete = (deletedMsg: TMessage) => {
-    setMessages((prevMessages) =>
-      prevMessages.filter((msg) => msg.id !== deletedMsg.id)
-    );
-  };
+    const handleDelete = (deletedMsg: TMessage) => {
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== deletedMsg.id)
+      );
+    };
 
-  useEffect(() => {
-    if (!session?.user?.email) return;
+    useEffect(() => {
     const channel = pusherClient.subscribe("chat");
 
-      // 🟢 Event: Pesan baru
-  channel.bind("chat-room-post", (data: any) => {
-    const newMsg = data.newMsg;
-    setMessages((prev) => [
-      ...prev,
-      { ...newMsg, isMine: newMsg.user.email === session.user.email },
-    ]);
-  });
+        // 🟢 Event: Pesan baru
+    channel.bind("chat-room-post", (data: any) => {
+      const newMsg = data.newMsg;
+      setMessages((prev) => [
+        ...prev,
+        { ...newMsg, isMine: newMsg.user.email === user?.email },
+      ]);
+    });
 
-  // 🟡 Event: Pesan di-update
-  channel.bind("chat-room-update", (data: any) => {
-    const updatedMsg = data.newMsg;
-    setMessages((prev) =>
-      prev.map((msg) =>
-        msg.id === updatedMsg.id
-          ? { ...updatedMsg, isMine: updatedMsg.user.email === session.user.email }
-          : msg
-      )
-    );
-  });
+    // 🟡 Event: Pesan di-update
+    channel.bind("chat-room-update", (data: any) => {
+      const updatedMsg = data.newMsg;
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === updatedMsg.id
+            ? { ...updatedMsg, isMine: updatedMsg.user.email === user?.email }
+            : msg
+        )
+      );
+    });
 
-  // 🔴 Event: Pesan dihapus
-  channel.bind("chat-room-delete", (data: any) => {
-    const deletedMsg = data.deletedMsg;
-    setMessages((prevMessages) =>
-      prevMessages.filter((msg) => msg.id !== deletedMsg.id)
-    );
-  });
+    // 🔴 Event: Pesan dihapus
+    channel.bind("chat-room-delete", (data: any) => {
+      const deletedMsg = data.deletedMsg;
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== deletedMsg.id)
+      );
+    });
 
 
     return () => {
       channel.unbind_all();
       channel.unsubscribe();
     };
-  }, [session]);
+  }, [user]);
 
   return (
     <div className="border rounded-xl p-4 bg-background shadow-md">
@@ -141,18 +139,18 @@ export default function Chat() {
             <h2 className="text-lg font-semibold"> Chat Room</h2>
           </div>
           {
-            isAuthenticated && (
+            isAuthenticated && user && (
               <div className="flex gap-2 justify-center align-center items-center mx-2 border-l pl-2">
                 <Avatar>
                   <AvatarImage
-                  src={isAuthor(session?.user.email) ? Author.image : session?.user.image ?? ""}
-                  alt={session?.user.name ?? "User"}
+                  src={isAuthor(user.email) ? Author.image : user.image ?? ""}
+                  alt={user.name ?? "User"}
                 />
                   <AvatarFallback>
-                    {session?.user.name ? session.user.name[0].toUpperCase() : "U"}
+                    {user.name ? user.name[0].toUpperCase() : "U"}
                   </AvatarFallback>
                 </Avatar>
-                <p>{session?.user.name}</p>
+                <p>{user.name}</p>
               </div>
             )
           }

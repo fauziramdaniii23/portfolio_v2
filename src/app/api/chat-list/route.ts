@@ -1,11 +1,19 @@
 import { chatController } from "@/controllers/chatController";
 import { authOptions } from "@/lib/auth";
+import { decrypt } from "@/lib/encryptor";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    const data = await chatController.getChatList();
+    const { searchParams } = new URL(req.url);
+    const userId = searchParams.get("userId");
+    if (userId === null) {
+    throw new Error("userId query parameter is missing");
+      }
+    const decodedId = decodeURIComponent(userId);
+    const decryptUserId = await decrypt(decodedId);
+    const data = await chatController.getChatList(Number(decryptUserId));
     return NextResponse.json(data);
   } catch (error) {
     console.error("GET /api/chat error:", error);

@@ -92,6 +92,12 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
                     onChange={(e) => setEditText(e.target.value)}
                     className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     rows={4}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleEdit();
+                      }
+                    }}
                   />
                   <DialogFooter>
                     <Button

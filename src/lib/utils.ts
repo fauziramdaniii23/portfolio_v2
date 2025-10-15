@@ -1,6 +1,6 @@
 import { Author } from "@/app/constant/constant";
 import { useAuthStore } from "@/store/authStore";
-import { useUserStore } from "@/store/userStore";
+import { useUserListStore } from "@/store/userStore";
 import { TChatList, TPersonalChat, TUser } from "@/types/type";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -52,8 +52,8 @@ export const filterChatList = (
 };
 
 export const handleLogout = () => {
-  const userStore = useUserStore.getState();
+  const userStore = useUserListStore.getState();
   const authStore = useAuthStore.getState();
-  userStore.deleteUser();
+  userStore.deleteUserList();
   authStore.logout();
 };

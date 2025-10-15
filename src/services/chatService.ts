@@ -78,9 +78,15 @@ export const chatService = {
   },
 
   
-  async getChatList() {
+  async getChatList(userId: number) {
     const data = prisma.personalChat.findMany({
-      where: { deletedAt: null },
+      where: { 
+        deletedAt: null,
+        OR: [
+          { user1Id: userId },
+          { user2Id: userId },
+        ]
+       },
       include: {
         user1: true,
         user2: true,

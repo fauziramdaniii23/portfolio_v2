@@ -1,16 +1,16 @@
 import { TUser } from '@/types/type';
 import { create } from 'zustand'; // sesuaikan path file kamu
 
-type UserState = {
+type UserListState = {
   users: TUser[] | null;
-  storeUser: (users: TUser[]) => void;
-  deleteUser: () => void;
+  storeUserList: (users: TUser[]) => void;
+  deleteUserList: () => void;
 };
 
-export const useUserStore = create<UserState>((set) => ({
+export const useUserListStore = create<UserListState>((set) => ({
   users: null,
 
-  storeUser: (users) => set({ users }),
+  storeUserList: (users) => set({ users }),
 
-  deleteUser: () => set({ users: null }),
+  deleteUserList: () => set({ users: null }),
 }));

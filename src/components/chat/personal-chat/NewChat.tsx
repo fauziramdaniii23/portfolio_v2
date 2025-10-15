@@ -10,49 +10,64 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useMemo, useState } from "react";
-import { useUserStore } from "@/store/userStore";
+import { useUserListStore } from "@/store/userStore";
 import { Input } from "@/components/ui/input";
 import { cn, isAuthor } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Author } from "@/app/constant/constant";
 import { TUser } from "@/types/type";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Props = {
   handleNewChat: (user: TUser) => void;
 };
 const NewChat = ({ handleNewChat }: Props) => {
-  const { users, storeUser } = useUserStore();
-  const [query, setQuery] = useState("");
+  const { users, storeUserList } = useUserListStore();
+  const [queryUser, setQueryUser] = useState("");
+  const [ userList, setUserList ] = useState<TUser[]>(users ? users : [])
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (users == null) {
       fetch("api/users")
         .then((res) => res.json())
-        .then((data) => storeUser(data));
+        .then((data) => {
+          storeUserList(data)
+          setUserList(data)
+        });
+    } else {
+      setUserList(users)
     }
   }, []);
+  
+  const filtered = useMemo(() => {
+    const q = queryUser.trim().toLowerCase()
+    if (!q) return userList
+    if(!userList) return []
+    return userList.filter((user) => user.name.toLowerCase().includes(q))
+  }, [userList, queryUser])
 
-  const filteredUsers = useMemo(() => {
-    return users?.filter((user) => {
-      return user.name.toLowerCase().includes(query.toLowerCase());
-    });
-  }, [users, query]);
+  const onSelectUser = (user : TUser) => {
+    handleNewChat(user)
+    setOpen(false)
+  }
 
   return (
     <div>
-      <DropdownMenu>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <button>
             <CirclePlus />
           </button>
         </DropdownMenuTrigger>
-      <DropdownMenuContent className={cn("w-56 p-0")}>
+      <DropdownMenuContent className={cn("w-64 p-0")}>
         {/* Header pencarian sticky */}
         <div className="sticky top-0 z-10 bg-popover p-2 border-b">
+          <p className="mx-1 mb-2">New Chat</p>
           <Input
             autoFocus
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={queryUser}
+            onChange={(e) => setQueryUser(e.target.value)}
             placeholder="Search..."
             aria-label="Search menu items"
             className="h-9"
@@ -61,14 +76,16 @@ const NewChat = ({ handleNewChat }: Props) => {
 
         {/* Daftar item dengan scroll, input di atas tetap sticky */}
         <div className="py-1 overflow-y-auto">
-          {filteredUsers?.length === 0 ? (
+          {filtered?.length === 0 && !Array.isArray(filtered) ? (
             <div className="px-2 py-3 text-sm text-muted-foreground">User not found</div>
           ) : (
             <DropdownMenuGroup>
-              {users?.map((user) => (
-                <DropdownMenuItem key={user.id} onSelect={() => handleNewChat(user)}>
-                  <div className="flex gap-2 justify-center items-center">
-                    <Avatar className="w-8 h-8 mt-2">
+              <ScrollArea className="max-h-[60vh]">
+              {Array.isArray(filtered) && filtered?.map((user) => (
+                <div className="cursor-pointer text-left hover:bg-muted p-2"
+                 key={user.id} onClick={() => onSelectUser(user)}>
+                  <div className="flex gap-2 m-2">
+                    <Avatar className="w-8 h-8">
                     <AvatarImage
                       src={isAuthor(user.email) ? Author.image : user.image || undefined}
                       alt={user.name}
@@ -77,10 +94,11 @@ const NewChat = ({ handleNewChat }: Props) => {
                       {user.name[0].toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
-                  <p>{user.name}</p>
+                  <p className="text-center mt-1">{user.name}</p>
                   </div>
-                </DropdownMenuItem>
+                </div>
               ))}
+              </ScrollArea>
             </DropdownMenuGroup>
           )}
         </div>

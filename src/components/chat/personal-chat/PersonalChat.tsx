@@ -80,7 +80,7 @@ export default function ChatApp() {
     <div className="flex border rounded-2xl my-2">
       {
         auth.isAuthenticated ? (
-          <div>
+          <div className="w-full flex">
             <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-border">
               <SidebarChatList  onSelect={(id) => console.log(id)} />
             </aside>
