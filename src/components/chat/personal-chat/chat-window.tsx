@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { MessageBubble } from "./message-bubble"
-import type { Chat, Message } from "./chat-app"
+import type { Chat, Message } from "./PersonalChat"
 import { useState } from "react"
 
 export function ChatWindow({

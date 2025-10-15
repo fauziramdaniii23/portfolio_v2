@@ -76,6 +76,7 @@ export type TMessage = {
   replyToId?: number;
   user: TUser;
   createdAt: string;
+  updatedAt?: string;
   replyTo?: TMessage;
   isMine: boolean;
 };
@@ -88,4 +89,26 @@ export type TCurrentMessage = {
   replyTo?: TMessage;
   isMine?: boolean;
 };
+
+export type TPersonalChat = {
+  id: number;
+  user1Id: number;
+  user2Id: number;
+  user1: TUser;
+  user2: TUser;
+  content: string;
+  createdAt: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
+};
+
+export type TChatList = {
+  id : number;
+  userId : number;
+  user : TUser;
+  content : string;
+  createdAt : string;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
+}
 

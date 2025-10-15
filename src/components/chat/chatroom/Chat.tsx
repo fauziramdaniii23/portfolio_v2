@@ -72,7 +72,7 @@ export default function Chat() {
  
   const handleLogout = async () => {
     await signOut()
-    logout()
+    handleLogout()
   }
 
   const [hoveredMessageId, setHoveredMessageId] = useState<number | null>(null)
@@ -93,14 +93,37 @@ export default function Chat() {
 
   useEffect(() => {
     if (!session?.user?.email) return;
-    const channel = pusherClient.subscribe("chat-room");
+    const channel = pusherClient.subscribe("chat");
 
-    channel.bind("chat", (data: any) => {
-      // console.log(data);
-      const newMsg = data.newMsg;
-      console.log('newMsg', newMsg.user.email, session?.user.email);
-      setMessages((prev) => [...prev, {...newMsg, isMine: newMsg.user.email === session?.user.email}]);
-    });
+      // 🟢 Event: Pesan baru
+  channel.bind("chat-room-post", (data: any) => {
+    const newMsg = data.newMsg;
+    setMessages((prev) => [
+      ...prev,
+      { ...newMsg, isMine: newMsg.user.email === session.user.email },
+    ]);
+  });
+
+  // 🟡 Event: Pesan di-update
+  channel.bind("chat-room-update", (data: any) => {
+    const updatedMsg = data.newMsg;
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === updatedMsg.id
+          ? { ...updatedMsg, isMine: updatedMsg.user.email === session.user.email }
+          : msg
+      )
+    );
+  });
+
+  // 🔴 Event: Pesan dihapus
+  channel.bind("chat-room-delete", (data: any) => {
+    const deletedMsg = data.deletedMsg;
+    setMessages((prevMessages) =>
+      prevMessages.filter((msg) => msg.id !== deletedMsg.id)
+    );
+  });
+
 
     return () => {
       channel.unbind_all();
@@ -153,10 +176,10 @@ export default function Chat() {
       </div>
 
       {/* Chat List */}
-      <div className="">
+      <div className="border-b">
           <ScrollArea className="flex-1 h-[60vh] p-2">
-          {messages.map((msg) => (
-            <div key={msg.id} className={`flex items-start gap-3 mx-2 my-4 ${
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`flex items-start gap-3 mx-2 my-4 ${
                 msg.isMine ? "justify-end text-right" : "justify-start"
               }`}
             >
@@ -214,7 +237,6 @@ export default function Chat() {
                                         }
                                     </div>
                                     
-                                    {/* <p className="whitespace-pre-line">{msg.replyTo.message.length > msg.message.length ? msg.replyTo.message.slice(0, msg.message.length) + "..." : msg.replyTo.message}</p> */}
                                     <p className="whitespace-pre-line">{getMessageReply(msg.message, msg.replyTo.message)}</p>
                                   </div>
                                 )
@@ -228,6 +250,7 @@ export default function Chat() {
                                   hour: "2-digit",
                                   minute: "2-digit",
                                 })}
+                                {msg.updatedAt && <span className="text-[10px] italic"> (edited)</span>}
                               </p>
                           </div> 
                           <div

@@ -1,10 +1,23 @@
 // app/api/users/route.ts
+import { userController } from "@/controllers/userController";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const users = await prisma.user.findMany();
-  return NextResponse.json(users);
+  try{
+    const session = await getServerSession(authOptions);
+    
+    if (!session || !session.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const users = await userController.getAllUsers();
+    return NextResponse.json(users);
+  } catch (error) {
+    console.error("GET /users error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {

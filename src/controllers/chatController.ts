@@ -2,7 +2,8 @@
 import { chatService } from "@/services/chatService";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { TCurrentMessage, TMessage } from "@/types/type";
+import { TChatList, TCurrentMessage, TMessage, TPersonalChat, TUser } from "@/types/type";
+import { filterChatList } from "@/lib/utils";
 
 export const chatController = {
   async getAllChats() {
@@ -26,7 +27,7 @@ export const chatController = {
 
     const newMessage = await chatService.createMessage({
       message: currentMessage.message,
-      userEmail: session.user.email,
+      userId: Number(session.user.id),
       replyToId: currentMessage.replyToId,
     });
 
@@ -34,18 +35,38 @@ export const chatController = {
   },
 
   async updateMessage(message : TMessage, editText: string) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) throw new Error("Unauthorized");
-
     const updatedMessage = await chatService.updateMessage(message.id, editText)
     return updatedMessage
   },
 
   async softDeleteMessage(messageId : number) {
+    const deletedMessage = await chatService.softDeleteMessage(messageId)
+    return deletedMessage
+  },
+
+  async getChatList() {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) throw new Error("Unauthorized");
 
-    const deletedMessage = await chatService.softDeleteMessage(messageId)
-    return deletedMessage
-  }
+    const chatList = await chatService.getChatList()
+    const data = filterChatList(Number(session.user.id), chatList as unknown as TPersonalChat[]);
+
+    return data
+  },
+
+  async createChatList(userId : number) : Promise<TChatList[]> {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) throw new Error("Unauthorized");
+
+    const currentUserId = Number(session.user.id);
+
+    const newChatList = await chatService.createChatList({
+      user1Id: currentUserId,
+      user2Id: userId,
+    });
+
+    const data = filterChatList(currentUserId, newChatList);
+
+    return data;
+  },
 };
