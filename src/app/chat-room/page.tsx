@@ -1,6 +1,6 @@
 "use client";
 import DashboardLayout from "@/components/dashboard/Dashboard";
-import Chat from "@/components/chat/chatroom/Chat";
+import Chat from "@/components/chat/Chat";
 import ShinyText from "@/components/ShinyText";
 
 export default function ChatRoom() {

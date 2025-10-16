@@ -8,7 +8,7 @@ import NewChat from "./NewChat";
 import { TChatList, TPersonalChat, TUser } from "@/types/type";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAuthStore } from "@/store/authStore";
-import { encrypt } from "@/lib/encryptor";
+import { encrypt, encryptForUrl } from "@/lib/encryptor";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu";
 import { FaTrash } from "react-icons/fa";
 import {
@@ -22,9 +22,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { set } from "@/lib/js/nprogress";
+import { Spinner } from "@/components/ui/spinner";
 
 type ChatListProps = {
-  onSelect: (id: number) => void;
+  onSelect: (personalChat: TChatList) => void;
 };
 
 export function SidebarChatList({ onSelect }: ChatListProps) {
@@ -32,7 +34,8 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
   const [query, setQuery] = useState("");
   const [chatList, setChatList] = useState<TChatList[]>([]);
   const [selectedChat, setSelectedChat] = useState<TChatList | null>(null);
-  const [open, setOpen] = useState(false);
+  const [openAlertDelete, setOpenAlertDelete] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -42,9 +45,8 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
 
   useEffect(() => {
       if(isAuthenticated){ 
-        const encryptedId = encrypt(user?.id);
-        const safeEncryptedId = encodeURIComponent(encryptedId);    
-        fetch(`/api/chat-list?userId=${safeEncryptedId}`)
+        const encryptedId = encryptForUrl(user?.id);    
+        fetch(`/api/chat-list?userId=${encryptedId}`)
           .then((res) => res.json())
           .then((data) => setChatList(data));
       }
@@ -59,7 +61,7 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
       chatList.find((chat) => {
         if (chat.user.id === user.id) {
           setSelectedChat(chat);
-          onSelect(chat.id);
+          onSelect(chat);
         }
       });
     } else {
@@ -79,13 +81,31 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
 
   const handleSelectChat = (chat: TChatList) => {
     setSelectedChat(chat);
-    onSelect(chat.id);
+    onSelect(chat);
   };
 
   const handleSelectChatForDelete = (chat: TChatList) => {
     setSelectedChat(chat);
-    setOpen(true);
+    setOpenAlertDelete(true);
   };
+
+  const handleDeletePersonalChat = async () => {
+    const encryptedId = encryptForUrl(selectedChat?.id);
+    setLoadingDelete(true);
+    await fetch('/api/chat-list', {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: encryptedId }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setChatList((chatList) => chatList.filter((c) => c.id !== selectedChat?.id));
+        setSelectedChat(null);
+        setLoadingDelete(false);
+      });
+
+     setOpenAlertDelete(false); 
+  }
 
   return (
     <div className="flex flex-col">
@@ -119,46 +139,45 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
         ) : (
           <ScrollArea className="h-[65vh]">
           {
-            Array.isArray(filtered) && filtered.map((chat) => (
-              <>
-            <ContextMenu>
-              <ContextMenuTrigger>
-            <button
-              key={chat.id}
-              role="listitem"
-              onClick={() => handleSelectChat(chat)}
-              className={cn(
-                "w-full px-4 py-3 flex items-center gap-3 border-y first:border-t-0 last:border-b-0 border-transparent hover:bg-accent transition-colors",
-                chat.id === selectedChat?.id && "bg-accent"
-              )}
-              aria-current={chat.id === selectedChat?.id ? "true" : "false"}
-            >
-              <Avatar className="size-9">
-                <AvatarFallback>u</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0 text-left">
-                <div className="flex items-center justify-between gap-2">
-                  <p className="font-medium truncate">{chat.user.name}</p>
-                </div>
-                <p className="text-sm text-muted-foreground truncate">
-                  {chat.content}
-                </p>
-              </div>
-            </button>
-            </ContextMenuTrigger>
-            <ContextMenuContent>
-              <ContextMenuItem onSelect={() => handleSelectChatForDelete(chat)}>
-                <FaTrash /> Delete Chat {chat.user.name} ?
-              </ContextMenuItem>
-            </ContextMenuContent>
-            </ContextMenu>
-            </>
+            Array.isArray(filtered) && filtered.map((chat) => (             
+              <ContextMenu key={chat.id}>
+                <ContextMenuTrigger>
+                  <button
+                    key={chat.id}
+                    role="listitem"
+                    onClick={() => handleSelectChat(chat)}
+                    className={cn(
+                      "w-full px-4 py-3 flex items-center gap-3 border-y first:border-t-0 last:border-b-0 border-transparent hover:bg-accent transition-colors",
+                      chat.id === selectedChat?.id && "bg-accent"
+                    )}
+                    aria-current={chat.id === selectedChat?.id ? "true" : "false"}
+                  >
+                    <Avatar className="size-9">
+                      <AvatarFallback>u</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="font-medium truncate">{chat.user.name}</p>
+                      </div>
+                      <p className="text-sm text-muted-foreground truncate">
+                        {chat.content}
+                      </p>
+                    </div>
+                  </button>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent>
+                    <ContextMenuItem onSelect={() => handleSelectChatForDelete(chat)}>
+                      <FaTrash /> Delete Chat {chat.user.name} ?
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+              </ContextMenu>
+            
           ))
           }
           </ScrollArea>
         )}
         
-            <AlertDialog open={open} onOpenChange={setOpen}>
+            <AlertDialog open={openAlertDelete} onOpenChange={setOpenAlertDelete}>
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Hapus Pesan?</AlertDialogTitle>
@@ -167,9 +186,9 @@ export function SidebarChatList({ onSelect }: ChatListProps) {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel onClick={() => setOpen(false)}>Batal</AlertDialogCancel>
-                  <AlertDialogAction className="bg-red-600 text-white hover:bg-red-700">
-                    Hapus
+                  <AlertDialogCancel onClick={() => setOpenAlertDelete(false)}>Batal</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDeletePersonalChat} disabled={loadingDelete} className="bg-red-600 text-white hover:bg-red-700">
+                    Hapus {loadingDelete && <Spinner />}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

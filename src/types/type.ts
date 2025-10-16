@@ -79,6 +79,8 @@ export type TMessage = {
   updatedAt?: string;
   replyTo?: TMessage;
   isMine: boolean;
+  isRead: boolean;
+  personalChatId: number | null;
 };
 
 export type TCurrentMessage = {
@@ -88,6 +90,8 @@ export type TCurrentMessage = {
   user: TUser;
   replyTo?: TMessage;
   isMine?: boolean;
+  isRead?: boolean;
+  personalChatId?: number | null;
 };
 
 export type TPersonalChat = {

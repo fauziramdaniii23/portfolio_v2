@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,61 +6,81 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { TMessage } from "@/types/type"
-import { CheckCheck, EllipsisVertical } from "lucide-react"
-import { FaCopy, FaEdit, FaReplyAll, FaTrash } from "react-icons/fa"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
-import { useState } from "react"
-import { on } from "events"
+} from "@/components/ui/dropdown-menu";
+import { TMessage } from "@/types/type";
+import { CheckCheck, EllipsisVertical } from "lucide-react";
+import { FaCopy, FaEdit, FaReplyAll, FaTrash } from "react-icons/fa";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { useState } from "react";
+import { on } from "events";
 
 type Props = {
-  message: TMessage
-  onReply: (message: TMessage) => void
-  onEdit: (message: TMessage) => void
-  onDelete: (message: TMessage) => void
-}
+  message: TMessage;
+  onReply: (message: TMessage) => void;
+  onEdit: (message: TMessage) => void;
+  onDelete: (message: TMessage) => void;
+};
 
-export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
-  const [editText, setEditText] = useState(message.message)
-  const [isEditing, setIsEditing] = useState(false)
+export function ChatAction({ message, onReply, onEdit, onDelete }: Props) {
+  const [editText, setEditText] = useState(message.message);
+  const [isEditing, setIsEditing] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleCopy = async (messageCopy: string) => {
-      await navigator.clipboard.writeText(messageCopy)
-  }
+    await navigator.clipboard.writeText(messageCopy);
+  };
   const handleEdit = async () => {
-    console.log('edit',editText)
-    if(!editText.trim()) return
+    console.log("edit", editText);
+    if (!editText.trim()) return;
 
-    const res = await fetch("/api/chat-room", {
+    const res = await fetch("/api/chat", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, editText }),
     });
 
     const newMsg = await res.json();
-    setIsEditing(false)
-    setMenuOpen(false)
+    setIsEditing(false);
+    setMenuOpen(false);
     onEdit(newMsg);
-  }
+  };
 
   const handleDelete = async () => {
-    const res = await fetch("/api/chat-room", {
+    const res = await fetch("/api/chat", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id : message.id }),
+      body: JSON.stringify({ message }),
     });
 
     const newMsg = await res.json();
-    setMenuOpen(false)
+    setMenuOpen(false);
     onDelete(newMsg);
-  }
+  };
   return (
     <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="rounded-full w-9 h-9"><EllipsisVertical/></Button>
+        <Button variant="outline" className="rounded-full w-9 h-9">
+          <EllipsisVertical />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-44" align="start">
         <DropdownMenuGroup>
@@ -71,15 +91,12 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
           <DropdownMenuItem onSelect={() => handleCopy(message.message)}>
             <FaCopy /> Copy
           </DropdownMenuItem>
-          {
-            message.isMine && (
-              <>
-                 <Dialog open={isEditing} onOpenChange={setIsEditing}>
+          {message.isMine && (
+            <>
+              <Dialog open={isEditing} onOpenChange={setIsEditing}>
                 <DialogTrigger asChild>
-                  <DropdownMenuItem
-                    onSelect={(e) => e.preventDefault()}
-                  >
-                    <FaEdit/> Edit
+                  <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                    <FaEdit /> Edit
                   </DropdownMenuItem>
                 </DialogTrigger>
 
@@ -100,19 +117,13 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
                     }}
                   />
                   <DialogFooter>
-                    <Button
-                      onClick={handleEdit}
-                    >
-                      Simpan
-                    </Button>
+                    <Button onClick={handleEdit}>Simpan</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
-                <AlertDialog>
+              <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <DropdownMenuItem
-                    onSelect={(e) => e.preventDefault()}
-                  >
+                  <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                     <FaTrash /> Delete
                   </DropdownMenuItem>
                 </AlertDialogTrigger>
@@ -121,7 +132,8 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
                   <AlertDialogHeader>
                     <AlertDialogTitle>Hapus Pesan?</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Pesan ini akan dihapus secara permanen dan tidak dapat dikembalikan.
+                      Pesan ini akan dihapus secara permanen dan tidak dapat
+                      dikembalikan.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -135,12 +147,10 @@ export function ChatAction({message, onReply, onEdit, onDelete}: Props) {
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
-              </>
-            )
-          }
+            </>
+          )}
         </DropdownMenuGroup>
-        
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

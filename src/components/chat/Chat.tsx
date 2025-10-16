@@ -3,22 +3,27 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChatInput } from "../ChatInput";
+import { ChatInput } from "./ChatInput";
 import { useAuthStore } from "@/store/authStore";
 import { signOut, useSession } from "next-auth/react";
-import NotificationBell from "../../Dialogue";
+import NotificationBell from "../Dialogue";
 import { TCurrentMessage, TMessage } from "@/types/type";
-import { ChatAction } from "../ChatAction";
+import { ChatAction } from "./ChatAction";
 import { MdGroups3 } from "react-icons/md";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../../ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { LogOut } from "lucide-react";
-import ButtonAuth from "../../button/ButtonAuth";
+import ButtonAuth from "../button/ButtonAuth";
 import { getMessageReply, isAuthor } from "@/lib/utils";
 import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
+import { encryptForUrl } from "@/lib/encryptor";
+import { enc } from "crypto-js";
 
-export default function Chat() {
+type Props = {
+  personalChatId?: number | null;
+};
+export default function Chat({ personalChatId }: Props) {
   const { user, isAuthenticated, logout } = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [replyChat, setReplyChat] = useState<TMessage>();
@@ -39,11 +44,17 @@ export default function Chat() {
         email: user.email ?? '',
       },
       replyTo: replyChat,
+      personalChatId: personalChatId,
     };
   }, [text, user, replyChat]);
 
   useEffect(() => {
-    fetch("/api/chat-room")
+    let enpoint = "/api/chat";
+    if (personalChatId) {
+      const encryptedPersonalChatId = encryptForUrl(personalChatId);
+      enpoint += `?personalChatId=${encryptedPersonalChatId}`;
+    }
+    fetch(enpoint)
       .then((res) => res.json())
       .then(setMessages);
   }, []);
@@ -56,14 +67,11 @@ export default function Chat() {
     if (!text.trim()) return;
     setLoadingSend(true);
 
-    const res = await fetch("/api/chat-room", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ currentMessage }),
     });
-
-    // const newMsg = await res.json();
-    // setMessages((prev) => [...prev, {...newMsg, isMine: true}]);
     setText("");
     setReplyChat(undefined);
     setLoadingSend(false);
@@ -94,8 +102,8 @@ export default function Chat() {
     const channel = pusherClient.subscribe("chat");
 
         // 🟢 Event: Pesan baru
-    channel.bind("chat-room-post", (data: any) => {
-      const newMsg = data.newMsg;
+    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-post`, (data: any) => {
+      const newMsg = data.newMessage;
       setMessages((prev) => [
         ...prev,
         { ...newMsg, isMine: newMsg.user.email === user?.email },
@@ -103,8 +111,8 @@ export default function Chat() {
     });
 
     // 🟡 Event: Pesan di-update
-    channel.bind("chat-room-update", (data: any) => {
-      const updatedMsg = data.newMsg;
+    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-update`, (data: any) => {
+      const updatedMsg = data.updatedMessage;
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === updatedMsg.id
@@ -115,8 +123,8 @@ export default function Chat() {
     });
 
     // 🔴 Event: Pesan dihapus
-    channel.bind("chat-room-delete", (data: any) => {
-      const deletedMsg = data.deletedMsg;
+    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-delete`, (data: any) => {
+      const deletedMsg = data.deletedMessage;
       setMessages((prevMessages) =>
         prevMessages.filter((msg) => msg.id !== deletedMsg.id)
       );

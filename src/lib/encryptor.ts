@@ -18,6 +18,16 @@ export const decrypt = (encrypted: string) => {
     }
 };
 
+export const encryptForUrl = (data : unknown) =>{
+    const encrypted = encrypt(data);
+    return encodeURIComponent(encrypted);
+}
+
+export const decryptFromUrl = (encrypted : string) => {
+    const decrypted = decodeURIComponent(encrypted);
+    return decrypt(decrypted);
+}
+
 export const createEncryptedStorage = () => ({
     getItem: (name: string) => {
         const encrypted = localStorage.getItem(name);
