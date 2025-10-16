@@ -7,7 +7,7 @@ import { ChatInput } from "./ChatInput";
 import { useAuthStore } from "@/store/authStore";
 import { signOut, useSession } from "next-auth/react";
 import NotificationBell from "../Dialogue";
-import { TCurrentMessage, TMessage } from "@/types/type";
+import { TChatList, TCurrentMessage, TMessage, TUser } from "@/types/type";
 import { ChatAction } from "./ChatAction";
 import { MdGroups3 } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -18,12 +18,12 @@ import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
 import { encryptForUrl } from "@/lib/encryptor";
-import { enc } from "crypto-js";
 
 type Props = {
-  personalChatId?: number | null;
+  selectedChat?: TChatList | null;
 };
-export default function Chat({ personalChatId }: Props) {
+
+export default function Chat({ selectedChat }: Props) {
   const { user, isAuthenticated, logout } = useAuthStore();
   const [messages, setMessages] = useState<TMessage[]>([]);
   const [replyChat, setReplyChat] = useState<TMessage>();
@@ -44,14 +44,14 @@ export default function Chat({ personalChatId }: Props) {
         email: user.email ?? '',
       },
       replyTo: replyChat,
-      personalChatId: personalChatId,
+      personalChatId: selectedChat?.id,
     };
   }, [text, user, replyChat]);
 
   useEffect(() => {
     let enpoint = "/api/chat";
-    if (personalChatId) {
-      const encryptedPersonalChatId = encryptForUrl(personalChatId);
+    if (selectedChat?.id) {
+      const encryptedPersonalChatId = encryptForUrl(selectedChat.id);
       enpoint += `?personalChatId=${encryptedPersonalChatId}`;
     }
     fetch(enpoint)
@@ -102,7 +102,7 @@ export default function Chat({ personalChatId }: Props) {
     const channel = pusherClient.subscribe("chat");
 
         // 🟢 Event: Pesan baru
-    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-post`, (data: any) => {
+    channel.bind(`chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-post`, (data: any) => {
       const newMsg = data.newMessage;
       setMessages((prev) => [
         ...prev,
@@ -111,7 +111,7 @@ export default function Chat({ personalChatId }: Props) {
     });
 
     // 🟡 Event: Pesan di-update
-    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-update`, (data: any) => {
+    channel.bind(`chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-update`, (data: any) => {
       const updatedMsg = data.updatedMessage;
       setMessages((prev) =>
         prev.map((msg) =>
@@ -123,7 +123,7 @@ export default function Chat({ personalChatId }: Props) {
     });
 
     // 🔴 Event: Pesan dihapus
-    channel.bind(`chat${personalChatId ? `-${personalChatId}` : "room"}-delete`, (data: any) => {
+    channel.bind(`chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-delete`, (data: any) => {
       const deletedMsg = data.deletedMessage;
       setMessages((prevMessages) =>
         prevMessages.filter((msg) => msg.id !== deletedMsg.id)
@@ -142,13 +142,17 @@ export default function Chat({ personalChatId }: Props) {
       {/* Header */}
       <div className="flex justify-between items-center border-b pb-3 mb-3">
         <div className="flex">
-          <div className="flex gap-2">
-            <MdGroups3 size={28}/>
-            <h2 className="text-lg font-semibold"> Chat Room</h2>
-          </div>
+          {
+            selectedChat === null && (
+              <div className="flex gap-2 border-r pr-2">
+                <MdGroups3 size={28}/>
+                <h2 className="text-lg font-semibold">Chat Room</h2>
+              </div>
+            )
+          }
           {
             isAuthenticated && user && (
-              <div className="flex gap-2 justify-center align-center items-center mx-2 border-l pl-2">
+              <div className="flex gap-2 justify-center align-center items-center pl-2">
                 <Avatar>
                   <AvatarImage
                   src={isAuthor(user.email) ? Author.image : user.image ?? ""}

@@ -6,11 +6,11 @@ import { useAuthStore } from "@/store/authStore"
 import ButtonAuth from "@/components/button/ButtonAuth"
 import Image from "next/image"
 import Chat from "../Chat"
-import { TChatList, TPersonalChat } from "@/types/type"
+import { TChatList, TUser } from "@/types/type"
 
 export default function ChatApp() {
   const auth = useAuthStore((state) => state);
-  const [personalChat, setPersonalChat] = useState<TChatList>();
+  const [selectedChat, setSelectedChat] = useState<TChatList>();
 
   return (
     <div className="flex border rounded-2xl my-2">
@@ -18,10 +18,10 @@ export default function ChatApp() {
         auth.isAuthenticated ? (
           <div className="w-full flex">
             <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-border">
-              <SidebarChatList onSelect={setPersonalChat} />
+              <SidebarChatList onSelect={setSelectedChat} />
             </aside>
             <section className="flex-1 min-w-0">
-              <Chat personalChatId={personalChat?.id}/>
+              <Chat selectedChat={selectedChat}/>
             </section>
           </div>
         ) : (
