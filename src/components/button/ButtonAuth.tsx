@@ -54,7 +54,7 @@ const ButtonAuth = () => {
     }, [session, login, logout]);
 
   return (
-    <div className="flex justify-center gap-4 pt-4">
+    <div className="flex justify-center gap-4 py-4">
       <GoogleSignInButton
         onClick={handleSign}
         isLoading={loadingSignGoogle}

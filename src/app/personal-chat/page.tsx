@@ -1,7 +1,6 @@
 'use client'
 
 import ChatApp from "@/components/chat/personal-chat/PersonalChat";
-import ChatList from "@/components/chat/ChatList";
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import ShinyText from "@/components/ShinyText";
 

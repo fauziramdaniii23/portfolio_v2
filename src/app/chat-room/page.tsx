@@ -9,10 +9,7 @@ export default function ChatRoom() {
       <ShinyText text="Chat Room" className="text-2xl font-bold mb-4"/>
       <p className="mb-2">This is the chat room page of the application.</p>
       
-        <Chat selectedChat={null}/>
-
-      <div className="w-full max-w-sm">
-    </div>
+        <Chat isPersonalChat={false}/>
     </DashboardLayout>
   );
 }

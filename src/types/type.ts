@@ -10,7 +10,7 @@ export type TUser = {
   id?: string;
   name: string;
   email: string;
-  image?: string | null;
+  image?: string;
   emailVerified?: string | null;
   createdAt?: string;
 };
