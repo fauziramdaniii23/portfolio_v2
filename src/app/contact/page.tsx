@@ -1,6 +1,7 @@
 "use client";
 
 import DashboardLayout from "@/components/dashboard/Dashboard";
+import CompareHooks from "@/components/serverComponent";
 import UserList from "@/components/serverComponent";
 import { pusherClient } from "@/lib/pusher/pusherClient";
 import { useEffect, useState } from "react";

@@ -1,5 +1,6 @@
 import { Author } from "@/app/constant/constant";
 import { useAuthStore } from "@/store/authStore";
+import { useChatStore } from "@/store/useChatStore";
 import { useUserListStore } from "@/store/userStore";
 import { TChatList, TPersonalChat, TUser } from "@/types/type";
 import { clsx, type ClassValue } from "clsx";
@@ -41,7 +42,6 @@ export const filterChatList = (
       id: chat.id,
       userId: Number(otherUser.id),
       user: otherUser as TUser,
-      content: chat.content ?? "",
       createdAt: chat.createdAt,
       updatedAt: chat.updatedAt,
       deletedAt: chat.deletedAt,
@@ -51,9 +51,11 @@ export const filterChatList = (
   return data;
 };
 
-export const handleLogout = () => {
+export const clearState = () => {
   const userStore = useUserListStore.getState();
   const authStore = useAuthStore.getState();
+  const chatStore = useChatStore.getState();
+  chatStore.clearSelectedChat();
   userStore.deleteUserList();
   authStore.logout();
 };

@@ -29,6 +29,7 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { useChatStore } from "@/store/useChatStore";
 import { Author } from "@/app/constant/constant";
+import { GoShieldCheck } from "react-icons/go";
 
 export function SidebarChatList() {
   const { user, isAuthenticated } = useAuthStore();
@@ -171,16 +172,19 @@ export function SidebarChatList() {
                             : "U"}
                         </AvatarFallback>
                       </Avatar>
-                      <div className="flex-1 min-w-0 text-left">
+                      <div className="min-w-0 text-left">
                         <div className="flex items-center justify-between gap-2">
                           <p className="font-medium truncate">
                             {chat.user.name}
                           </p>
                         </div>
-                        <p className="text-sm text-muted-foreground truncate">
-                          {chat.content}
-                        </p>
                       </div>
+                      {isAuthor(chat.user.email) && (
+                        <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
+                          <GoShieldCheck className="text-blue-500 text-xs" />
+                          <p className="text-[10px] italic">Author</p>
+                        </div>
+                      )}
                     </button>
                   </ContextMenuTrigger>
                   <ContextMenuContent>

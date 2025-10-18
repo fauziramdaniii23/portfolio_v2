@@ -17,23 +17,26 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Author } from "@/app/constant/constant";
 import { TUser } from "@/types/type";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useAuthStore } from "@/store/authStore";
 
 type Props = {
   handleNewChat: (user: TUser) => void;
 };
 const NewChat = ({ handleNewChat }: Props) => {
+  const {user} = useAuthStore()
   const { users, storeUserList } = useUserListStore();
   const [queryUser, setQueryUser] = useState("");
   const [ userList, setUserList ] = useState<TUser[]>(users ? users : [])
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (users == null) {
+    if (users == null || users.length === 0) {
       fetch("api/users")
         .then((res) => res.json())
-        .then((data) => {
-          storeUserList(data)
-          setUserList(data)
+        .then((data : TUser[]) => {
+          const filtered = data.filter((u) => u.id !== user?.id);
+          setUserList(filtered);
+          storeUserList(filtered)
         });
     } else {
       setUserList(users)
@@ -76,7 +79,7 @@ const NewChat = ({ handleNewChat }: Props) => {
 
         {/* Daftar item dengan scroll, input di atas tetap sticky */}
         <div className="py-1 overflow-y-auto">
-          {filtered?.length === 0 && !Array.isArray(filtered) ? (
+          {filtered?.length === 0 || !Array.isArray(filtered) ? (
             <div className="px-2 py-3 text-sm text-muted-foreground">User not found</div>
           ) : (
             <DropdownMenuGroup>

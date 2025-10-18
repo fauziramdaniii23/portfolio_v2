@@ -1,26 +1,33 @@
-'use client'
-import { prisma } from "@/lib/prisma";
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-export default function UserList() {
-   const [users, setUsers] = useState([]);
+export default function Calculator() {
+  const [number, setNumber] = useState(1);
+  const resultRef = useRef(1);
 
   useEffect(() => {
-    fetch("/api/users")
-      .then(res => res.json())
-      .then(setUsers);
+    console.log("📊 Hasil kalkulasi (ref):", resultRef.current);
   }, []);
+
+  const calculate = () => {
+    // kalkulasi berat tapi tidak perlu render ulang
+    resultRef.current = number * 2;
+    console.log("📊 Hasil kalkulasi (ref):", resultRef.current);
+  };
+
+  const calculatestate = () => {
+    // kalkulasi berat tapi tidak perlu render ulang
+    setNumber(number * resultRef.current);
+    console.log("📊 Hasil kalkulasi (ref):", resultRef.current);
+  };
 
   return (
     <div>
-      <h2>Daftar Pengguna</h2>
-      <ul>
-        {users.map((u : any) => (
-          <li key={u.id}>
-            <strong>{u.name}</strong> — {u.email}
-          </li>
-        ))}
-      </ul>
+      <p>Angka: {number}</p>
+      <p>Hasil (ref): {resultRef.current}</p>
+
+      <button onClick={() => setNumber(number + 1)}>Ubah Angka</button>
+      <button onClick={calculate}>Hitung</button>
+      <button onClick={calculatestate}>Hitung State</button>
     </div>
   );
 }

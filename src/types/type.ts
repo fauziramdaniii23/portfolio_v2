@@ -100,7 +100,6 @@ export type TPersonalChat = {
   user2Id: number;
   user1: TUser;
   user2: TUser;
-  content: string;
   createdAt: string;
   updatedAt?: string;
   deletedAt?: string | null;
@@ -110,7 +109,6 @@ export type TChatList = {
   id : number;
   userId : number;
   user : TUser;
-  content : string;
   createdAt : string;
   updatedAt?: string | null;
   deletedAt?: string | null;

@@ -37,7 +37,7 @@ export const chatController = {
 
   async createChat(currentMessage: TCurrentMessage ) : Promise<TMessage> {
     const newMessage = await chatService.createMessage(currentMessage);
-    await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "room"}-post`, { newMessage });
+    await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`, { newMessage });
     return newMessage;
   },
 
@@ -60,7 +60,7 @@ export const chatController = {
     if (!session?.user?.email) throw new Error("Unauthorized");
 
     const chatList = await chatService.getChatList(userId)
-    const data = filterChatList(Number(session.user.id), chatList as unknown as TPersonalChat[]);
+    const data = filterChatList(Number(session.user.id), chatList);
 
     return data
   },

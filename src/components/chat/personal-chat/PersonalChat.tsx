@@ -10,7 +10,7 @@ export default function ChatApp() {
   const auth = useAuthStore((state) => state);
 
   return (
-    <div className="flex border rounded-2xl overflow-hidden">
+    <div className="flex border rounded-2xl overflow-hidden mt-2">
       {auth.isAuthenticated ? (
         <div className="w-full flex">
           <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-border">
@@ -21,7 +21,7 @@ export default function ChatApp() {
           </section>
         </div>
       ) : (
-        <div className="flex-1 mb-4">
+        <div className="flex-1 flex flex-col items-center justify-center h-[65vh]">
           <div className="flex flex-col items-center">
             <Image
               src="/logo/chat.png"

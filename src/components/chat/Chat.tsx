@@ -13,7 +13,7 @@ import { MdGroups3 } from "react-icons/md";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { LogOut } from "lucide-react";
 import ButtonAuth from "../button/ButtonAuth";
-import { getMessageReply, isAuthor } from "@/lib/utils";
+import { clearState, getMessageReply, isAuthor } from "@/lib/utils";
 import { Author } from "@/app/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
@@ -36,10 +36,13 @@ export default function Chat({ isPersonalChat }: Props) {
   const [titleUser, setTitleUser] = useState<TUser | null>(null);
 
   useEffect(() => {
-    if (selectedChat === null) {
+    if (!isPersonalChat) {
       setTitleUser(user);
     } else {
-      setTitleUser(selectedChat.user);
+      selectedChat &&
+        setTitleUser(
+          selectedChat.user ?? null
+        );
     }
   }, [selectedChat, user]);
 
@@ -56,9 +59,9 @@ export default function Chat({ isPersonalChat }: Props) {
         email: user.email ?? "",
       },
       replyTo: replyChat,
-      personalChatId: selectedChat?.id,
+      personalChatId: isPersonalChat ? selectedChat?.id : null,
     };
-  }, [text, user, replyChat]);
+  }, [text, user, replyChat, isPersonalChat, selectedChat?.id]);
 
   useEffect(() => {
     let enpoint = "/api/chat";
@@ -66,10 +69,12 @@ export default function Chat({ isPersonalChat }: Props) {
       const encryptedPersonalChatId = encryptForUrl(selectedChat?.id);
       enpoint += `?personalChatId=${encryptedPersonalChatId}`;
     }
-    fetch(enpoint)
+    if(selectedChat !== null || !isPersonalChat){
+      fetch(enpoint)
       .then((res) => res.json())
       .then(setMessages);
-  }, []);
+    }
+  }, [selectedChat?.id]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -91,7 +96,7 @@ export default function Chat({ isPersonalChat }: Props) {
 
   const handleLogout = async () => {
     await signOut();
-    handleLogout();
+    clearState();
   };
 
   const [hoveredMessageId, setHoveredMessageId] = useState<number | null>(null);
@@ -112,50 +117,60 @@ export default function Chat({ isPersonalChat }: Props) {
 
   useEffect(() => {
     const channel = pusherClient.subscribe("chat");
+    if (isAuthenticated){
+      if(isPersonalChat && selectedChat === null) return;
+      const event = isPersonalChat? `chat-${selectedChat?.id}`: "chat-room";
 
-    // 🟢 Event: Pesan baru
-    channel.bind(
-      `chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-post`,
-      (data: any) => {
-        const newMsg = data.newMessage;
-        setMessages((prev) => [
-          ...prev,
-          { ...newMsg, isMine: newMsg.user.email === user?.email },
-        ]);
-      }
-    );
+      // 🟢 Event: Pesan baru
+      channel.bind(
+        `${event}-post`,
+        (data: any) => {
+          // console.log("post", event, data);
+          const newMsg = data.newMessage;
+          setMessages((prev) => [
+            ...prev,
+            { ...newMsg, isMine: newMsg.user.email === user?.email },
+          ]);
+        }
+      );
 
-    // 🟡 Event: Pesan di-update
-    channel.bind(
-      `chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-update`,
-      (data: any) => {
-        const updatedMsg = data.updatedMessage;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === updatedMsg.id
-              ? { ...updatedMsg, isMine: updatedMsg.user.email === user?.email }
-              : msg
-          )
-        );
-      }
-    );
+      // 🟡 Event: Pesan di-update
+      channel.bind(
+        `${event}-update`,
+        (data: any) => {
+          // console.log("update", event, data);
+          const updatedMsg = data.updatedMessage;
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === updatedMsg.id
+                ? { ...updatedMsg, isMine: updatedMsg.user.email === user?.email }
+                : msg
+            )
+          );
+        }
+      );
 
-    // 🔴 Event: Pesan dihapus
-    channel.bind(
-      `chat${selectedChat?.id ? `-${selectedChat?.id}` : "room"}-delete`,
-      (data: any) => {
-        const deletedMsg = data.deletedMessage;
-        setMessages((prevMessages) =>
-          prevMessages.filter((msg) => msg.id !== deletedMsg.id)
-        );
-      }
-    );
+      // 🔴 Event: Pesan dihapus
+      channel.bind(
+        `${event}-delete`,
+        (data: any) => {
+          // console.log("delete", event, data);
+          const deletedMsg = data.deletedMessage;
+          setMessages((prevMessages) =>
+            prevMessages.filter((msg) => msg.id !== deletedMsg.id)
+          );
+        }
+      );
 
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
-  }, [user]);
+      console.log("subscribed :",`${event}`);
+
+      return () => {
+        console.log("Unsubscribed from chat channel :", `${event}`);
+        channel.unbind_all();
+        channel.unsubscribe();
+      };
+    }
+  }, [user?.id, selectedChat?.id]);
 
   return (
     <div
@@ -172,7 +187,7 @@ export default function Chat({ isPersonalChat }: Props) {
               <h2 className="text-lg font-semibold">Chat Room</h2>
             </div>
           )}
-          {isAuthenticated && user && (
+          {isAuthenticated && titleUser && (
             <div className="flex gap-2 justify-center align-center items-center pl-2">
               <Avatar>
                 {titleUser?.image ? (
@@ -182,7 +197,7 @@ export default function Chat({ isPersonalChat }: Props) {
                         ? Author.image
                         : titleUser?.image ?? ""
                     }
-                    alt={user.name ?? "User"}
+                    alt={titleUser.name ?? "User"}
                   />
                 ) : null}
                 <AvatarFallback>
@@ -214,7 +229,7 @@ export default function Chat({ isPersonalChat }: Props) {
       <main
         className={`${
           isPersonalChat && selectedChat === null
-            ? "flex-1 flex flex-col justify-center items-center align-center"
+            ? "flex-1 flex flex-col justify-center items-center align-center h-[calc(100%-3.5rem)]"
             : ""
         }`}
       >
@@ -248,7 +263,7 @@ export default function Chat({ isPersonalChat }: Props) {
                   <Avatar className="w-8 h-8 mt-2">
                     {msg.user.image ? (
                       <AvatarImage
-                        src={msg.user.image}
+                        src={isAuthor(msg.user.email) ? Author.image : msg.user.image}
                         alt={msg.user.name ?? "User"}
                       />
                     ) : null}

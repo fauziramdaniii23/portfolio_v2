@@ -94,7 +94,7 @@ export const chatService = {
   },
 
   
-  async getChatList(userId: number) {
+  async getChatList(userId: number) : Promise<TPersonalChat[]> {
     const data = prisma.personalChat.findMany({
       where: { 
         deletedAt: null,
@@ -110,7 +110,7 @@ export const chatService = {
       orderBy: { createdAt: "asc" },
     });
 
-    return data;
+    return data as unknown as TPersonalChat[];
   },
 
   async createChatList(data: {
