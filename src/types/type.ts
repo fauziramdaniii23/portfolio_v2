@@ -10,7 +10,7 @@ export type TUser = {
   id?: string;
   name: string;
   email: string;
-  image?: string | null;
+  image?: string;
   emailVerified?: string | null;
   createdAt?: string;
 };
@@ -76,8 +76,11 @@ export type TMessage = {
   replyToId?: number;
   user: TUser;
   createdAt: string;
+  updatedAt?: string;
   replyTo?: TMessage;
   isMine: boolean;
+  isRead: boolean;
+  personalChatId: number | null;
 };
 
 export type TCurrentMessage = {
@@ -87,5 +90,27 @@ export type TCurrentMessage = {
   user: TUser;
   replyTo?: TMessage;
   isMine?: boolean;
+  isRead?: boolean;
+  personalChatId?: number | null;
 };
+
+export type TPersonalChat = {
+  id: number;
+  user1Id: number;
+  user2Id: number;
+  user1: TUser;
+  user2: TUser;
+  createdAt: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
+};
+
+export type TChatList = {
+  id : number;
+  userId : number;
+  user : TUser;
+  createdAt : string;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
+}
 

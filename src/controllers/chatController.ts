@@ -2,10 +2,12 @@
 import { chatService } from "@/services/chatService";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { TCurrentMessage, TMessage } from "@/types/type";
+import { TChatList, TCurrentMessage, TMessage, TPersonalChat, TUser } from "@/types/type";
+import { filterChatList } from "@/lib/utils";
+import { pusher } from "@/lib/pusher/pusherServer";
 
 export const chatController = {
-  async getAllChats() {
+  async getAllChats() : Promise<TMessage[]> {
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email;
 
@@ -20,32 +22,67 @@ export const chatController = {
     return formatted;
   },
 
-  async createChat(currentMessage: TCurrentMessage ) {
+  async getChatByPersonalChatId(id : number) : Promise<TMessage[]> {
     const session = await getServerSession(authOptions);
-    if (!session?.user?.email) throw new Error("Unauthorized");
+    const userEmail = session?.user?.email;
 
-    const newMessage = await chatService.createMessage({
-      message: currentMessage.message,
-      userEmail: session.user.email,
-      replyToId: currentMessage.replyToId,
-    });
+    const messages = await chatService.getMessage(id)
+    const formatted = messages.map((msg) => ({
+      ...msg,
+      isMine: msg.user.email === userEmail,
+    }));
 
+    return formatted;
+  },
+
+  async createChat(currentMessage: TCurrentMessage ) : Promise<TMessage> {
+    const newMessage = await chatService.createMessage(currentMessage);
+    await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`, { newMessage });
     return newMessage;
   },
 
   async updateMessage(message : TMessage, editText: string) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) throw new Error("Unauthorized");
-
     const updatedMessage = await chatService.updateMessage(message.id, editText)
+    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-update`, { updatedMessage });
+
     return updatedMessage
   },
 
-  async softDeleteMessage(messageId : number) {
+  async softDeleteMessage(message : TMessage) {
+    const deletedMessage = await chatService.softDeleteMessage(message.id)
+    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-delete`, { deletedMessage });
+
+    return deletedMessage
+  },
+
+  async getChatList(userId: number) {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) throw new Error("Unauthorized");
 
-    const deletedMessage = await chatService.softDeleteMessage(messageId)
-    return deletedMessage
+    const chatList = await chatService.getChatList(userId)
+    const data = filterChatList(Number(session.user.id), chatList);
+
+    return data
+  },
+
+  async createChatList(userId : number) : Promise<TChatList[]> {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) throw new Error("Unauthorized");
+
+    const currentUserId = Number(session.user.id);
+
+    const newChatList = await chatService.createChatList({
+      user1Id: currentUserId,
+      user2Id: userId,
+    });
+
+    const data = filterChatList(currentUserId, newChatList);
+
+    return data;
+  },
+
+  async deletePersonalChat (id : number) {
+    const deletePersonalChat = await chatService.deletePersonalChat(id)
+    return deletePersonalChat
   }
 };

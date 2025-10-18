@@ -1,4 +1,4 @@
-import {TAuthor, TTextServices} from "@/types/type";
+import {TAuthor, TPersonalChat, TTextServices} from "@/types/type";
 import {
     BookCheck, BugPlay,
     ChartSpline,

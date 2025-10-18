@@ -37,7 +37,7 @@ model Chat {
   id        Int       @id @default(autoincrement())
   message   String
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  updatedAt DateTime?
   deletedAt DateTime? // null = pesan aktif
 
   user   User @relation(fields: [userId], references: [id])
@@ -110,9 +110,8 @@ model PersonalChat {
   id        Int       @id @default(autoincrement())
   user1Id   Int
   user2Id   Int
-  content   String?
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  updatedAt DateTime?
   deletedAt DateTime?
 
   user1 User @relation("User1Chats", fields: [user1Id], references: [id])
