@@ -1,0 +1,46 @@
+{
+    "HomePage": {
+        "title": "Beranda",
+        "description": "Jelajahi proyek, keterampilan, dan pengalaman saya."
+    },
+    "AboutPage": {
+        "title": "Tentang Saya",
+        "greeting": "Halo, saya Fauzi Ramdani",
+        "downloadCV": "Unduh CV",
+        "description": [
+            "Seorang Software Engineer dengan pengalaman lebih dari dua tahun dalam mengembangkan solusi perangkat lunak yang efisien, skalabel, dan ramah pengguna. Saya lahir di Bandung, Indonesia, pada 22 Desember 1998, dan saat ini berdomisili di Garut, Jawa Barat. Saat ini, saya bekerja di sebuah perusahaan software house yang berbasis di Bandung, di mana saya berkontribusi dalam membangun sistem perangkat lunak yang andal dan berkinerja tinggi.",
+            "Sepanjang karier saya, saya telah terlibat dalam pengembangan aplikasi berbasis web, aplikasi desktop, dan sistem pemrosesan data, dengan keahlian yang kuat dalam mengidentifikasi serta menyelesaikan bug perangkat lunak secara efisien. Saya memiliki pengalaman langsung dalam membangun dan mengonsumsi API, mengelola basis data, menerapkan manajemen state, serta mengonfigurasi mekanisme autentikasi, termasuk Single Sign-On (SSO). Selain itu, saya berfokus pada optimisasi performa aplikasi untuk memastikan pengalaman pengguna yang lancar dan responsif.",
+            "Saya selalu bersemangat untuk mempelajari dan beradaptasi dengan teknologi baru sambil menjaga kolaborasi yang baik dalam lingkungan kerja tim. Saya juga terbuka untuk peluang kerja jarak jauh, freelance, atau paruh waktu, serta posisi baru yang dapat mendukung pengembangan profesional dan pertumbuhan karier jangka panjang."
+        ],
+        "Experience": {
+            "Work": {
+                "title": "Pengalaman Kerja",
+                "responsibilities": "Tanggung Jawab & Pencapaian",
+                "1": {
+                    "period": "Mei 2024 — Sekarang",
+                    "location": "Bandung, ID",
+                    "summary": "Berkontribusi dalam pengembangan solusi perangkat lunak yang berkualitas tinggi, andal, dan skalabel di perusahaan perangkat lunak yang berbasis di Bandung. Bertanggung jawab untuk mengimplementasikan dan memelihara berbagai aplikasi sambil memastikan kualitas kode, optimisasi performa, serta kepatuhan terhadap praktik terbaik sepanjang proses pengembangan.",
+                    "achievements": [
+                        "Membangun, memelihara, dan mengembangkan aplikasi perangkat lunak yang efektif dan efisien.",
+                        "Berkolaborasi dengan tim lintas fungsi termasuk desainer, QA engineer, dan manajer produk untuk menghasilkan produk berkualitas tinggi.",
+                        "Mengidentifikasi, men-debug, dan menyelesaikan bug perangkat lunak.",
+                        "Melakukan review kode dan memastikan kepatuhan terhadap standar dan praktik terbaik.",
+                        "Menganalisis kebutuhan sistem dan menerjemahkannya menjadi solusi perangkat lunak yang fungsional.",
+                        "Menjamin keamanan, skalabilitas, dan keandalan aplikasi."
+                    ]
+                },
+                "2": {
+                    "period": "Oktober 2022 — Januari 2023",
+                    "location": "Bandung, ID",
+                    "summary": "Bekerja sebagai Pengembang Backend dengan fokus pada pembangunan dan pemeliharaan aplikasi sisi server untuk Maximple, sebuah platform yang terintegrasi dengan sistem akuntansi Accurate. Bertanggung jawab untuk mengembangkan RESTful API menggunakan bahasa pemrograman Java dan framework Spring Boot, memastikan sinkronisasi data antar layanan berjalan lancar, men-debug serta menyelesaikan masalah backend, dan menjaga keandalan sistem. Bekerja sama secara erat dengan anggota tim serta memberikan pembaruan rutin melalui Trello untuk memastikan proyek selesai dengan efisien.",
+                    "achievements": [
+                        "Mengembangkan layanan backend untuk Maximple yang terintegrasi dengan sistem akuntansi Accurate.",
+                        "Membangun RESTful API menggunakan bahasa pemrograman Java dan framework Spring Boot.",
+                        "Men-debug dan menyelesaikan berbagai masalah pada aplikasi backend untuk menjaga stabilitas sistem.",
+                        "Berkolaborasi dengan tim pengembang dan menjaga laporan kemajuan proyek menggunakan Trello."
+                    ]
+                }
+            }
+        }
+    }
+}

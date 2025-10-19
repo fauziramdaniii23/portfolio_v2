@@ -7,6 +7,7 @@ import { ExternalLink } from "lucide-react"
 import {TProject} from "@/types/type";
 import {useNavigate} from "@/lib/navigate";
 import {useDetailProjectStore} from "@/store/detailProjectStore";
+import GradientText from "../GradientText"
 
 interface ProjectCardProps {
   project: TProject
@@ -50,7 +51,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <a
             onClick={() => onDetailProject(project)}
             className={`absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-lg transition-all duration-300 ${
-              isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              isHovered ? "opacity-100 translate-x-0 cursor-pointer" : "opacity-0 translate-x-4"
             }`}
             aria-label="View project"
           >
@@ -59,30 +60,37 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         )}
 
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <div className="mb-2 flex items-center gap-2">
-            <Badge variant="secondary" className="text-xs font-medium">
-              {project.category}
-            </Badge>
-            <span className="text-xs text-muted-foreground">{project.year}</span>
-          </div>
+          <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={10}
+              showBorder={false}
+          >{project.role}</GradientText>
           <h3
               onClick={() => onDetailProject(project)}
               className="mb-2 text-xl font-bold text-card-foreground text-balance hover:underline underline-offset-4 decoration-accent hover:cursor-pointer">
               {project.title}
           </h3>
+          <div className="mb-2 flex items-center gap-2">
+            <Badge key={project.title} variant="secondary" className="text-xs font-medium">
+              {project.category}
+            </Badge>
+            <span className="text-xs text-muted-foreground">{project.year}</span>
+          </div>
 
           <div
             className={`mt-4 flex flex-wrap gap-2 transition-all duration-500 ${
               isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
           >
-            {project.tags.map((tag) => (
+            {project.logoTags.map((tag) => (
+              
               <Badge
-                key={tag}
+                key={tag.name}
                 variant="outline"
-                className="border-accent/30 bg-accent/10 text-accent-foreground text-xs"
+                className={`border-accent/30 bg-accent/10 text-accent-foreground text-xs ${isHovered ? "block" : "hidden"}`}
               >
-                {tag}
+                {tag.logo}
+                {tag.name}
               </Badge>
             ))}
           </div>

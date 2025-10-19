@@ -23,7 +23,11 @@ import {
     SiDocker,
     SiPostman,
     SiJetbrains,
-    SiDbeaver, SiVuedotjs, SiSpring
+    SiDbeaver, SiVuedotjs, SiSpring,
+    SiMui,
+    SiAxios,
+    SiShadcnui,
+    SiPrisma
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { TbBrandCSharp } from "react-icons/tb";
@@ -34,7 +38,11 @@ export const techLogos = [
     { node: <SiCss3 />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
     { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
     { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiMui />, title: "Material UI", href: "https://mui.com" },
+    { node: <SiAxios />, title: "Axios", href: "https://axios-http.com" },
     { node: <SiPhp />, title: "PHP", href: "https://www.php.net" },
+    { node: <SiShadcnui />, title: "Shadcn/ui", href: "https://shadcn.com" },
+    { node: <SiPrisma />, title: "Prisma", href: "https://www.prisma.io"},
     { node: <SiPython />, title: "Python", href: "https://www.python.org" },
     { node: <FaJava />, title: "Java", href: "https://www.java.com" },
     { node: <TbBrandCSharp />, title: "C#", href: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
@@ -164,6 +172,27 @@ export const FrameworkIconLogos: TIconLogos[] = [
         pathLogo: '/logo/libraries_framework/nextjs.webp',
         width: 50,
         height: 50,
+    },
+    {
+        name: 'Material UI',
+        color: "bg-gradient-to-r from-blue-400/30 to-indigo-400/30",
+        pathLogo: '/logo/libraries_framework/mui.png',
+        width: 70,
+        height: 70,
+    },
+    {
+        name: 'Shadcn/ui',
+        color: "bg-gradient-to-r from-purple-500/40 to-pink-400/40",
+        pathLogo: '/logo/libraries_framework/shadcn-ui.png',
+        width: 50,
+        height: 50,
+    },
+    {
+        name: 'Prisma',
+        color: "bg-gradient-to-r from-blue-500/40 to-cyan-400/40",
+        pathLogo: '/logo/libraries_framework/prisma.png',
+        width: 40,
+        height: 40,
     },
     {
         name: 'Laravel',

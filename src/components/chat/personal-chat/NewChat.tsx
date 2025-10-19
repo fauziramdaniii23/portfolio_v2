@@ -14,7 +14,7 @@ import { useUserListStore } from "@/store/userStore";
 import { Input } from "@/components/ui/input";
 import { cn, isAuthor } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Author } from "@/app/constant/constant";
+import { Author } from "@/constant/constant";
 import { TUser } from "@/types/type";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAuthStore } from "@/store/authStore";

@@ -1,0 +1,47 @@
+{
+    "HomePage": {
+        "title": "Welcome to my portfolio!",
+        "description": "Explore my projects, skills, and experience."
+    },
+    "AboutPage": {
+        "title": "About Me",
+        "greeting": "Hi, I'm Fauzi Ramdani",
+        "downloadCV": "Download CV",
+        "description": [
+            "A Software Engineer with over two years of experience in developing efficient, scalable, and user-friendly software solutions. I was born in Bandung, Indonesia, on December 22, 1998, and currently reside in Garut, West Java. At present, I’m working at a software house company based in Bandung, where I contribute to building reliable and high-performance software systems.",
+            "Throughout my career, I’ve been involved in developing web-based applications, desktop applications, and data processing systems, with strong expertise in identifying and resolving software bugs efficiently. I have hands-on experience in building and consuming APIs, managing databases, implementing state management, and configuring authentication mechanisms, including Single Sign-On (SSO). In addition, I focus on optimizing application performance to ensure a seamless user experience.",
+            "I’m always eager to learn and adapt to new technologies while maintaining a collaborative approach in team environments. I’m also open to remote, freelance, or part-time opportunities, as well as new roles that foster professional growth and long-term career development."
+        ],
+        "Experience": {
+            "Work": {
+                "title": "Work Experience",
+                "responsibilities": "Responsibilities & Achievements",
+                "1": {
+                    "period": "May 2024 — Present",
+                    "location": "Bandung, ID",
+                    "summary": "Contributing to the development of high-quality, reliable, and scalable software solutions at a software house based in Bandung. Responsible for implementing, and maintaining various applications while ensuring code quality, performance optimization, and adherence to best practices throughout the development process.",
+                    "achievements": [
+                        "Build, maintain, and develop effective and efficient software applications.",
+                        "Collaborate with cross-functional teams including designers, QA engineers, and product managers to deliver high-quality products.",
+                        "Identify, debug, and troubleshoot software defects, find and resolve issues.",
+                        "Perform code reviews and ensure adherence to coding standards and best practices.",
+                        "Analyze system requirements and translate them into functional software solutions.",
+                        "Ensure the security, scalability, and reliability of applications."
+                    ]
+                },
+                "2": {
+                    "period": "Oct 2022 — Jan 2023",
+                    "location": "Bandung, ID",
+                    "summary": "Worked as a Backend Developer focusing on building and maintaining server-side applications for Maximple, a platform integrated with the Accurate accounting system. Responsible for developing RESTful APIs using Java and the Spring Boot framework, ensuring smooth data synchronization between services, debugging and resolving backend issues, and maintaining system reliability. Collaborated closely with team members and provided regular progress updates through Trello to ensure efficient project delivery.",
+                    "achievements": [
+                        "Developed backend services for Maximple integrated with the Accurate accounting system.",
+                        "Built RESTful APIs using Java programming language and the Spring Boot framework.",
+                        "Debugged and resolved various issues in backend applications to ensure system stability.",
+                        "Collaborated with the development team and maintained project progress reports using Trello."
+                    ]
+                }
+            },
+            "Educations": {}
+        }
+    }
+}

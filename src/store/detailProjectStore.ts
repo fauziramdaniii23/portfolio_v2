@@ -13,15 +13,15 @@ export const useDetailProjectStore= create<ProjectState>()(
     persist(
         (set) => ({
             data:{
-                id: '',
                 title: '',
                 description: '',
                 category: '',
                 year: '',
                 image: '',
-                tags: [],
+                logoTags: [],
                 summary: [],
                 link: '',
+                role: '',
             },
             setDetailProject: (data : TProject ) =>
                 set({
@@ -30,15 +30,15 @@ export const useDetailProjectStore= create<ProjectState>()(
             clearDetailProject: () =>
                 set({
                     data: {
-                        id: '',
                         title: '',
                         description: '',
                         category: '',
                         year: '',
                         image: '',
-                        tags: [],
+                        logoTags: [],
                         summary: [],
                         link: '',
+                        role: '',
                     },
                 })
         }),

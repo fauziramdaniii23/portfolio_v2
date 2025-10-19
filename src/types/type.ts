@@ -1,4 +1,5 @@
 import {StaticImageData} from "next/image";
+import { JSX } from "react";
 
 export type TAuthor = {
   name: string;
@@ -39,10 +40,6 @@ export type TExperience = {
     id: string
     company: string
     role: string
-    period: string
-    location?: string
-    summary: string
-    achievements?: string[]
     logo?: string
 }
 
@@ -56,17 +53,26 @@ export type TEducation = {
     logo?: string
 }
 
+export type LogoTags = {
+    name: string
+    color?: string
+    logo: React.ReactNode
+}
+
 export type TProject = {
-    id: string
     title: string
     description: string
     category: string
+    role: string
     year: string
     image: string
-    tags: string[]
+    logoTags: LogoTags[]
     summary: string[]
+    info?: string
     link: string
-    featured?: boolean
+    status?: string
+    startDate?: string
+    endDate?: string
 }
 
 export type TMessage = {
@@ -113,4 +119,18 @@ export type TChatList = {
   updatedAt?: string | null;
   deletedAt?: string | null;
 }
-
+export type SocialMediaProps = {
+  title: string;
+  description?: string;
+  name: string;
+  href: string;
+  icon: JSX.Element;
+  backgroundIcon?: JSX.Element;
+  isShow?: boolean;
+  isExternal?: boolean;
+  backgroundColor?: string;
+  backgroundGradientColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  colSpan?: string;
+};

@@ -6,6 +6,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/co
 import SpotlightCard from "@/components/SpotlightCard";
 import GradientText from "@/components/GradientText";
 import Image from "next/image"
+import { useTranslations } from "next-intl";
 
 type PropsWorkExperience = {
     experience: TExperience
@@ -14,6 +15,8 @@ type PropsEducations = {
     education: TEducation
 }
 export const Timeline = ({experience}: PropsWorkExperience) => {
+    const t = useTranslations('AboutPage');
+    const achievements = t.raw(`Experience.Work.${experience.id}.achievements`) as string[];
     return(
         <div className="flex mx-5">
             <div className="relative border-l-2 ml-4">
@@ -34,25 +37,26 @@ export const Timeline = ({experience}: PropsWorkExperience) => {
                                         showBorder={false}
                                     >{experience.role}</GradientText>
                                     <Badge variant="secondary" className="self-start md:self-auto ml-4">
-                                        {experience.period}
+                                        {t(`Experience.Work.${experience.id}.period`)}
                                     </Badge>
                                 </CardTitle>
-                                <CardDescription className="text-pretty">
+                                <CardDescription className="text-pretty font-bold">
                                     {experience.company}
-                                    {experience.location ? " • " + experience.location : ""}
+                                    {t(`Experience.Work.${experience.id}.location`)}
                                 </CardDescription>
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <p className="text-sm text-muted-foreground leading-relaxed">{experience.summary}</p>
-                        {experience.achievements && experience.achievements.length > 0 && (
+                        
+                        <p className="text-sm text-muted-foreground leading-relaxed">{t(`Experience.Work.${experience.id}.summary`)}</p>
+                        {achievements && achievements.length > 0 && (
                             <Accordion type="single" collapsible>
                                 <AccordionItem value="details">
-                                    <AccordionTrigger className="text-sm">Tanggung jawab & pencapaian</AccordionTrigger>
+                                    <AccordionTrigger className="text-sm">{t("Experience.Work.responsibilities")}</AccordionTrigger>
                                     <AccordionContent>
                                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground">
-                                            {experience.achievements.map((item, idx) => (
+                                            {achievements.map((item, idx) => (
                                                 <li key={idx} className="text-pretty leading-relaxed">
                                                     {item}
                                                 </li>

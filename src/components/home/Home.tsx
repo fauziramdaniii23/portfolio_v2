@@ -3,8 +3,8 @@ import ShinyText from "@/components/ShinyText";
 import SpotlightCard from "@/components/SpotlightCard";
 import {Braces, Library, PencilLine,} from "lucide-react";
 import IconLogo from "@/components/logo/IconLogo";
-import {FrameworkIconLogos, ProgrammingLanguageIconLogos, techLogos, ToolsIconLogos} from "@/app/constant/IconLogos";
-import {Services} from "@/app/constant/constant";
+import {FrameworkIconLogos, ProgrammingLanguageIconLogos, techLogos, ToolsIconLogos} from "@/constant/IconLogos";
+import {Services} from "@/constant/constant";
 import GradientText from "@/components/GradientText";
 import LogoLoop from "@/components/LogoLoop";
 import {VantaGlobe} from "@/components/Vanta";
@@ -19,9 +19,9 @@ export default function Home({className}: Props) {
             <div className="overflow-hidden flex border-2 rounded-2xl">
                 <div className="w-1/2 p-6">
                     <div className="flex items-center mb-4">
-                        <ShinyText text="Hi, I Am Fauzi Ramdani" className="text-xl font-bold"/>
+                        <ShinyText text="Hello There, Welcome to My Portfolio" className="text-xl font-bold"/>
                     </div>
-                    <p className="text-foreground text-sm">Saya Seorang Software Engineer dengan pengalaman lebih dari dua tahun dalam mengembangkan solusi perangkat lunak yang efisien, skalabel, dan ramah pengguna. Saat ini bekerja di PT. Akhdani Reka Solusi dan terbuka untuk pekerjaan jarak jauh, lepas, atau paruh waktu, serta peluang baru yang mendukung pertumbuhan profesional dan pengembangan karier jangka panjang.</p>
+                    <p className="text-foreground text-sm">Saya memiliki pengalaman lebih dari dua tahun sebagai Software Engineer, dengan keahlian dalam berbagai tech stack yang tercantum di laman ini. Anda dapat melihat kemampuan saya dalam bidang pemrograman dan pengembangan aplikasi melalui proyek serta praktik terbaik yang saya terapkan di tempat kerja.</p>
                 </div>
                 <div className="w-1/2 h-full">
                     <VantaGlobe className="h-full" size={0.80} minWidth={50} color={0xcfcfcf} backgroundColor={0x0A0A0A}/>

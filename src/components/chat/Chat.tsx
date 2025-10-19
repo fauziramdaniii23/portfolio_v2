@@ -14,7 +14,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { LogOut } from "lucide-react";
 import ButtonAuth from "../button/ButtonAuth";
 import { clearState, getMessageReply, isAuthor } from "@/lib/utils";
-import { Author } from "@/app/constant/constant";
+import { Author } from "@/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 import { pusherClient } from "@/lib/pusher/pusherClient";
 import { encryptForUrl } from "@/lib/encryptor";

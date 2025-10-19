@@ -6,9 +6,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import {Menus} from "@/app/constant/menus";
+import {Menus} from "@/constant/menus";
 import {useNavigate} from "@/lib/navigate";
 import ShinyText from "@/components/ShinyText";
+import IntlToggle from "../button/IntlToggle";
 
 export function Sidebar() {
     const pathname = usePathname();
@@ -58,6 +59,7 @@ export function Sidebar() {
                         </div>
                     )}
                 </div>
+                <IntlToggle />
             </div>
 
             {/* Navigation Menu */}

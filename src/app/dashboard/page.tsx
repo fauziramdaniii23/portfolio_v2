@@ -1,6 +1,6 @@
 'use client'
 import DashboardLayout from "@/components/dashboard/Dashboard";
-import Home from "@/app/home/Home";
+import Home from "@/components/home/Home";
 import ShinyText from "@/components/ShinyText";
 
 export default function Dashboard() {

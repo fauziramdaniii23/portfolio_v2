@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
 import { useChatStore } from "@/store/useChatStore";
-import { Author } from "@/app/constant/constant";
+import { Author } from "@/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
 
 export function SidebarChatList() {

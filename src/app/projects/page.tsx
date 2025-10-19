@@ -2,16 +2,16 @@
 
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import {useState} from "react";
-import {categories, projects} from "@/app/constant/projects";
+import {categories, projects} from "@/constant/projects";
 import ShinyText from "@/components/ShinyText";
 import { ProjectFilter } from "@/components/project/ProjectFilter";
 import { ProjectCard } from "@/components/project/ProjectCard";
 
 export default function Project() {
-    const [activeCategory, setActiveCategory] = useState("All")
-
-    const filteredProjects =
-        activeCategory === "All" ? projects : projects.filter((project) => project.category === activeCategory)
+    const [query, setQuery] = useState("All");
+    const filteredProjects = query === "All" ? projects : projects.filter((project) =>
+    project.category.toLowerCase().includes(query.toLowerCase()) ||
+    project.role.toLowerCase().includes(query.toLowerCase()));
 
     return (
         <DashboardLayout>
@@ -23,14 +23,14 @@ export default function Project() {
 
                 {/* Filter Section */}
                 <section className="container mx-auto px-4 pb-8">
-                    <ProjectFilter categories={categories} activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+                    <ProjectFilter categories={categories} activeCategory={query} onCategoryChange={setQuery} />
                 </section>
 
                 {/* Projects Grid */}
                 <section className="container mx-auto px-4 pb-24">
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {filteredProjects.map((project, index) => (
-                            <ProjectCard key={project.id} project={project} index={index} />
+                            <ProjectCard key={index} project={project} index={index} />
                         ))}
                     </div>
 
