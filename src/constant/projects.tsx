@@ -402,7 +402,7 @@ export const projects: TProject[] = [
     title: "Maximple",
     description:
       "Maximple merupakan produk atau software dari Maksi yang berfungsi untuk mempermudah import data excel ke accurate hanya dengan 1 kali klik.",
-    category: "Web App",
+    category: "Backend & Data System",
     role: "Backend Developer",
     year: "2023",
     image: "/projects/maximple.png",

@@ -31,8 +31,7 @@ export type TIconLogos = {
 }
 
 export type TTextServices = {
-    title: string
-    description: string
+    id: string
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
 }
 
@@ -46,9 +45,7 @@ export type TExperience = {
 export type TEducation = {
     id: string
     institution: string
-    degree: string
     period: string
-    location?: string
     summary?: string
     logo?: string
 }

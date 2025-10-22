@@ -8,31 +8,35 @@ import {Services} from "@/constant/constant";
 import GradientText from "@/components/GradientText";
 import LogoLoop from "@/components/LogoLoop";
 import {VantaGlobe} from "@/components/Vanta";
+import { useTranslations } from "next-intl";
 
 type Props = {
     className?: string;
 }
 
 export default function Home({className}: Props) {
+    const t = useTranslations("HomePage");
     return (
         <div className={className}>
             <div className="overflow-hidden flex border-2 rounded-2xl">
-                <div className="w-1/2 p-6">
-                    <div className="flex items-center mb-4">
-                        <ShinyText text="Hello There, Welcome to My Portfolio" className="text-xl font-bold"/>
+                <div className="flex-1 py-4 pl-6">
+                    <div className="flex items-center mb-2">
+                        <ShinyText text={t("greeting")} className="text-xl font-bold"/>
                     </div>
-                    <p className="text-foreground text-sm">Saya memiliki pengalaman lebih dari dua tahun sebagai Software Engineer, dengan keahlian dalam berbagai tech stack yang tercantum di laman ini. Anda dapat melihat kemampuan saya dalam bidang pemrograman dan pengembangan aplikasi melalui proyek serta praktik terbaik yang saya terapkan di tempat kerja.</p>
+                    <p className="text-foreground text-sm">
+                        {t("description")}
+                    </p>
                 </div>
                 <div className="w-1/2 h-full">
                     <VantaGlobe className="h-full" size={0.80} minWidth={50} color={0xcfcfcf} backgroundColor={0x0A0A0A}/>
                 </div>
             </div>
             <div className="my-5 border-b py-5">
-                <ShinyText text="Expertise" className="text-2xl font-bold"/>
-                <p className="mt-2">I have extensive experience working with a variety of technologies, including:</p>
+                <ShinyText text={t("expertise.title")} className="text-2xl font-bold"/>
+                <p className="mt-2">{t("expertise.description")}</p>
                 <div className="flex items-center gap-2 mt-4">
                     <Braces className="size-5"/>
-                    <h1>Programming Language:</h1>
+                    <h1>{t("expertise.programmingLanguages")}</h1>
                 </div>
                 <div className="flex flex-wrap">
                     {ProgrammingLanguageIconLogos.map((data, index) => (
@@ -48,7 +52,7 @@ export default function Home({className}: Props) {
                 </div>
                 <div className="flex border-t pt-8 items-center gap-2 mt-4">
                     <Library/>
-                    <h1>Framework & Library:</h1>
+                    <h1>{t("expertise.frameworksLibraries")}</h1>
                 </div>
                 <div className="flex flex-wrap">
                     {FrameworkIconLogos.map((data, index) => (
@@ -64,7 +68,7 @@ export default function Home({className}: Props) {
                 </div>
                 <div className="flex border-t pt-8 items-center gap-2 mt-4">
                     <PencilLine/>
-                    <h1>Tools:</h1>
+                    <h1>{t("expertise.tools")}</h1>
                 </div>
                 <div className="flex flex-wrap">
                     {ToolsIconLogos.map((data, index) => (
@@ -80,8 +84,8 @@ export default function Home({className}: Props) {
                 </div>
             </div>
             <div className="my-5 border-b py-5">
-                <ShinyText text="Services" className="text-2xl font-bold"/>
-                <p className="mt-2">My key practices in the workplace</p>
+                <ShinyText text={t("services.title")} className="text-2xl font-bold"/>
+                <p className="mt-2">{t("services.description")}</p>
                 <div className="mt-4 grid grid-cols-4 gap-4">
                     {Services.map((data, index) => {
                         const Icon = data.icon;
@@ -96,11 +100,11 @@ export default function Home({className}: Props) {
                                                 animationSpeed={10}
                                                 showBorder={false}
                                             >
-                                                {data.title}
+                                                {t(`services.serviceList.${data.id}.title`)}
                                             </GradientText>
                                         </CardTitle>
                                         <CardDescription className="text-center">
-                                            {data.description}
+                                            {t(`services.serviceList.${data.id}.description`)}
                                         </CardDescription>
                                     </CardHeader>
                                 </SpotlightCard>

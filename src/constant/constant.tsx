@@ -21,43 +21,35 @@ export const Author: TAuthor = {
 
 export const Services: TTextServices[] = [
     {
-        title: 'Problem Solving',
-        description: 'Ability to solve technical problems logically and efficiently.',
+        id: "1",
         icon: CircleStar
     },
     {
-        title: 'Time Management',
-        description: 'Manage deadlines and task priorities well.',
+        id: "2",
         icon: Timer
     },
     {
-        title: 'Analytical Thinking',
-        description: 'Analyze system requirements and design appropriate solutions.',
+        id: "3",
         icon: ChartSpline
     },
     {
-        title: 'Adaptability',
-        description: 'Quickly learn new technologies or tools as project needs require.',
+        id: "4",
         icon: BookCheck
     },
     {
-        title: 'Team Collaboration',
-        description: 'Collaborate in cross-functional teams (dev, QA, PM, designer).',
+        id: "5",
         icon: AiOutlineTeam
     },
     {
-        title: 'Attention to Detail',
-        description: 'Look closely for small bugs or errors in the code.',
+        id: "6",
         icon: BugPlay
     },
     {
-        title: 'Communication',
-        description: 'Explaining technical ideas to both technical and non-technical teams.',
+        id: "7",
         icon: Speech
     },
     {
-        title: 'Continuous Learning',
-        description: 'Always keep up with the latest technological developments.',
+        id: "8",
         icon: StepForward
     },
 ];
@@ -70,8 +62,8 @@ export const SOCIAL_MEDIA: SocialMediaProps[] = [
   {
     title: "Stay in Touch",
     description: "Reach out via email for any inquiries or collaborations.",
-    name: "gmail",
-    href: "mailto:satriaabaharii@gmail.com",
+    name: "Gmail",
+    href: "mailto:fauziramdani234@gmail.com",
     icon: <SiGmail size={iconSize} />,
     backgroundIcon: <SiGmail size={backgroundIconSize} />,
     textColor: "text-red-300",
@@ -85,7 +77,7 @@ export const SOCIAL_MEDIA: SocialMediaProps[] = [
     title: "Follow My Journey",
     description: "Stay updated with my latest posts and stories on Instagram.",
     name: "instagram",
-    href: "https://www.instagram.com/satriabaharii_/",
+    href: "https://www.instagram.com/fauziramdani___/",
     icon: <InstagramIcon size={iconSize} />,
     backgroundIcon: <InstagramIcon size={backgroundIconSize} />,
     textColor: "text-purple-200",
@@ -100,7 +92,7 @@ export const SOCIAL_MEDIA: SocialMediaProps[] = [
     description:
       "Connect for collaboration or explore my professional experience.",
     name: "linkedin",
-    href: "https://www.linkedin.com/in/satria-bahari/",
+    href: "https://www.linkedin.com/in/fauzi-ramdani-873baa238/",
     icon: <LinkedinIcon size={iconSize} />,
     backgroundIcon: <LinkedinIcon size={backgroundIconSize} />,
     textColor: "text-sky-300",
@@ -113,7 +105,7 @@ export const SOCIAL_MEDIA: SocialMediaProps[] = [
     title: "Join the Fun",
     description: "Follow me on TikTok for entertaining and engaging content.",
     name: "tiktok",
-    href: "https://www.tiktok.com/@satriaabaharii/",
+    href: "https://www.tiktok.com/@jirrBangke2/",
     icon: <TiktokIcon size={iconSize} />,
     backgroundIcon: <TiktokIcon size={backgroundIconSize} />,
     textColor: "text-neutral-400",
@@ -126,7 +118,7 @@ export const SOCIAL_MEDIA: SocialMediaProps[] = [
     title: "Explore the Code",
     description: "Explore the source code for all my projects on GitHub.",
     name: "github",
-    href: "https://github.com/satriabahari",
+    href: "https://github.com/fauziramdaniii23",
     icon: <GithubIcon size={iconSize} />,
     backgroundIcon: <GithubIcon size={backgroundIconSize} />,
     textColor: "text-slate-400",

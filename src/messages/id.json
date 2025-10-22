@@ -1,7 +1,54 @@
 {
     "HomePage": {
         "title": "Beranda",
-        "description": "Jelajahi proyek, keterampilan, dan pengalaman saya."
+        "greeting": "Halo, Selamat Datang di Portofolio Saya",
+        "description": "Saya adalah seorang Software Engineer dengan keahlian dalam berbagai tech stack yang tercantum di laman ini. Saya selalu berkomitmen untuk terus belajar, mengeksplorasi hal-hal baru, dan meningkatkan kualitas diri agar dapat memberikan hasil yang lebih baik di setiap kesempatan. Saya juga menjunjung tinggi kolaborasi, komunikasi yang terbuka, serta tanggung jawab terhadap kualitas kode dan keberhasilan tim secara keseluruhan. Melalui portofolio ini, saya ingin menunjukkan bagaimana nilai-nilai tersebut saya terapkan dalam setiap baris kode dan setiap proyek yang saya kembangkan.",
+        "expertise": {
+            "title": "Keahlian",
+            "description": "Saya memiliki pengalaman bekerja dengan berbagai teknologi, termasuk:",
+            "programmingLanguages": "Bahasa Pemrograman :",
+            "frameworksLibraries": "Framework & Library :",
+            "databases": "Basis Data :",
+            "tools": "Alat :"
+        },
+        "services": {
+            "title": "Layanan",
+            "description": "Saya menawarkan berbagai layanan untuk membantu Anda mencapai tujuan pengembangan perangkat lunak, serta praktik utama saya di tempat kerja.",
+            "serviceList": {
+                "1": {
+                    "title": "Pemecahan Masalah",
+                    "description": "Kemampuan untuk menyelesaikan masalah teknis secara logis dan efisien."
+                },
+                "2": {
+                    "title": "Manajemen Waktu",
+                    "description": "Mengatur tenggat waktu dan prioritas tugas dengan baik."
+                },
+                "3": {
+                    "title": "Berpikir Analitis",
+                    "description": "Menganalisis kebutuhan sistem dan merancang solusi yang sesuai."
+                },
+                "4": {
+                    "title": "Kemampuan Beradaptasi",
+                    "description": "Cepat mempelajari teknologi atau alat baru sesuai kebutuhan proyek."
+                },
+                "5": {
+                    "title": "Kolaborasi Tim",
+                    "description": "Berkolaborasi dalam tim lintas fungsi (developer, QA, PM, desainer)."
+                },
+                "6": {
+                    "title": "Perhatian terhadap Detail",
+                    "description": "Memperhatikan dengan teliti kesalahan kecil atau bug dalam kode."
+                },
+                "7": {
+                    "title": "Komunikasi",
+                    "description": "Menjelaskan ide teknis kepada tim teknis maupun non-teknis."
+                },
+                "8": {
+                    "title": "Pembelajaran Berkelanjutan",
+                    "description": "Selalu mengikuti perkembangan teknologi terbaru."
+                }
+            }
+        }
     },
     "AboutPage": {
         "title": "Tentang Saya",
@@ -39,6 +86,19 @@
                         "Men-debug dan menyelesaikan berbagai masalah pada aplikasi backend untuk menjaga stabilitas sistem.",
                         "Berkolaborasi dengan tim pengembang dan menjaga laporan kemajuan proyek menggunakan Trello."
                     ]
+                }
+            },
+            "Educations": {
+                "title": "Pendidikan",
+                "1": {
+                    "degree" : "Teknik Informatika",
+                    "period": "2019 — 2023",
+                    "location": "Bandung, ID"
+                },
+                "2": {
+                    "degree": "MIPA",
+                    "period": "2014 — 2017",
+                    "location": "Sumedang, ID"
                 }
             }
         }

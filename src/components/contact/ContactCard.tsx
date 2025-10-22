@@ -50,7 +50,7 @@ const ContactCard = ({
 
       <div className={`flex items-end justify-end`}>
         <div
-          className={`rounded-2xl border-4 border-opacity-80 bg-opacity-5 p-2 text-neutral-50 ${backgroundColor} ${borderColor}`}
+          className={`rounded-2xl border-4 border-opacity-80 bg-opacity-5 p-2 text-neutral-50 ${borderColor}`}
         >
           {icon}
         </div>

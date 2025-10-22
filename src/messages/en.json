@@ -1,7 +1,54 @@
 {
     "HomePage": {
-        "title": "Welcome to my portfolio!",
-        "description": "Explore my projects, skills, and experience."
+        "title": "Home",
+        "greeting": "Hello There, Welcome to My Portfolio",
+        "description": "I am a Software Engineer with expertise in various tech stacks listed on this page. I am committed to continuous learning, exploring new ideas, and improving myself to deliver better results at every opportunity. I also value collaboration, open communication, and responsibility for both code quality and the overall success of the team. Through this portfolio, I aim to showcase how I apply these values in every line of code and every project I develop.",
+        "expertise": {
+            "title": "Expertise",
+            "description": "I have extensive experience working with a variety of technologies, including:",
+            "programmingLanguages": "Programming Languages :",
+            "frameworksLibraries": "Frameworks & Libraries :",
+            "databases": "Databases :",
+            "tools": "Tools :"
+        },
+        "services": {
+            "title": "Services",
+            "description": "I offer a range of services to help you achieve your software development goals and My key practices in the workplace",
+            "serviceList": {
+                "1": {
+                    "title": "Problem Solving",
+                    "description": "Ability to solve technical problems logically and efficiently."
+                },
+                "2": {
+                    "title": "Time Management",
+                    "description": "Manage deadlines and task priorities well."
+                },
+                "3": {
+                    "title": "Analytical Thinking",
+                    "description": "Analyze system requirements and design appropriate solutions."
+                },
+                "4": {
+                    "title": "Adaptability",
+                    "description": "Quickly learn new technologies or tools as project needs require."
+                },
+                "5": {
+                    "title": "Team Collaboration",
+                    "description": "Collaborate in cross-functional teams (dev, QA, PM, designer)."
+                },
+                "6": {
+                    "title": "Attention to Detail",
+                    "description": "Look closely for small bugs or errors in the code."
+                },
+                "7": {
+                    "title": "Communication",
+                    "description": "Explaining technical ideas to both technical and non-technical teams."
+                },
+                "8": {
+                    "title": "Continuous Learning",
+                    "description": "Always keep up with the latest technological developments."
+                }
+            }
+        }
     },
     "AboutPage": {
         "title": "About Me",
@@ -41,7 +88,19 @@
                     ]
                 }
             },
-            "Educations": {}
+            "Educations": {
+                "title": "Educations",
+                "1": {
+                    "degree": "Bachelor of Informatics Engineering",
+                    "period": "2019 — 2023",
+                    "location": "Bandung, ID"
+                },
+                "2": {
+                    "degree": "MIPA",
+                    "period": "2014 — 2017",
+                    "location": "Sumedang, ID"
+                }
+            }
         }
     }
 }

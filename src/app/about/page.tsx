@@ -67,7 +67,7 @@ export default function About() {
             }
             <div className="my-5 flex">
                 <GraduationCap/>
-                <h1 className="ml-2 text-lg font-semibold">Educations</h1>
+                <h1 className="ml-2 text-lg font-semibold">{t("Experience.Educations.title")}</h1>
             </div>
             {
                 educations.map((education, idx) => (
