@@ -17,6 +17,7 @@ export type TUser = {
 };
 
 export type TMenuItem = {
+    id: string;
     label: string;
     path: string;
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
@@ -69,6 +70,7 @@ export type TProject = {
     status?: string
     startDate?: string
     endDate?: string
+    note?: string
 }
 
 export type TMessage = {
@@ -119,6 +121,7 @@ export type SocialMediaProps = {
   title: string;
   description?: string;
   name: string;
+  val?: string;
   href: string;
   icon: JSX.Element;
   backgroundIcon?: JSX.Element;

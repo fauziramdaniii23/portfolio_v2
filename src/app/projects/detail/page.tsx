@@ -140,6 +140,9 @@ export default function ProjectDetailPage() {
                                         <span className="text-muted-foreground">Status</span>
                                         <span className="text-foreground">{t(`summary.${project.id}.status`)}</span>
                                     </div>
+                                    <div>
+                                        <p className="text-xs italic">{t(`summary.${project.id}.note`)}</p>
+                                    </div>
                                 </div>
                             </SpotlightCard>
                         </div>

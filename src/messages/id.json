@@ -1,5 +1,6 @@
 {
     "HomePage": {
+        "id" : "1",
         "title": "Beranda",
         "greeting": "Halo, Selamat Datang di Portofolio Saya",
         "description": "Saya adalah seorang Software Engineer dengan keahlian dalam berbagai tech stack yang tercantum di laman ini. Saya selalu berkomitmen untuk terus belajar, mengeksplorasi hal-hal baru, dan meningkatkan kualitas diri agar dapat memberikan hasil yang lebih baik di setiap kesempatan. Saya juga menjunjung tinggi kolaborasi, komunikasi yang terbuka, serta tanggung jawab terhadap kualitas kode dan keberhasilan tim secara keseluruhan. Melalui portofolio ini, saya ingin menunjukkan bagaimana nilai-nilai tersebut saya terapkan dalam setiap baris kode dan setiap proyek yang saya kembangkan.",
@@ -51,6 +52,7 @@
         }
     },
     "AboutPage": {
+        "id" : "2",
         "title": "Tentang Saya",
         "greeting": "Halo, saya Fauzi Ramdani",
         "downloadCV": "Unduh CV",
@@ -104,6 +106,7 @@
         }
     },
     "projectPage": {
+        "id" : "3",
         "title": "Proyek",
         "description": "Saya telah berkontribusi dalam berbagai proyek, baik dalam lingkup pemeliharaan maupun pengembangan sistem. Selain itu, saya juga memiliki beberapa proyek independen yang saya kembangkan secara mandiri untuk mengasah kemampuan dan memperluas wawasan teknis.",
         "summary": {
@@ -118,7 +121,8 @@
                 ],
                 "startWork": "Juni 2024",
                 "endWork": "Agustus 2024",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "2": {
                 "description": "Aplikasi web untuk menampilkan informasi tentang restoran, menu, dan layanan yang tersedia.",
@@ -136,7 +140,8 @@
                 ],
                 "startWork": "Januari 2024",
                 "endWork": "Mei 2024",
-                "status": "Sedang Berlangsung"
+                "status": "Sedang Berlangsung",
+                "note": "*Aplikasi ini merupakan proyek independen yang saya kembangkan secara mandiri dengan tujuan untuk mengasah keterampilan teknis serta memperluas wawasan saya dalam pengembangan perangkat lunak."
             },
             "3": {
                 "description": "DX Trade adalah aplikasi desktop yang dikembangkan untuk memfasilitasi aktivitas perdagangan aset digital dan saham secara real-time. Aplikasi ini menyediakan fitur analisis pasar, manajemen portofolio, serta eksekusi transaksi yang cepat dan aman, dengan antarmuka yang intuitif dan responsif.",
@@ -149,7 +154,8 @@
                 ],
                 "startWork": "November 2023",
                 "endWork": "Desember 2023",
-                "status": "Sedang Berlangsung"
+                "status": "Sedang Berlangsung",
+                "note": ""
             },
             "4": {
                 "description": "VHS Pertamina adalah aplikasi web yang dirancang untuk mendukung proses digitalisasi dan efisiensi operasional di lingkungan Pertamina. Platform ini memfasilitasi pengelolaan data, pemantauan aktivitas, serta pelaporan secara terintegrasi, dengan fokus pada keamanan, kecepatan, dan kemudahan penggunaan.",
@@ -161,7 +167,8 @@
                 ],
                 "startWork": "Agustus 2023",
                 "endWork": "Oktober 2023",
-                "status": "Sedang Berlangsung"
+                "status": "Sedang Berlangsung",
+                "note": ""
             },
             "5": {
                 "description": "proyek data engineering yang berfokus pada pembangunan pipeline data untuk mengintegrasikan dan memproses data operasional dari berbagai sumber internal PLN. Proyek ini bertujuan untuk meningkatkan efisiensi analisis, mendukung pengambilan keputusan berbasis data, serta memastikan ketersediaan data yang akurat dan terstruktur.",
@@ -174,7 +181,8 @@
                 ],
                 "startWork": "Juni 2023",
                 "endWork": "Agustus 2023",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "6": {
                 "description": "DJKN – Kinerja Badan Usaha adalah aplikasi web yang dikembangkan untuk memantau dan mengevaluasi kinerja badan usaha di bawah pengelolaan Direktorat Jenderal Kekayaan Negara (DJKN). Platform ini menyediakan fitur pelaporan, analisis data keuangan, serta visualisasi kinerja secara interaktif untuk mendukung pengambilan keputusan strategis.",
@@ -187,7 +195,8 @@
                 ],
                 "startWork": "Februari 2023",
                 "endWork": "Mei 2023",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "7": {
                 "description": "Aplikasi management pengelolaan jasa studio photografi",
@@ -199,7 +208,8 @@
                 ],
                 "startWork": "Januari 2023",
                 "endWork": "Februari 2023",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "8": {
                 "description": "Sistem informasi managemen pengelolaan tempat wisata kampoeng ciherang",
@@ -211,7 +221,8 @@
                 ],
                 "startWork": "Desember 2022",
                 "endWork": "Januari 2023",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "9": {
                 "description": "Situs web portfolio pribadi yang menampilkan proyek, pengalaman, dan keterampilan saya sebagai pengembang perangkat lunak.",
@@ -223,7 +234,8 @@
                 ],
                 "startWork": "November 2022",
                 "endWork": "Desember 2022",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             },
             "10": {
                 "description": "Maximple merupakan produk atau software dari Maksi yang berfungsi untuk mempermudah import data excel ke accurate hanya dengan 1 kali klik.",
@@ -233,7 +245,8 @@
                 ],
                 "startWork": "Oktober 2022",
                 "endWork": "Januari 2023",
-                "status": "Selesai"
+                "status": "Selesai",
+                "note": ""
             }
         },
         "information": {
@@ -245,9 +258,66 @@
             "endWork": "Selesai Pengerjaan",
             "amountTech": "Jumlah Teknologi"
         },
-        "action" : {
-            "back" : "Kembali",
-            "visit" : "Kunjungi Situs"
+        "action": {
+            "back": "Kembali",
+            "visit": "Kunjungi Situs"
         }
+    },
+    "chatroomPage": {
+        "id": "4",
+        "title": "Ruang Obrolan",
+        "description": "Ayo bergabung dan berinteraksi secara langsung dengan semua pengunjung di website ini. Gunakan ruang obrolan ini untuk berdiskusi, bertanya seputar proyek saya, atau membahas apapun yang anda minati."
+    },
+    "personalChatPage": {
+        "id": "5",
+        "title": "Obrolan Pribadi",
+        "description": "Ingin berdiskusi secara lebih privat? Gunakan fitur Obrolan Pribadi untuk melakukan diskusi satu lawan satu dengan pengunjung lain yang sudah login di website ini. Terhubung, bertukar ide, atau sekadar mengobrol santai di ruang yang lebih personal!"
+    },
+    "contactPage": {
+        "id": "6",
+        "title": "Kontak Saya",
+        "description": "Mari kita terhubung",
+        "social_media": {
+            "title": "Temukan saya di media sosial",
+            "gmail": {
+                "title": "Tetap Terhubung",
+                "description": "Hubungi saya via email untuk pertanyaan atau kolaborasi."
+            },
+            "whatsapp": {
+                "title": "Kirim Pesan",
+                "description": "Hubungi saya melalui WhatsApp untuk diskusi cepat."
+            },
+            "instagram": {
+                "title": "Ikuti Perjalanan Saya",
+                "description": "Ikuti perjalanan kreatif saya."
+            },
+            "linkedin": {
+                "title": "Mari Terhubung",
+                "description": "Terhubung secara profesional dengan saya."
+            },
+            "tiktok": {
+                "title": "Ikut Seru-seruan",
+                "description": "Tonton konten yang seru dan menarik."
+            },
+            "github": {
+                "title": "Jelajahi Kode",
+                "description": "Lihat karya open-source saya."
+            }
+        },
+        "form": {
+            "title": "Atau kirim saya pesan",
+            "input_name": "Nama",
+            "input_email": "Email",
+            "input_message": "Pesan",
+            "button": "Kirim Email"
+        }
+    },
+    "sidebar": {
+        "1": "Beranda",
+        "2": "Tentang Saya",
+        "3": "Proyek",
+        "4": "Ruang Obrolan",
+        "5": "Obrolan Pribadi",
+        "6": "Kontak Saya"
     }
 }

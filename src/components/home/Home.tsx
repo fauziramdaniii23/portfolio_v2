@@ -9,6 +9,7 @@ import GradientText from "@/components/GradientText";
 import LogoLoop from "@/components/LogoLoop";
 import {VantaGlobe} from "@/components/Vanta";
 import { useTranslations } from "next-intl";
+import StarBorder from "../StarBorder";
 
 type Props = {
     className?: string;
@@ -96,6 +97,7 @@ export default function Home({className}: Props) {
                                         <CardTitle className="flex items-center gap-2 flex-col mb-2">
                                             <Icon className="h-6 w-6"/>
                                             <GradientText
+                                                className="text-center"
                                                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                                                 animationSpeed={10}
                                                 showBorder={false}

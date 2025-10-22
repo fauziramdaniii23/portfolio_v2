@@ -20,6 +20,7 @@ import { pusherClient } from "@/lib/pusher/pusherClient";
 import { encryptForUrl } from "@/lib/encryptor";
 import Image from "next/image";
 import { useChatStore } from "@/store/useChatStore";
+import { useTranslations } from "next-intl";
 
 type Props = {
   isPersonalChat: boolean;
@@ -171,6 +172,7 @@ export default function Chat({ isPersonalChat }: Props) {
       };
     }
   }, [user?.id, selectedChat?.id]);
+  const t = useTranslations("chatroomPage");
 
   return (
     <div
@@ -184,7 +186,7 @@ export default function Chat({ isPersonalChat }: Props) {
           {!isPersonalChat && (
             <div className="flex gap-2 border-r pr-2">
               <MdGroups3 size={28} />
-              <h2 className="text-lg font-semibold">Chat Room</h2>
+              <h2 className="text-lg font-semibold">{t("title")}</h2>
             </div>
           )}
           {isAuthenticated && titleUser && (

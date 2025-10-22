@@ -2,11 +2,13 @@ import Link from "next/link";
 import { MdArrowOutward as ArrowIcon } from "react-icons/md";
 import { SocialMediaProps } from "@/types/type";
 import SpotlightCard from "../SpotlightCard";
+import { useTranslations } from "next-intl";
 
 const ContactCard = ({
   title,
   description,
   name,
+  val,
   href,
   icon,
   backgroundIcon,
@@ -16,6 +18,7 @@ const ContactCard = ({
   textColor,
   colSpan,
 }: SocialMediaProps) => {
+  const t = useTranslations("contactPage");
 
   return (
     <SpotlightCard
@@ -28,9 +31,10 @@ const ContactCard = ({
         className={`${textColor} z-10 flex flex-col justify-between gap-y-2`}
       >
         <h4 className="text-lg font-semibold tracking-wide">
-          test
+          {t(`social_media.${name}.title`, { default: title })}
         </h4>
-        <p className="pb-2 text-xs">testp</p>
+        <p className="text-xs">{val}</p>
+        <p className="pb-2 text-xs">{t(`social_media.${name}.description`)}</p>
         <button
           className={`${backgroundColor} rounded-md bg-opacity-85 px-4 py-2 transition duration-300 hover:scale-105 hover:bg-opacity-100 md:w-max`}
         >
@@ -38,7 +42,6 @@ const ContactCard = ({
             href={href}
             target="_blank"
             className="flex items-center justify-center gap-x-2  text-black"
-            data-umami-event={`click_contact_${name}`}
           >
             <p className="text-sm font-medium">{" "}
               <span className="capitalize">{name}</span>

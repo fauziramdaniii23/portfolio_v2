@@ -1,5 +1,6 @@
 {
     "HomePage": {
+        "id" : "1",
         "title": "Home",
         "greeting": "Hello There, Welcome to My Portfolio",
         "description": "I am a Software Engineer with expertise in various tech stacks listed on this page. I am committed to continuous learning, exploring new ideas, and improving myself to deliver better results at every opportunity. I also value collaboration, open communication, and responsibility for both code quality and the overall success of the team. Through this portfolio, I aim to showcase how I apply these values in every line of code and every project I develop.",
@@ -51,6 +52,7 @@
         }
     },
     "AboutPage": {
+        "id" : "2",
         "title": "About Me",
         "greeting": "Hi, I'm Fauzi Ramdani",
         "downloadCV": "Download CV",
@@ -104,6 +106,7 @@
         }
     },
     "projectPage": {
+        "id" : "3",
         "title": "Projects",
         "description": "I have contributed to various projects involving both system maintenance and development. In addition, I have several independent projects that I built personally to sharpen my skills and broaden my technical knowledge.",
         "summary": {
@@ -118,7 +121,8 @@
                 ],
                 "startWork": "June 2024",
                 "endWork": "July 2024",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "2": {
                 "description": "A web application that displays restaurant information, menus, and available services.",
@@ -136,7 +140,8 @@
                 ],
                 "startWork": "January 2024",
                 "endWork": "April 2024",
-                "status": "In Progress"
+                "status": "In Progress",
+                "note": "*This application is an independent project that I developed on my own to enhance my technical skills and broaden my knowledge in software development."
             },
             "3": {
                 "description": "DX Trade is a desktop application developed to facilitate real-time trading of digital assets and stocks. It provides market analysis tools, portfolio management, and fast, secure trade execution with an intuitive and responsive interface.",
@@ -149,7 +154,8 @@
                 ],
                 "startWork": "November 2023",
                 "endWork": "December 2023",
-                "status": "In Progress"
+                "status": "In Progress",
+                "note": ""
             },
             "4": {
                 "description": "VHS Pertamina is a web application designed to support digitalization and improve operational efficiency within Pertamina. The platform enables integrated data management, activity monitoring, and reporting with a focus on security, performance, and ease of use.",
@@ -161,7 +167,8 @@
                 ],
                 "startWork": "August 2023",
                 "endWork": "October 2023",
-                "status": "In Progress"
+                "status": "In Progress",
+                "note": ""
             },
             "5": {
                 "description": "A data engineering project focused on building data pipelines to integrate and process operational data from various internal PLN sources. This project aims to enhance analytical efficiency, support data-driven decision-making, and ensure accurate and well-structured data availability.",
@@ -174,7 +181,8 @@
                 ],
                 "startWork": "June 2023",
                 "endWork": "August 2023",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "6": {
                 "description": "DJKN – Business Performance is a web application developed to monitor and evaluate the performance of enterprises managed under the Directorate General of State Assets (DJKN). It provides reporting, financial data analysis, and interactive performance visualization to support strategic decision-making.",
@@ -187,7 +195,8 @@
                 ],
                 "startWork": "February 2023",
                 "endWork": "May 2023",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "7": {
                 "description": "A management application for photography studio service operations.",
@@ -199,7 +208,8 @@
                 ],
                 "startWork": "January 2023",
                 "endWork": "February 2023",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "8": {
                 "description": "Tourism management information system for Kampoeng Ciherang, designed to streamline operational and administrative processes.",
@@ -211,7 +221,8 @@
                 ],
                 "startWork": "December 2022",
                 "endWork": "January 2023",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "9": {
                 "description": "A personal portfolio website showcasing my projects, professional experiences, and technical skills as a software developer.",
@@ -223,7 +234,8 @@
                 ],
                 "startWork": "November 2022",
                 "endWork": "December 2022",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             },
             "10": {
                 "description": "Maximple is a product developed by Maksi that simplifies importing Excel data into Accurate with just one click.",
@@ -233,7 +245,8 @@
                 ],
                 "startWork": "October 2022",
                 "endWork": "January 2023",
-                "status": "Done"
+                "status": "Done",
+                "note": ""
             }
         },
         "information": {
@@ -249,5 +262,62 @@
             "back": "Back",
             "visit": "Visit Site"
         }
+    },
+    "chatroomPage": {
+        "id": "4",
+        "title": "Chat Room",
+        "description": "Join and interact directly with other visitors on this website! Use this chat room to discuss, ask questions about my projects, or talk about anything you’re interested in!"
+    },
+    "personalChatPage": {
+        "id": "5",
+        "title": "Personal Chat",
+        "description": "Want a more private conversation? Use the Personal Chat feature to have one-on-one discussions with other logged-in visitors on this website. Connect, exchange ideas, or simply have a friendly chat in a more personal space!"
+    },
+    "contactPage": {
+        "id": "6",
+        "title": "Contact Me",
+        "description": "Let`s get in touch",
+        "social_media": {
+            "title": "Find me on social media",
+            "gmail": {
+                "title": "Stay in Touch",
+                "description": "Reach out via email for inquiries or collaborations."
+            },
+            "whatsapp": {
+                "title": "Send a Message",
+                "description": "Contact me via WhatsApp for quick discussions."
+            },
+            "instagram": {
+                "title": "Follow My Journey",
+                "description": "Follow my creative journey."
+            },
+            "linkedin": {
+                "title": "Let's Connect",
+                "description": "Connect with me professionally."
+            },
+            "tiktok": {
+                "title": "Join the Fun",
+                "description": "Watch engaging and fun content."
+            },
+            "github": {
+                "title": "Explore the Code",
+                "description": "Explore my open-source work."
+            }
+        },
+        "form": {
+            "title": "Or send me a message",
+            "input_name": "Name",
+            "input_email": "Email",
+            "input_message": "Message",
+            "button": "Send Email"
+        }
+    },
+    "sidebar": {
+        "1": "Home",
+        "2": "About Me",
+        "3": "Projects",
+        "4": "Chat Room",
+        "5": "Personal Chat",
+        "6": "Contact Me"
     }
 }
