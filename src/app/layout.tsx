@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LayoutProps from "next"
 import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/Providers";
@@ -21,14 +22,12 @@ export const metadata: Metadata = {
 
 const RootLayout = async({
   children,
-  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) => {
   const messages = await getMessages();
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning
         className={`${robotoFlex.className} antialiased`}
       >
