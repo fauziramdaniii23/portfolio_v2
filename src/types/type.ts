@@ -57,14 +57,13 @@ export type LogoTags = {
 }
 
 export type TProject = {
+    id: string
     title: string
-    description: string
     category: string
     role: string
     year: string
     image: string
     logoTags: LogoTags[]
-    summary: string[]
     info?: string
     link: string
     status?: string

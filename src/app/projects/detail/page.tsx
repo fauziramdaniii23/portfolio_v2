@@ -2,16 +2,18 @@
 import Link from "next/link"
 import {Badge} from "@/components/ui/badge"
 import {Button} from "@/components/ui/button"
-import {Card} from "@/components/ui/card"
 import {ExternalLink, ArrowLeft, Tag, Calendar} from "lucide-react"
 import {useDetailProjectStore} from "@/store/detailProjectStore";
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import SpotlightCard from "@/components/SpotlightCard"
 import ShinyText from "@/components/ShinyText"
 import GradientText from "@/components/GradientText"
+import { useTranslations } from "next-intl"
 
 export default function ProjectDetailPage() {
     const project = useDetailProjectStore(state => state.data)
+    const t = useTranslations("projectPage");
+    const summary = t.raw(`summary.${project.id}.summary`) as string[];
 
     return (
         <DashboardLayout>
@@ -48,9 +50,9 @@ export default function ProjectDetailPage() {
                                             Tech Stack
                                         </h3>
                                         <div className="flex flex-wrap gap-2">
-                                            {project.logoTags.map((tag) => (
+                                            {project.logoTags.map((tag, idx) => (
                                                 <Badge
-                                                key={tag.name}
+                                                key={idx}
                                                     variant="outline"
                                                     className="border-accent/30 bg-accent/10 text-accent-foreground"
                                                 >
@@ -65,7 +67,7 @@ export default function ProjectDetailPage() {
                                         <Button asChild>
                                             <Link href="/projects" aria-label="Kembali ke daftar project">
                                                 <ArrowLeft className="mr-2 h-4 w-4"/>
-                                                Kembali
+                                                {t("action.back")}
                                             </Link>
                                         </Button>
 
@@ -74,7 +76,7 @@ export default function ProjectDetailPage() {
                                                 <a href={project.link} target="_blank" rel="noopener noreferrer"
                                                    aria-label="Kunjungi project">
                                                     <ExternalLink className="mr-2 h-4 w-4"/>
-                                                    Kunjungi Project
+                                                    {t("action.visit")}
                                                 </a>
                                             </Button>
                                         )}
@@ -90,12 +92,12 @@ export default function ProjectDetailPage() {
                         <div className="grid gap-6 md:grid-cols-3">
                             <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)" className="p-6 md:col-span-2">
                             
-                                <ShinyText text="Ringkasan" className="text-xl font-bold"/>
+                                <ShinyText text={t("summary.title")} className="text-xl font-bold"/>
                                 <p className="mt-3 text-muted-foreground leading-relaxed">
-                                    {project.description}
+                                    {t(`summary.${project.id}.description`)}
                                 </p>
                                 <ul className="mt-4 list-disc pl-5 text-muted-foreground leading-relaxed">
-                                    {project.summary.map((detail, index) => (
+                                    {summary.map((detail, index) => (
                                         <li key={index}>{detail}</li>
                                     ))}
                                 </ul>
@@ -103,52 +105,40 @@ export default function ProjectDetailPage() {
 
                             <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)">
                             
-                                <ShinyText text="Informasi" className="text-xl font-bold"/>
+                                <ShinyText text={t("information.title")} className="text-xl font-bold"/>
                                 <div className="mt-4 space-y-3 text-sm">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Kategori</span>
+                                        <span className="text-muted-foreground">{t("information.category")}</span>
                                         <span className="text-foreground">{project.category}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Role</span>
+                                        <span className="text-muted-foreground">{t("information.role")}</span>
                                         <span className="text-foreground">{project.role}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Tahun</span>
+                                        <span className="text-muted-foreground">{t("information.year")}</span>
                                         <span className="text-foreground">{project.year}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Mulai Pengerjaan</span>
+                                        <span className="text-muted-foreground">{t("information.startWork")}</span>
                                         <span className="text-foreground">
-                                        {project.startDate
-                                            ? new Date(project.startDate).toLocaleDateString("id-ID", {
-                                                month: "long",
-                                                year: "numeric",
-                                            })
-                                            : "-"}
+                                        {t(`summary.${project.id}.startWork`)}
                                         </span>
                                     </div>
 
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Selesai Pengerjaan</span>
+                                        <span className="text-muted-foreground">{t("information.endWork")}</span>
                                         <span className="text-foreground">
-                                        {project.endDate
-                                            ? new Date(project.endDate).toLocaleDateString("id-ID", {
-                                                month: "long",
-                                                year: "numeric",
-                                            })
-                                            : project.status === "In Progress"
-                                            ? "Sedang Berjalan"
-                                            : "-"}
+                                        {t(`summary.${project.id}.endWork`)}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Jumlah Teknologi</span>
+                                        <span className="text-muted-foreground">{t("information.amountTech")}</span>
                                         <span className="text-foreground">{project.logoTags.length}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <span className="text-muted-foreground">Status</span>
-                                        <span className="text-foreground">{project.status}</span>
+                                        <span className="text-foreground">{t(`summary.${project.id}.status`)}</span>
                                     </div>
                                 </div>
                             </SpotlightCard>

@@ -102,5 +102,152 @@
                 }
             }
         }
+    },
+    "projectPage": {
+        "title": "Projects",
+        "description": "I have contributed to various projects involving both system maintenance and development. In addition, I have several independent projects that I built personally to sharpen my skills and broaden my technical knowledge.",
+        "summary": {
+            "title": "Summary",
+            "1": {
+                "description": "A second version of my personal portfolio website showcasing my projects, experiences, and skills as a software developer, featuring enhanced design and functionalities.",
+                "summary": [
+                    "More modern and interactive design",
+                    "Improved features",
+                    "Updated technology stack",
+                    "Real-time chat integration"
+                ],
+                "startWork": "June 2024",
+                "endWork": "July 2024",
+                "status": "Done"
+            },
+            "2": {
+                "description": "A web application that displays restaurant information, menus, and available services.",
+                "summary": [
+                    "Online table reservation with time and guest selection",
+                    "Restaurant management system with Role Access: Owner, Admin, Staff, and Customer",
+                    "Online food and beverage ordering (dine-in, takeaway, or delivery)",
+                    "Digital payment integration (QRIS, e-wallets, and credit cards)",
+                    "Analytics dashboard for sales, popular menus, and customer activity monitoring",
+                    "Real-time notifications for order status and reservation confirmations",
+                    "Inventory and stock management for restaurant supplies",
+                    "Customer reviews and rating system",
+                    "Modern and responsive UI (desktop & mobile friendly)",
+                    "Multi-language support and dark mode"
+                ],
+                "startWork": "January 2024",
+                "endWork": "April 2024",
+                "status": "In Progress"
+            },
+            "3": {
+                "description": "DX Trade is a desktop application developed to facilitate real-time trading of digital assets and stocks. It provides market analysis tools, portfolio management, and fast, secure trade execution with an intuitive and responsive interface.",
+                "summary": [
+                    "Market analysis features",
+                    "Portfolio management",
+                    "Real-time digital asset and stock price updates",
+                    "Buy & Sell transaction execution",
+                    "Intuitive and responsive user interface"
+                ],
+                "startWork": "November 2023",
+                "endWork": "December 2023",
+                "status": "In Progress"
+            },
+            "4": {
+                "description": "VHS Pertamina is a web application designed to support digitalization and improve operational efficiency within Pertamina. The platform enables integrated data management, activity monitoring, and reporting with a focus on security, performance, and ease of use.",
+                "summary": [
+                    "Master data, Inventory, Receiving, Sales, Ownuse, Reports, and Daily Activity management",
+                    "Role-based access management: Administrator, Region, Handling Agent, Location, IMFB",
+                    "Integrated reporting system",
+                    "Master data approval workflow for Administrator and IMFB"
+                ],
+                "startWork": "August 2023",
+                "endWork": "October 2023",
+                "status": "In Progress"
+            },
+            "5": {
+                "description": "A data engineering project focused on building data pipelines to integrate and process operational data from various internal PLN sources. This project aims to enhance analytical efficiency, support data-driven decision-making, and ensure accurate and well-structured data availability.",
+                "summary": [
+                    "Data pipeline development",
+                    "Integration and processing of operational data",
+                    "Improved analytical efficiency",
+                    "Data-driven decision support",
+                    "Accurate and structured data availability"
+                ],
+                "startWork": "June 2023",
+                "endWork": "August 2023",
+                "status": "Done"
+            },
+            "6": {
+                "description": "DJKN – Business Performance is a web application developed to monitor and evaluate the performance of enterprises managed under the Directorate General of State Assets (DJKN). It provides reporting, financial data analysis, and interactive performance visualization to support strategic decision-making.",
+                "summary": [
+                    "Comprehensive reporting features",
+                    "Business performance analysis",
+                    "Role-based access control: Administrator, Executive, Business PIC, Subdirector, Section Head, Analyst, Verifier",
+                    "Interactive performance visualization",
+                    "Strategic decision-making support"
+                ],
+                "startWork": "February 2023",
+                "endWork": "May 2023",
+                "status": "Done"
+            },
+            "7": {
+                "description": "A management application for photography studio service operations.",
+                "summary": [
+                    "Studio service management",
+                    "Customer data management",
+                    "Studio data management: photo, video, and audio",
+                    "Transaction management"
+                ],
+                "startWork": "January 2023",
+                "endWork": "February 2023",
+                "status": "Done"
+            },
+            "8": {
+                "description": "Tourism management information system for Kampoeng Ciherang, designed to streamline operational and administrative processes.",
+                "summary": [
+                    "Tourist attraction data management",
+                    "Visitor data management",
+                    "Transaction management",
+                    "Financial data management"
+                ],
+                "startWork": "December 2022",
+                "endWork": "January 2023",
+                "status": "Done"
+            },
+            "9": {
+                "description": "A personal portfolio website showcasing my projects, professional experiences, and technical skills as a software developer.",
+                "summary": [
+                    "Showcase of development projects",
+                    "Display of professional experience",
+                    "Highlight of technical skills",
+                    "Contact information section"
+                ],
+                "startWork": "November 2022",
+                "endWork": "December 2022",
+                "status": "Done"
+            },
+            "10": {
+                "description": "Maximple is a product developed by Maksi that simplifies importing Excel data into Accurate with just one click.",
+                "summary": [
+                    "Excel data parsing",
+                    "Transaction data management"
+                ],
+                "startWork": "October 2022",
+                "endWork": "January 2023",
+                "status": "Done"
+            }
+        },
+        "information": {
+            "title": "Information",
+            "category": "Category",
+            "role": "Role",
+            "year": "Year",
+            "startWork": "Start Work",
+            "endWork": "End Work",
+            "amountTech": "Amount of Technologies Used"
+        },
+        "action": {
+            "back": "Back",
+            "visit": "Visit Site"
+        }
     }
 }

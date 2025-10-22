@@ -91,7 +91,7 @@
             "Educations": {
                 "title": "Pendidikan",
                 "1": {
-                    "degree" : "Teknik Informatika",
+                    "degree": "Teknik Informatika",
                     "period": "2019 — 2023",
                     "location": "Bandung, ID"
                 },
@@ -101,6 +101,153 @@
                     "location": "Sumedang, ID"
                 }
             }
+        }
+    },
+    "projectPage": {
+        "title": "Proyek",
+        "description": "Saya telah berkontribusi dalam berbagai proyek, baik dalam lingkup pemeliharaan maupun pengembangan sistem. Selain itu, saya juga memiliki beberapa proyek independen yang saya kembangkan secara mandiri untuk mengasah kemampuan dan memperluas wawasan teknis.",
+        "summary": {
+            "title": "Ringkasan",
+            "1": {
+                "description": "Situs web portfolio pribadi versi kedua yang menampilkan proyek, pengalaman, dan keterampilan saya sebagai pengembang perangkat lunak dengan desain dan fitur yang ditingkatkan.",
+                "summary": [
+                    "Desain yang lebih modern dan interaktif",
+                    "Fitur yang ditingkatkan",
+                    "Teknologi yang lebih baru",
+                    "Realtime Chat"
+                ],
+                "startWork": "Juni 2024",
+                "endWork": "Agustus 2024",
+                "status": "Selesai"
+            },
+            "2": {
+                "description": "Aplikasi web untuk menampilkan informasi tentang restoran, menu, dan layanan yang tersedia.",
+                "summary": [
+                    "Reservasi meja secara online dengan pemilihan waktu dan jumlah tamu",
+                    "Manajemen data restoran dengan berbagai Role Access: Owner, Admin, Staff, dan Customer",
+                    "Fitur pemesanan makanan dan minuman secara online (dine-in, takeaway, atau delivery)",
+                    "Integrasi sistem pembayaran digital (QRIS, e-wallet, dan kartu kredit)",
+                    "Dashboard analitik untuk pemantauan penjualan, menu populer, dan aktivitas pelanggan",
+                    "Sistem notifikasi real-time untuk status pesanan dan konfirmasi reservasi",
+                    "Manajemen stok bahan makanan dan inventaris restoran",
+                    "Ulasan dan rating pelanggan terhadap menu dan layanan",
+                    "Tampilan antarmuka modern dan responsif (desktop & mobile friendly)",
+                    "Dukungan multi-bahasa dan tema gelap (dark mode)"
+                ],
+                "startWork": "Januari 2024",
+                "endWork": "Mei 2024",
+                "status": "Sedang Berlangsung"
+            },
+            "3": {
+                "description": "DX Trade adalah aplikasi desktop yang dikembangkan untuk memfasilitasi aktivitas perdagangan aset digital dan saham secara real-time. Aplikasi ini menyediakan fitur analisis pasar, manajemen portofolio, serta eksekusi transaksi yang cepat dan aman, dengan antarmuka yang intuitif dan responsif.",
+                "summary": [
+                    "Fitur analisis pasar",
+                    "Manajemen portofolio",
+                    "Update Realtime harga aset digital dan saham",
+                    "Eksekusi transaksi Buy & Sell",
+                    "Antarmuka yang intuitif dan responsif"
+                ],
+                "startWork": "November 2023",
+                "endWork": "Desember 2023",
+                "status": "Sedang Berlangsung"
+            },
+            "4": {
+                "description": "VHS Pertamina adalah aplikasi web yang dirancang untuk mendukung proses digitalisasi dan efisiensi operasional di lingkungan Pertamina. Platform ini memfasilitasi pengelolaan data, pemantauan aktivitas, serta pelaporan secara terintegrasi, dengan fokus pada keamanan, kecepatan, dan kemudahan penggunaan.",
+                "summary": [
+                    "Pengelolaan data Master, Persediaan, Penerimaan, Penjualan, Ownuse, Berita Acara, dan Daily Report",
+                    "Management role acces aplikasi: Administrator, Region, Handling Agent, Location, IMFB",
+                    "Pelaporan secara terintegrasi",
+                    "Approval penambahan data master oleh Administrator dan IMFB"
+                ],
+                "startWork": "Agustus 2023",
+                "endWork": "Oktober 2023",
+                "status": "Sedang Berlangsung"
+            },
+            "5": {
+                "description": "proyek data engineering yang berfokus pada pembangunan pipeline data untuk mengintegrasikan dan memproses data operasional dari berbagai sumber internal PLN. Proyek ini bertujuan untuk meningkatkan efisiensi analisis, mendukung pengambilan keputusan berbasis data, serta memastikan ketersediaan data yang akurat dan terstruktur.",
+                "summary": [
+                    "Pembangunan pipeline data",
+                    "Integrasikan dan memproses data operasional",
+                    "Efisiensi analisis",
+                    "Pengambilan keputusan berbasis data",
+                    "Ketersediaan data yang akurat dan terstruktur"
+                ],
+                "startWork": "Juni 2023",
+                "endWork": "Agustus 2023",
+                "status": "Selesai"
+            },
+            "6": {
+                "description": "DJKN – Kinerja Badan Usaha adalah aplikasi web yang dikembangkan untuk memantau dan mengevaluasi kinerja badan usaha di bawah pengelolaan Direktorat Jenderal Kekayaan Negara (DJKN). Platform ini menyediakan fitur pelaporan, analisis data keuangan, serta visualisasi kinerja secara interaktif untuk mendukung pengambilan keputusan strategis.",
+                "summary": [
+                    "Pelaporan",
+                    "Analisis Kinerja Badan Usaha",
+                    "Management role acces aplikasi: Administrator, Pimpinan, PIC Badan Usaha, Kepala Subdit, Kepala Seksi, Analis/Nomenklatur, Verifikator",
+                    "Visualisasi kinerja secara interaktif",
+                    "Pengambilan keputusan strategis"
+                ],
+                "startWork": "Februari 2023",
+                "endWork": "Mei 2023",
+                "status": "Selesai"
+            },
+            "7": {
+                "description": "Aplikasi management pengelolaan jasa studio photografi",
+                "summary": [
+                    "Pengelolaan jasa studio",
+                    "Pengelolaan data pelanggan",
+                    "Pengelolaan data studio : foto, video, dan audio",
+                    "Pengelolaan data transaksi"
+                ],
+                "startWork": "Januari 2023",
+                "endWork": "Februari 2023",
+                "status": "Selesai"
+            },
+            "8": {
+                "description": "Sistem informasi managemen pengelolaan tempat wisata kampoeng ciherang",
+                "summary": [
+                    "Pengelolaan data wisata",
+                    "Pengelolaan data pengunjung",
+                    "Pengelolaan data transaksi",
+                    "Pengelolaan data keuangan"
+                ],
+                "startWork": "Desember 2022",
+                "endWork": "Januari 2023",
+                "status": "Selesai"
+            },
+            "9": {
+                "description": "Situs web portfolio pribadi yang menampilkan proyek, pengalaman, dan keterampilan saya sebagai pengembang perangkat lunak.",
+                "summary": [
+                    "Menampilkan proyek-proyek",
+                    "Menampilkan pengalaman kerja",
+                    "Menampilkan keterampilan teknis",
+                    "Menampilkan informasi kontak"
+                ],
+                "startWork": "November 2022",
+                "endWork": "Desember 2022",
+                "status": "Selesai"
+            },
+            "10": {
+                "description": "Maximple merupakan produk atau software dari Maksi yang berfungsi untuk mempermudah import data excel ke accurate hanya dengan 1 kali klik.",
+                "summary": [
+                    "Parsing data dari file excel",
+                    "Pengelolaan data transaksi"
+                ],
+                "startWork": "Oktober 2022",
+                "endWork": "Januari 2023",
+                "status": "Selesai"
+            }
+        },
+        "information": {
+            "title": "Informasi",
+            "category": "Kategori",
+            "role": "Peran",
+            "year": "Tahun",
+            "startWork": "Mulai Pengerjaan",
+            "endWork": "Selesai Pengerjaan",
+            "amountTech": "Jumlah Teknologi"
+        },
+        "action" : {
+            "back" : "Kembali",
+            "visit" : "Kunjungi Situs"
         }
     }
 }

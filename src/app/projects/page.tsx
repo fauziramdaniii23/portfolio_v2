@@ -6,6 +6,7 @@ import {categories, projects} from "@/constant/projects";
 import ShinyText from "@/components/ShinyText";
 import { ProjectFilter } from "@/components/project/ProjectFilter";
 import { ProjectCard } from "@/components/project/ProjectCard";
+import { useTranslations } from "next-intl";
 
 export default function Project() {
     const [query, setQuery] = useState("All");
@@ -13,12 +14,14 @@ export default function Project() {
     project.category.toLowerCase().includes(query.toLowerCase()) ||
     project.role.toLowerCase().includes(query.toLowerCase()));
 
+    const t = useTranslations("projectPage");
+
     return (
         <DashboardLayout>
             <div className="min-h-screen bg-background">
-                <ShinyText text="Projects" className="text-2xl font-bold mb-4"/>
+                <ShinyText text={t("title")} className="text-2xl font-bold mb-4"/>
                 <div className="mb-8 border-b pb-4">
-                    Saya telah berkontribusi dalam berbagai proyek, baik dalam lingkup pemeliharaan maupun pengembangan sistem. Selain itu, saya juga memiliki beberapa proyek independen yang saya kembangkan secara mandiri untuk mengasah kemampuan dan memperluas wawasan teknis.
+                    {t("description")}
                 </div>
 
                 {/* Filter Section */}
