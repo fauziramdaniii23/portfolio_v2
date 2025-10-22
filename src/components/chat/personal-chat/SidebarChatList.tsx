@@ -134,7 +134,7 @@ export function SidebarChatList() {
         className="flex-1 overflow-y-auto"
       >
         {filtered.length === 0 || !Array.isArray(filtered) ? (
-          <p className="px-4 py-8 text-sm text-muted-foreground">
+          <p className="h-[65vh] px-4 py-8 text-sm text-muted-foreground">
             Tidak ada chat yang cocok.
           </p>
         ) : (
