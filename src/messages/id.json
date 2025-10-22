@@ -1,0 +1,323 @@
+{
+    "HomePage": {
+        "id" : "1",
+        "title": "Beranda",
+        "greeting": "Halo, Selamat Datang di Portofolio Saya",
+        "description": "Saya adalah seorang Software Engineer dengan keahlian dalam berbagai tech stack yang tercantum di laman ini. Saya selalu berkomitmen untuk terus belajar, mengeksplorasi hal-hal baru, dan meningkatkan kualitas diri agar dapat memberikan hasil yang lebih baik di setiap kesempatan. Saya juga menjunjung tinggi kolaborasi, komunikasi yang terbuka, serta tanggung jawab terhadap kualitas kode dan keberhasilan tim secara keseluruhan. Melalui portofolio ini, saya ingin menunjukkan bagaimana nilai-nilai tersebut saya terapkan dalam setiap baris kode dan setiap proyek yang saya kembangkan.",
+        "expertise": {
+            "title": "Keahlian",
+            "description": "Saya memiliki pengalaman bekerja dengan berbagai teknologi, termasuk:",
+            "programmingLanguages": "Bahasa Pemrograman :",
+            "frameworksLibraries": "Framework & Library :",
+            "databases": "Basis Data :",
+            "tools": "Alat :"
+        },
+        "services": {
+            "title": "Layanan",
+            "description": "Saya menawarkan berbagai layanan untuk membantu Anda mencapai tujuan pengembangan perangkat lunak, serta praktik utama saya di tempat kerja.",
+            "serviceList": {
+                "1": {
+                    "title": "Pemecahan Masalah",
+                    "description": "Kemampuan untuk menyelesaikan masalah teknis secara logis dan efisien."
+                },
+                "2": {
+                    "title": "Manajemen Waktu",
+                    "description": "Mengatur tenggat waktu dan prioritas tugas dengan baik."
+                },
+                "3": {
+                    "title": "Berpikir Analitis",
+                    "description": "Menganalisis kebutuhan sistem dan merancang solusi yang sesuai."
+                },
+                "4": {
+                    "title": "Kemampuan Beradaptasi",
+                    "description": "Cepat mempelajari teknologi atau alat baru sesuai kebutuhan proyek."
+                },
+                "5": {
+                    "title": "Kolaborasi Tim",
+                    "description": "Berkolaborasi dalam tim lintas fungsi (developer, QA, PM, desainer)."
+                },
+                "6": {
+                    "title": "Perhatian terhadap Detail",
+                    "description": "Memperhatikan dengan teliti kesalahan kecil atau bug dalam kode."
+                },
+                "7": {
+                    "title": "Komunikasi",
+                    "description": "Menjelaskan ide teknis kepada tim teknis maupun non-teknis."
+                },
+                "8": {
+                    "title": "Pembelajaran Berkelanjutan",
+                    "description": "Selalu mengikuti perkembangan teknologi terbaru."
+                }
+            }
+        }
+    },
+    "AboutPage": {
+        "id" : "2",
+        "title": "Tentang Saya",
+        "greeting": "Halo, saya Fauzi Ramdani",
+        "downloadCV": "Unduh CV",
+        "description": [
+            "Seorang Software Engineer dengan pengalaman lebih dari dua tahun dalam mengembangkan solusi perangkat lunak yang efisien, skalabel, dan ramah pengguna. Saya lahir di Bandung, Indonesia, pada 22 Desember 1998, dan saat ini berdomisili di Garut, Jawa Barat. Saat ini, saya bekerja di sebuah perusahaan software house yang berbasis di Bandung, di mana saya berkontribusi dalam membangun sistem perangkat lunak yang andal dan berkinerja tinggi.",
+            "Sepanjang karier saya, saya telah terlibat dalam pengembangan aplikasi berbasis web, aplikasi desktop, dan sistem pemrosesan data, dengan keahlian yang kuat dalam mengidentifikasi serta menyelesaikan bug perangkat lunak secara efisien. Saya memiliki pengalaman langsung dalam membangun dan mengonsumsi API, mengelola basis data, menerapkan manajemen state, serta mengonfigurasi mekanisme autentikasi, termasuk Single Sign-On (SSO). Selain itu, saya berfokus pada optimisasi performa aplikasi untuk memastikan pengalaman pengguna yang lancar dan responsif.",
+            "Saya selalu bersemangat untuk mempelajari dan beradaptasi dengan teknologi baru sambil menjaga kolaborasi yang baik dalam lingkungan kerja tim. Saya juga terbuka untuk peluang kerja jarak jauh, freelance, atau paruh waktu, serta posisi baru yang dapat mendukung pengembangan profesional dan pertumbuhan karier jangka panjang."
+        ],
+        "Experience": {
+            "Work": {
+                "title": "Pengalaman Kerja",
+                "responsibilities": "Tanggung Jawab & Pencapaian",
+                "1": {
+                    "period": "Mei 2024 — Sekarang",
+                    "location": "Bandung, ID",
+                    "summary": "Berkontribusi dalam pengembangan solusi perangkat lunak yang berkualitas tinggi, andal, dan skalabel di perusahaan perangkat lunak yang berbasis di Bandung. Bertanggung jawab untuk mengimplementasikan dan memelihara berbagai aplikasi sambil memastikan kualitas kode, optimisasi performa, serta kepatuhan terhadap praktik terbaik sepanjang proses pengembangan.",
+                    "achievements": [
+                        "Membangun, memelihara, dan mengembangkan aplikasi perangkat lunak yang efektif dan efisien.",
+                        "Berkolaborasi dengan tim lintas fungsi termasuk desainer, QA engineer, dan manajer produk untuk menghasilkan produk berkualitas tinggi.",
+                        "Mengidentifikasi, men-debug, dan menyelesaikan bug perangkat lunak.",
+                        "Melakukan review kode dan memastikan kepatuhan terhadap standar dan praktik terbaik.",
+                        "Menganalisis kebutuhan sistem dan menerjemahkannya menjadi solusi perangkat lunak yang fungsional.",
+                        "Menjamin keamanan, skalabilitas, dan keandalan aplikasi."
+                    ]
+                },
+                "2": {
+                    "period": "Oktober 2022 — Januari 2023",
+                    "location": "Bandung, ID",
+                    "summary": "Bekerja sebagai Pengembang Backend dengan fokus pada pembangunan dan pemeliharaan aplikasi sisi server untuk Maximple, sebuah platform yang terintegrasi dengan sistem akuntansi Accurate. Bertanggung jawab untuk mengembangkan RESTful API menggunakan bahasa pemrograman Java dan framework Spring Boot, memastikan sinkronisasi data antar layanan berjalan lancar, men-debug serta menyelesaikan masalah backend, dan menjaga keandalan sistem. Bekerja sama secara erat dengan anggota tim serta memberikan pembaruan rutin melalui Trello untuk memastikan proyek selesai dengan efisien.",
+                    "achievements": [
+                        "Mengembangkan layanan backend untuk Maximple yang terintegrasi dengan sistem akuntansi Accurate.",
+                        "Membangun RESTful API menggunakan bahasa pemrograman Java dan framework Spring Boot.",
+                        "Men-debug dan menyelesaikan berbagai masalah pada aplikasi backend untuk menjaga stabilitas sistem.",
+                        "Berkolaborasi dengan tim pengembang dan menjaga laporan kemajuan proyek menggunakan Trello."
+                    ]
+                }
+            },
+            "Educations": {
+                "title": "Pendidikan",
+                "1": {
+                    "degree": "Teknik Informatika",
+                    "period": "2019 — 2023",
+                    "location": "Bandung, ID"
+                },
+                "2": {
+                    "degree": "MIPA",
+                    "period": "2014 — 2017",
+                    "location": "Sumedang, ID"
+                }
+            }
+        }
+    },
+    "projectPage": {
+        "id" : "3",
+        "title": "Proyek",
+        "description": "Saya telah berkontribusi dalam berbagai proyek, baik dalam lingkup pemeliharaan maupun pengembangan sistem. Selain itu, saya juga memiliki beberapa proyek independen yang saya kembangkan secara mandiri untuk mengasah kemampuan dan memperluas wawasan teknis.",
+        "summary": {
+            "title": "Ringkasan",
+            "1": {
+                "description": "Situs web portfolio pribadi versi kedua yang menampilkan proyek, pengalaman, dan keterampilan saya sebagai pengembang perangkat lunak dengan desain dan fitur yang ditingkatkan.",
+                "summary": [
+                    "Desain yang lebih modern dan interaktif",
+                    "Fitur yang ditingkatkan",
+                    "Teknologi yang lebih baru",
+                    "Realtime Chat"
+                ],
+                "startWork": "Juni 2024",
+                "endWork": "Agustus 2024",
+                "status": "Selesai",
+                "note": ""
+            },
+            "2": {
+                "description": "Aplikasi web untuk menampilkan informasi tentang restoran, menu, dan layanan yang tersedia.",
+                "summary": [
+                    "Reservasi meja secara online dengan pemilihan waktu dan jumlah tamu",
+                    "Manajemen data restoran dengan berbagai Role Access: Owner, Admin, Staff, dan Customer",
+                    "Fitur pemesanan makanan dan minuman secara online (dine-in, takeaway, atau delivery)",
+                    "Integrasi sistem pembayaran digital (QRIS, e-wallet, dan kartu kredit)",
+                    "Dashboard analitik untuk pemantauan penjualan, menu populer, dan aktivitas pelanggan",
+                    "Sistem notifikasi real-time untuk status pesanan dan konfirmasi reservasi",
+                    "Manajemen stok bahan makanan dan inventaris restoran",
+                    "Ulasan dan rating pelanggan terhadap menu dan layanan",
+                    "Tampilan antarmuka modern dan responsif (desktop & mobile friendly)",
+                    "Dukungan multi-bahasa dan tema gelap (dark mode)"
+                ],
+                "startWork": "Januari 2024",
+                "endWork": "Mei 2024",
+                "status": "Sedang Berlangsung",
+                "note": "*Aplikasi ini merupakan proyek independen yang saya kembangkan secara mandiri dengan tujuan untuk mengasah keterampilan teknis serta memperluas wawasan saya dalam pengembangan perangkat lunak."
+            },
+            "3": {
+                "description": "DX Trade adalah aplikasi desktop yang dikembangkan untuk memfasilitasi aktivitas perdagangan aset digital dan saham secara real-time. Aplikasi ini menyediakan fitur analisis pasar, manajemen portofolio, serta eksekusi transaksi yang cepat dan aman, dengan antarmuka yang intuitif dan responsif.",
+                "summary": [
+                    "Fitur analisis pasar",
+                    "Manajemen portofolio",
+                    "Update Realtime harga aset digital dan saham",
+                    "Eksekusi transaksi Buy & Sell",
+                    "Antarmuka yang intuitif dan responsif"
+                ],
+                "startWork": "November 2023",
+                "endWork": "Desember 2023",
+                "status": "Sedang Berlangsung",
+                "note": ""
+            },
+            "4": {
+                "description": "VHS Pertamina adalah aplikasi web yang dirancang untuk mendukung proses digitalisasi dan efisiensi operasional di lingkungan Pertamina. Platform ini memfasilitasi pengelolaan data, pemantauan aktivitas, serta pelaporan secara terintegrasi, dengan fokus pada keamanan, kecepatan, dan kemudahan penggunaan.",
+                "summary": [
+                    "Pengelolaan data Master, Persediaan, Penerimaan, Penjualan, Ownuse, Berita Acara, dan Daily Report",
+                    "Management role acces aplikasi: Administrator, Region, Handling Agent, Location, IMFB",
+                    "Pelaporan secara terintegrasi",
+                    "Approval penambahan data master oleh Administrator dan IMFB"
+                ],
+                "startWork": "Agustus 2023",
+                "endWork": "Oktober 2023",
+                "status": "Sedang Berlangsung",
+                "note": ""
+            },
+            "5": {
+                "description": "proyek data engineering yang berfokus pada pembangunan pipeline data untuk mengintegrasikan dan memproses data operasional dari berbagai sumber internal PLN. Proyek ini bertujuan untuk meningkatkan efisiensi analisis, mendukung pengambilan keputusan berbasis data, serta memastikan ketersediaan data yang akurat dan terstruktur.",
+                "summary": [
+                    "Pembangunan pipeline data",
+                    "Integrasikan dan memproses data operasional",
+                    "Efisiensi analisis",
+                    "Pengambilan keputusan berbasis data",
+                    "Ketersediaan data yang akurat dan terstruktur"
+                ],
+                "startWork": "Juni 2023",
+                "endWork": "Agustus 2023",
+                "status": "Selesai",
+                "note": ""
+            },
+            "6": {
+                "description": "DJKN – Kinerja Badan Usaha adalah aplikasi web yang dikembangkan untuk memantau dan mengevaluasi kinerja badan usaha di bawah pengelolaan Direktorat Jenderal Kekayaan Negara (DJKN). Platform ini menyediakan fitur pelaporan, analisis data keuangan, serta visualisasi kinerja secara interaktif untuk mendukung pengambilan keputusan strategis.",
+                "summary": [
+                    "Pelaporan",
+                    "Analisis Kinerja Badan Usaha",
+                    "Management role acces aplikasi: Administrator, Pimpinan, PIC Badan Usaha, Kepala Subdit, Kepala Seksi, Analis/Nomenklatur, Verifikator",
+                    "Visualisasi kinerja secara interaktif",
+                    "Pengambilan keputusan strategis"
+                ],
+                "startWork": "Februari 2023",
+                "endWork": "Mei 2023",
+                "status": "Selesai",
+                "note": ""
+            },
+            "7": {
+                "description": "Aplikasi management pengelolaan jasa studio photografi",
+                "summary": [
+                    "Pengelolaan jasa studio",
+                    "Pengelolaan data pelanggan",
+                    "Pengelolaan data studio : foto, video, dan audio",
+                    "Pengelolaan data transaksi"
+                ],
+                "startWork": "Januari 2023",
+                "endWork": "Februari 2023",
+                "status": "Selesai",
+                "note": ""
+            },
+            "8": {
+                "description": "Sistem informasi managemen pengelolaan tempat wisata kampoeng ciherang",
+                "summary": [
+                    "Pengelolaan data wisata",
+                    "Pengelolaan data pengunjung",
+                    "Pengelolaan data transaksi",
+                    "Pengelolaan data keuangan"
+                ],
+                "startWork": "Desember 2022",
+                "endWork": "Januari 2023",
+                "status": "Selesai",
+                "note": ""
+            },
+            "9": {
+                "description": "Situs web portfolio pribadi yang menampilkan proyek, pengalaman, dan keterampilan saya sebagai pengembang perangkat lunak.",
+                "summary": [
+                    "Menampilkan proyek-proyek",
+                    "Menampilkan pengalaman kerja",
+                    "Menampilkan keterampilan teknis",
+                    "Menampilkan informasi kontak"
+                ],
+                "startWork": "November 2022",
+                "endWork": "Desember 2022",
+                "status": "Selesai",
+                "note": ""
+            },
+            "10": {
+                "description": "Maximple merupakan produk atau software dari Maksi yang berfungsi untuk mempermudah import data excel ke accurate hanya dengan 1 kali klik.",
+                "summary": [
+                    "Parsing data dari file excel",
+                    "Pengelolaan data transaksi"
+                ],
+                "startWork": "Oktober 2022",
+                "endWork": "Januari 2023",
+                "status": "Selesai",
+                "note": ""
+            }
+        },
+        "information": {
+            "title": "Informasi",
+            "category": "Kategori",
+            "role": "Peran",
+            "year": "Tahun",
+            "startWork": "Mulai Pengerjaan",
+            "endWork": "Selesai Pengerjaan",
+            "amountTech": "Jumlah Teknologi"
+        },
+        "action": {
+            "back": "Kembali",
+            "visit": "Kunjungi Situs"
+        }
+    },
+    "chatroomPage": {
+        "id": "4",
+        "title": "Ruang Obrolan",
+        "description": "Ayo bergabung dan berinteraksi secara langsung dengan semua pengunjung di website ini. Gunakan ruang obrolan ini untuk berdiskusi, bertanya seputar proyek saya, atau membahas apapun yang anda minati."
+    },
+    "personalChatPage": {
+        "id": "5",
+        "title": "Obrolan Pribadi",
+        "description": "Ingin berdiskusi secara lebih privat? Gunakan fitur Obrolan Pribadi untuk melakukan diskusi satu lawan satu dengan pengunjung lain yang sudah login di website ini. Terhubung, bertukar ide, atau sekadar mengobrol santai di ruang yang lebih personal!"
+    },
+    "contactPage": {
+        "id": "6",
+        "title": "Kontak Saya",
+        "description": "Mari kita terhubung",
+        "social_media": {
+            "title": "Temukan saya di media sosial",
+            "gmail": {
+                "title": "Tetap Terhubung",
+                "description": "Hubungi saya via email untuk pertanyaan atau kolaborasi."
+            },
+            "whatsapp": {
+                "title": "Kirim Pesan",
+                "description": "Hubungi saya melalui WhatsApp untuk diskusi cepat."
+            },
+            "instagram": {
+                "title": "Ikuti Perjalanan Saya",
+                "description": "Ikuti perjalanan kreatif saya."
+            },
+            "linkedin": {
+                "title": "Mari Terhubung",
+                "description": "Terhubung secara profesional dengan saya."
+            },
+            "tiktok": {
+                "title": "Ikut Seru-seruan",
+                "description": "Tonton konten yang seru dan menarik."
+            },
+            "github": {
+                "title": "Jelajahi Kode",
+                "description": "Lihat karya open-source saya."
+            }
+        },
+        "form": {
+            "title": "Atau kirim saya pesan",
+            "input_name": "Nama",
+            "input_email": "Email",
+            "input_message": "Pesan",
+            "button": "Kirim Email"
+        }
+    },
+    "sidebar": {
+        "1": "Beranda",
+        "2": "Tentang Saya",
+        "3": "Proyek",
+        "4": "Ruang Obrolan",
+        "5": "Obrolan Pribadi",
+        "6": "Kontak Saya"
+    }
+}

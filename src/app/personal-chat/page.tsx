@@ -1,17 +1,25 @@
-'use client'
+"use client";
 
 import ChatApp from "@/components/chat/personal-chat/PersonalChat";
 import DashboardLayout from "@/components/dashboard/Dashboard";
 import ShinyText from "@/components/ShinyText";
+import StarBorder from "@/components/StarBorder";
+import { useTranslations } from "next-intl";
 
 export default function PersonalChat() {
-    return (
-        <DashboardLayout>
-            <ShinyText text="Personal Chat" className="text-2xl font-bold mb-4"/>
-            <p> This is the personal chat page of the application.</p>
-                
-            <ChatApp />
-            
-        </DashboardLayout>
-    )
+  const t = useTranslations("personalChatPage");
+  return (
+    <DashboardLayout>
+      <ShinyText text={t("title")} className="text-2xl font-bold mb-4" />
+      <StarBorder
+        as="div"
+        className="text-left w-full"
+        className2="p-6 overflow-hidden border-2 rounded-2xl"
+      >
+        <p>{t("description")}</p>
+      </StarBorder>
+
+      <ChatApp />
+    </DashboardLayout>
+  );
 }

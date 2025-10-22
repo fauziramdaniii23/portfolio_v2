@@ -6,11 +6,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import {Menus} from "@/app/constant/menus";
+import {Menus} from "@/constant/menus";
 import {useNavigate} from "@/lib/navigate";
 import ShinyText from "@/components/ShinyText";
+import IntlToggle from "../button/IntlToggle";
+import { useTranslations } from "next-intl";
 
 export function Sidebar() {
+    const t = useTranslations();
     const pathname = usePathname();
     const navigate = useNavigate();
     const [isCollapsed, setIsCollapsed] = useState(false)
@@ -58,12 +61,14 @@ export function Sidebar() {
                         </div>
                     )}
                 </div>
+                <IntlToggle />
             </div>
 
             {/* Navigation Menu */}
             <nav className="flex-1 p-4 space-y-2">
                 {Menus.map((item, index) => {
                     const Icon = item.icon;
+                    const label = t(`sidebar.${item.id}`);
                     return (
                         <Button
                             onClick={() => handleNavigate(item.path)}
@@ -80,7 +85,7 @@ export function Sidebar() {
                             <Icon className="h-6 w-6 mr-2 py group-hover:-rotate-12 transition-all duration-200 size-0.5" />
                             {!isCollapsed && (
                                 <>
-                                    <span className="flex-1">{item.label}</span>
+                                    <span className="flex-1">{label}</span>
                                 </>
                             )}
                         </Button>

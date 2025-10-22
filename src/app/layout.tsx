@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/Providers";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 const robotoFlex = Roboto_Flex({
   variable: "--font-roboto-flex",
@@ -18,18 +19,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const RootLayout = async({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}>) => {
+  const messages = await getMessages();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body suppressHydrationWarning
         className={`${robotoFlex.className} antialiased`}
       >
-      <Providers>{children}</Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
 }
+
+export default RootLayout;

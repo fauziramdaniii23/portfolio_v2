@@ -2,13 +2,18 @@
 import Link from "next/link"
 import {Badge} from "@/components/ui/badge"
 import {Button} from "@/components/ui/button"
-import {Card} from "@/components/ui/card"
 import {ExternalLink, ArrowLeft, Tag, Calendar} from "lucide-react"
 import {useDetailProjectStore} from "@/store/detailProjectStore";
 import DashboardLayout from "@/components/dashboard/Dashboard";
+import SpotlightCard from "@/components/SpotlightCard"
+import ShinyText from "@/components/ShinyText"
+import GradientText from "@/components/GradientText"
+import { useTranslations } from "next-intl"
 
 export default function ProjectDetailPage() {
     const project = useDetailProjectStore(state => state.data)
+    const t = useTranslations("projectPage");
+    const summary = t.raw(`summary.${project.id}.summary`) as string[];
 
     return (
         <DashboardLayout>
@@ -23,7 +28,8 @@ export default function ProjectDetailPage() {
                             </div>
 
                             <div className="md:col-span-2">
-                                <Card className="p-6">
+                                <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)">
+                                    
                                     <div className="mb-3 flex items-center gap-2">
                                         <Badge variant="secondary" className="text-xs font-medium">
                                             {project.category}
@@ -31,7 +37,12 @@ export default function ProjectDetailPage() {
                                         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground"><Calendar className="h-3.5 w-3.5"/>{project.year}</span>
                                     </div>
 
-                                    <h1 className="text-2xl md:text-3xl font-bold text-foreground text-balance">{project.title}</h1>
+                                    <ShinyText text={project.title} className="text-2xl md:text-3xl font-bold text-balance"/>
+                                    <GradientText
+                                        colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                                        animationSpeed={10}
+                                        showBorder={false}
+                                    >{project.role}</GradientText>
 
                                     <div className="mt-5">
                                         <h3 className="mb-2 text-sm font-semibold text-foreground inline-flex items-center gap-2">
@@ -39,13 +50,14 @@ export default function ProjectDetailPage() {
                                             Tech Stack
                                         </h3>
                                         <div className="flex flex-wrap gap-2">
-                                            {project.tags.map((tag) => (
+                                            {project.logoTags.map((tag, idx) => (
                                                 <Badge
-                                                    key={tag}
+                                                key={idx}
                                                     variant="outline"
                                                     className="border-accent/30 bg-accent/10 text-accent-foreground"
                                                 >
-                                                    {tag}
+                                                    {tag.logo}
+                                                    {tag.name}
                                                 </Badge>
                                             ))}
                                         </div>
@@ -55,7 +67,7 @@ export default function ProjectDetailPage() {
                                         <Button asChild>
                                             <Link href="/projects" aria-label="Kembali ke daftar project">
                                                 <ArrowLeft className="mr-2 h-4 w-4"/>
-                                                Kembali
+                                                {t("action.back")}
                                             </Link>
                                         </Button>
 
@@ -64,12 +76,13 @@ export default function ProjectDetailPage() {
                                                 <a href={project.link} target="_blank" rel="noopener noreferrer"
                                                    aria-label="Kunjungi project">
                                                     <ExternalLink className="mr-2 h-4 w-4"/>
-                                                    Kunjungi Project
+                                                    {t("action.visit")}
                                                 </a>
                                             </Button>
                                         )}
                                     </div>
-                                </Card>
+                                
+                                </SpotlightCard>
                             </div>
                         </div>
                     </section>
@@ -77,35 +90,61 @@ export default function ProjectDetailPage() {
                     {/* Details */}
                     <section className="container mx-auto px-4 pb-12">
                         <div className="grid gap-6 md:grid-cols-3">
-                            <Card className="p-6 md:col-span-2">
-                                <h2 className="text-xl font-semibold text-foreground">Ringkasan</h2>
+                            <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)" className="p-6 md:col-span-2">
+                            
+                                <ShinyText text={t("summary.title")} className="text-xl font-bold"/>
                                 <p className="mt-3 text-muted-foreground leading-relaxed">
-                                    {project.description}
+                                    {t(`summary.${project.id}.description`)}
                                 </p>
                                 <ul className="mt-4 list-disc pl-5 text-muted-foreground leading-relaxed">
-                                    {project.summary.map((detail, index) => (
+                                    {summary.map((detail, index) => (
                                         <li key={index}>{detail}</li>
                                     ))}
                                 </ul>
-                            </Card>
+                            </SpotlightCard>
 
-                            <Card className="p-6">
-                                <h3 className="text-lg font-semibold text-foreground">Informasi</h3>
+                            <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.2)">
+                            
+                                <ShinyText text={t("information.title")} className="text-xl font-bold"/>
                                 <div className="mt-4 space-y-3 text-sm">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Kategori</span>
+                                        <span className="text-muted-foreground">{t("information.category")}</span>
                                         <span className="text-foreground">{project.category}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Tahun</span>
+                                        <span className="text-muted-foreground">{t("information.role")}</span>
+                                        <span className="text-foreground">{project.role}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-muted-foreground">{t("information.year")}</span>
                                         <span className="text-foreground">{project.year}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-muted-foreground">Jumlah Teknologi</span>
-                                        <span className="text-foreground">{project.tags.length}</span>
+                                        <span className="text-muted-foreground">{t("information.startWork")}</span>
+                                        <span className="text-foreground">
+                                        {t(`summary.${project.id}.startWork`)}
+                                        </span>
+                                    </div>
+
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-muted-foreground">{t("information.endWork")}</span>
+                                        <span className="text-foreground">
+                                        {t(`summary.${project.id}.endWork`)}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-muted-foreground">{t("information.amountTech")}</span>
+                                        <span className="text-foreground">{project.logoTags.length}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-muted-foreground">Status</span>
+                                        <span className="text-foreground">{t(`summary.${project.id}.status`)}</span>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs italic">{t(`summary.${project.id}.note`)}</p>
                                     </div>
                                 </div>
-                            </Card>
+                            </SpotlightCard>
                         </div>
                     </section>
                 </main>

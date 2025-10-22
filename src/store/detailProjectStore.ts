@@ -15,13 +15,12 @@ export const useDetailProjectStore= create<ProjectState>()(
             data:{
                 id: '',
                 title: '',
-                description: '',
                 category: '',
                 year: '',
                 image: '',
-                tags: [],
-                summary: [],
+                logoTags: [],
                 link: '',
+                role: '',
             },
             setDetailProject: (data : TProject ) =>
                 set({
@@ -32,13 +31,12 @@ export const useDetailProjectStore= create<ProjectState>()(
                     data: {
                         id: '',
                         title: '',
-                        description: '',
                         category: '',
                         year: '',
                         image: '',
-                        tags: [],
-                        summary: [],
+                        logoTags: [],
                         link: '',
+                        role: '',
                     },
                 })
         }),

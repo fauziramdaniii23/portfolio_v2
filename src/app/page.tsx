@@ -36,7 +36,7 @@ export default function Home() {
                     <SparklesPreview />
                     <div className="text-center lg:mt-10">
                         <TextType
-                            text={["Welcome to my Portfolio", "I am a software engineer", "Build Something Amazing"]}
+                            text={["Welcome to my Portfolio", "Thank you for visiting my personal website.",  "I am a software engineer", "Build Something Amazing"]}
                             typingSpeed={75}
                             pauseDuration={1500}
                             showCursor={true}

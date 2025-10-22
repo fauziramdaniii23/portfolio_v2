@@ -1,4 +1,4 @@
-import { Author } from "@/app/constant/constant";
+import { Author } from "@/constant/constant";
 import { useAuthStore } from "@/store/authStore";
 import { useChatStore } from "@/store/useChatStore";
 import { useUserListStore } from "@/store/userStore";

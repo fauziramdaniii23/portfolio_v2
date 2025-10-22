@@ -1,0 +1,323 @@
+{
+    "HomePage": {
+        "id" : "1",
+        "title": "Home",
+        "greeting": "Hello There, Welcome to My Portfolio",
+        "description": "I am a Software Engineer with expertise in various tech stacks listed on this page. I am committed to continuous learning, exploring new ideas, and improving myself to deliver better results at every opportunity. I also value collaboration, open communication, and responsibility for both code quality and the overall success of the team. Through this portfolio, I aim to showcase how I apply these values in every line of code and every project I develop.",
+        "expertise": {
+            "title": "Expertise",
+            "description": "I have extensive experience working with a variety of technologies, including:",
+            "programmingLanguages": "Programming Languages :",
+            "frameworksLibraries": "Frameworks & Libraries :",
+            "databases": "Databases :",
+            "tools": "Tools :"
+        },
+        "services": {
+            "title": "Services",
+            "description": "I offer a range of services to help you achieve your software development goals and My key practices in the workplace",
+            "serviceList": {
+                "1": {
+                    "title": "Problem Solving",
+                    "description": "Ability to solve technical problems logically and efficiently."
+                },
+                "2": {
+                    "title": "Time Management",
+                    "description": "Manage deadlines and task priorities well."
+                },
+                "3": {
+                    "title": "Analytical Thinking",
+                    "description": "Analyze system requirements and design appropriate solutions."
+                },
+                "4": {
+                    "title": "Adaptability",
+                    "description": "Quickly learn new technologies or tools as project needs require."
+                },
+                "5": {
+                    "title": "Team Collaboration",
+                    "description": "Collaborate in cross-functional teams (dev, QA, PM, designer)."
+                },
+                "6": {
+                    "title": "Attention to Detail",
+                    "description": "Look closely for small bugs or errors in the code."
+                },
+                "7": {
+                    "title": "Communication",
+                    "description": "Explaining technical ideas to both technical and non-technical teams."
+                },
+                "8": {
+                    "title": "Continuous Learning",
+                    "description": "Always keep up with the latest technological developments."
+                }
+            }
+        }
+    },
+    "AboutPage": {
+        "id" : "2",
+        "title": "About Me",
+        "greeting": "Hi, I'm Fauzi Ramdani",
+        "downloadCV": "Download CV",
+        "description": [
+            "A Software Engineer with over two years of experience in developing efficient, scalable, and user-friendly software solutions. I was born in Bandung, Indonesia, on December 22, 1998, and currently reside in Garut, West Java. At present, I’m working at a software house company based in Bandung, where I contribute to building reliable and high-performance software systems.",
+            "Throughout my career, I’ve been involved in developing web-based applications, desktop applications, and data processing systems, with strong expertise in identifying and resolving software bugs efficiently. I have hands-on experience in building and consuming APIs, managing databases, implementing state management, and configuring authentication mechanisms, including Single Sign-On (SSO). In addition, I focus on optimizing application performance to ensure a seamless user experience.",
+            "I’m always eager to learn and adapt to new technologies while maintaining a collaborative approach in team environments. I’m also open to remote, freelance, or part-time opportunities, as well as new roles that foster professional growth and long-term career development."
+        ],
+        "Experience": {
+            "Work": {
+                "title": "Work Experience",
+                "responsibilities": "Responsibilities & Achievements",
+                "1": {
+                    "period": "May 2024 — Present",
+                    "location": "Bandung, ID",
+                    "summary": "Contributing to the development of high-quality, reliable, and scalable software solutions at a software house based in Bandung. Responsible for implementing, and maintaining various applications while ensuring code quality, performance optimization, and adherence to best practices throughout the development process.",
+                    "achievements": [
+                        "Build, maintain, and develop effective and efficient software applications.",
+                        "Collaborate with cross-functional teams including designers, QA engineers, and product managers to deliver high-quality products.",
+                        "Identify, debug, and troubleshoot software defects, find and resolve issues.",
+                        "Perform code reviews and ensure adherence to coding standards and best practices.",
+                        "Analyze system requirements and translate them into functional software solutions.",
+                        "Ensure the security, scalability, and reliability of applications."
+                    ]
+                },
+                "2": {
+                    "period": "Oct 2022 — Jan 2023",
+                    "location": "Bandung, ID",
+                    "summary": "Worked as a Backend Developer focusing on building and maintaining server-side applications for Maximple, a platform integrated with the Accurate accounting system. Responsible for developing RESTful APIs using Java and the Spring Boot framework, ensuring smooth data synchronization between services, debugging and resolving backend issues, and maintaining system reliability. Collaborated closely with team members and provided regular progress updates through Trello to ensure efficient project delivery.",
+                    "achievements": [
+                        "Developed backend services for Maximple integrated with the Accurate accounting system.",
+                        "Built RESTful APIs using Java programming language and the Spring Boot framework.",
+                        "Debugged and resolved various issues in backend applications to ensure system stability.",
+                        "Collaborated with the development team and maintained project progress reports using Trello."
+                    ]
+                }
+            },
+            "Educations": {
+                "title": "Educations",
+                "1": {
+                    "degree": "Bachelor of Informatics Engineering",
+                    "period": "2019 — 2023",
+                    "location": "Bandung, ID"
+                },
+                "2": {
+                    "degree": "MIPA",
+                    "period": "2014 — 2017",
+                    "location": "Sumedang, ID"
+                }
+            }
+        }
+    },
+    "projectPage": {
+        "id" : "3",
+        "title": "Projects",
+        "description": "I have contributed to various projects involving both system maintenance and development. In addition, I have several independent projects that I built personally to sharpen my skills and broaden my technical knowledge.",
+        "summary": {
+            "title": "Summary",
+            "1": {
+                "description": "A second version of my personal portfolio website showcasing my projects, experiences, and skills as a software developer, featuring enhanced design and functionalities.",
+                "summary": [
+                    "More modern and interactive design",
+                    "Improved features",
+                    "Updated technology stack",
+                    "Real-time chat integration"
+                ],
+                "startWork": "June 2024",
+                "endWork": "July 2024",
+                "status": "Done",
+                "note": ""
+            },
+            "2": {
+                "description": "A web application that displays restaurant information, menus, and available services.",
+                "summary": [
+                    "Online table reservation with time and guest selection",
+                    "Restaurant management system with Role Access: Owner, Admin, Staff, and Customer",
+                    "Online food and beverage ordering (dine-in, takeaway, or delivery)",
+                    "Digital payment integration (QRIS, e-wallets, and credit cards)",
+                    "Analytics dashboard for sales, popular menus, and customer activity monitoring",
+                    "Real-time notifications for order status and reservation confirmations",
+                    "Inventory and stock management for restaurant supplies",
+                    "Customer reviews and rating system",
+                    "Modern and responsive UI (desktop & mobile friendly)",
+                    "Multi-language support and dark mode"
+                ],
+                "startWork": "January 2024",
+                "endWork": "April 2024",
+                "status": "In Progress",
+                "note": "*This application is an independent project that I developed on my own to enhance my technical skills and broaden my knowledge in software development."
+            },
+            "3": {
+                "description": "DX Trade is a desktop application developed to facilitate real-time trading of digital assets and stocks. It provides market analysis tools, portfolio management, and fast, secure trade execution with an intuitive and responsive interface.",
+                "summary": [
+                    "Market analysis features",
+                    "Portfolio management",
+                    "Real-time digital asset and stock price updates",
+                    "Buy & Sell transaction execution",
+                    "Intuitive and responsive user interface"
+                ],
+                "startWork": "November 2023",
+                "endWork": "December 2023",
+                "status": "In Progress",
+                "note": ""
+            },
+            "4": {
+                "description": "VHS Pertamina is a web application designed to support digitalization and improve operational efficiency within Pertamina. The platform enables integrated data management, activity monitoring, and reporting with a focus on security, performance, and ease of use.",
+                "summary": [
+                    "Master data, Inventory, Receiving, Sales, Ownuse, Reports, and Daily Activity management",
+                    "Role-based access management: Administrator, Region, Handling Agent, Location, IMFB",
+                    "Integrated reporting system",
+                    "Master data approval workflow for Administrator and IMFB"
+                ],
+                "startWork": "August 2023",
+                "endWork": "October 2023",
+                "status": "In Progress",
+                "note": ""
+            },
+            "5": {
+                "description": "A data engineering project focused on building data pipelines to integrate and process operational data from various internal PLN sources. This project aims to enhance analytical efficiency, support data-driven decision-making, and ensure accurate and well-structured data availability.",
+                "summary": [
+                    "Data pipeline development",
+                    "Integration and processing of operational data",
+                    "Improved analytical efficiency",
+                    "Data-driven decision support",
+                    "Accurate and structured data availability"
+                ],
+                "startWork": "June 2023",
+                "endWork": "August 2023",
+                "status": "Done",
+                "note": ""
+            },
+            "6": {
+                "description": "DJKN – Business Performance is a web application developed to monitor and evaluate the performance of enterprises managed under the Directorate General of State Assets (DJKN). It provides reporting, financial data analysis, and interactive performance visualization to support strategic decision-making.",
+                "summary": [
+                    "Comprehensive reporting features",
+                    "Business performance analysis",
+                    "Role-based access control: Administrator, Executive, Business PIC, Subdirector, Section Head, Analyst, Verifier",
+                    "Interactive performance visualization",
+                    "Strategic decision-making support"
+                ],
+                "startWork": "February 2023",
+                "endWork": "May 2023",
+                "status": "Done",
+                "note": ""
+            },
+            "7": {
+                "description": "A management application for photography studio service operations.",
+                "summary": [
+                    "Studio service management",
+                    "Customer data management",
+                    "Studio data management: photo, video, and audio",
+                    "Transaction management"
+                ],
+                "startWork": "January 2023",
+                "endWork": "February 2023",
+                "status": "Done",
+                "note": ""
+            },
+            "8": {
+                "description": "Tourism management information system for Kampoeng Ciherang, designed to streamline operational and administrative processes.",
+                "summary": [
+                    "Tourist attraction data management",
+                    "Visitor data management",
+                    "Transaction management",
+                    "Financial data management"
+                ],
+                "startWork": "December 2022",
+                "endWork": "January 2023",
+                "status": "Done",
+                "note": ""
+            },
+            "9": {
+                "description": "A personal portfolio website showcasing my projects, professional experiences, and technical skills as a software developer.",
+                "summary": [
+                    "Showcase of development projects",
+                    "Display of professional experience",
+                    "Highlight of technical skills",
+                    "Contact information section"
+                ],
+                "startWork": "November 2022",
+                "endWork": "December 2022",
+                "status": "Done",
+                "note": ""
+            },
+            "10": {
+                "description": "Maximple is a product developed by Maksi that simplifies importing Excel data into Accurate with just one click.",
+                "summary": [
+                    "Excel data parsing",
+                    "Transaction data management"
+                ],
+                "startWork": "October 2022",
+                "endWork": "January 2023",
+                "status": "Done",
+                "note": ""
+            }
+        },
+        "information": {
+            "title": "Information",
+            "category": "Category",
+            "role": "Role",
+            "year": "Year",
+            "startWork": "Start Work",
+            "endWork": "End Work",
+            "amountTech": "Amount of Technologies Used"
+        },
+        "action": {
+            "back": "Back",
+            "visit": "Visit Site"
+        }
+    },
+    "chatroomPage": {
+        "id": "4",
+        "title": "Chat Room",
+        "description": "Join and interact directly with other visitors on this website! Use this chat room to discuss, ask questions about my projects, or talk about anything you’re interested in!"
+    },
+    "personalChatPage": {
+        "id": "5",
+        "title": "Personal Chat",
+        "description": "Want a more private conversation? Use the Personal Chat feature to have one-on-one discussions with other logged-in visitors on this website. Connect, exchange ideas, or simply have a friendly chat in a more personal space!"
+    },
+    "contactPage": {
+        "id": "6",
+        "title": "Contact Me",
+        "description": "Let`s get in touch",
+        "social_media": {
+            "title": "Find me on social media",
+            "gmail": {
+                "title": "Stay in Touch",
+                "description": "Reach out via email for inquiries or collaborations."
+            },
+            "whatsapp": {
+                "title": "Send a Message",
+                "description": "Contact me via WhatsApp for quick discussions."
+            },
+            "instagram": {
+                "title": "Follow My Journey",
+                "description": "Follow my creative journey."
+            },
+            "linkedin": {
+                "title": "Let's Connect",
+                "description": "Connect with me professionally."
+            },
+            "tiktok": {
+                "title": "Join the Fun",
+                "description": "Watch engaging and fun content."
+            },
+            "github": {
+                "title": "Explore the Code",
+                "description": "Explore my open-source work."
+            }
+        },
+        "form": {
+            "title": "Or send me a message",
+            "input_name": "Name",
+            "input_email": "Email",
+            "input_message": "Message",
+            "button": "Send Email"
+        }
+    },
+    "sidebar": {
+        "1": "Home",
+        "2": "About Me",
+        "3": "Projects",
+        "4": "Chat Room",
+        "5": "Personal Chat",
+        "6": "Contact Me"
+    }
+}
