@@ -104,6 +104,8 @@ export type TPersonalChat = {
   user2Id: number;
   user1: TUser;
   user2: TUser;
+  chats?: TMessage[];
+  totalUnread?: number;
   createdAt: string;
   updatedAt?: string;
   deletedAt?: string | null;
@@ -113,6 +115,8 @@ export type TChatList = {
   id : number;
   userId : number;
   user : TUser;
+  totalUnread : number;
+  lastMessage? : TMessage | null;
   createdAt : string;
   updatedAt?: string | null;
   deletedAt?: string | null;

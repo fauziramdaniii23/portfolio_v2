@@ -2,7 +2,7 @@ import { Author } from "@/constant/constant";
 import { useAuthStore } from "@/store/authStore";
 import { useChatStore } from "@/store/useChatStore";
 import { useUserListStore } from "@/store/userStore";
-import { TChatList, TPersonalChat, TUser } from "@/types/type";
+import { TChatList, TMessage, TPersonalChat, TUser } from "@/types/type";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -37,11 +37,23 @@ export const filterChatList = (
 ): TChatList[] => {
   const data: TChatList[] = chatList.map((chat: TPersonalChat) => {
     const otherUser: TUser = Number(chat.user1.id) === currentUserId ? chat.user2 : chat.user1;
+    const chats = chat.chats ?? [];
+    const lastChatRaw = chats.length > 0 ? chats[0] : null;
+
+    const lastChat: TMessage | null = lastChatRaw
+      ? {
+          ...lastChatRaw,
+          isMine: lastChatRaw.userId === currentUserId,
+        }
+      : null;
+    
 
     return {
       id: chat.id,
       userId: Number(otherUser.id),
       user: otherUser as TUser,
+      lastMessage: lastChat,
+      totalUnread: chat.totalUnread ?? 0,
       createdAt: chat.createdAt,
       updatedAt: chat.updatedAt,
       deletedAt: chat.deletedAt,

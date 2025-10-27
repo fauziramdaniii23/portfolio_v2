@@ -123,14 +123,12 @@ export default function Chat({ isPersonalChat }: Props) {
       const event = isPersonalChat? `chat-${selectedChat?.id}`: "chat-room";
 
       // 🟢 Event: Pesan baru
-      channel.bind(
-        `${event}-post`,
-        (data: any) => {
+      channel.bind(`${event}-post`, (data: any) => {
           // console.log("post", event, data);
           const newMsg = data.newMessage;
           setMessages((prev) => [
             ...prev,
-            { ...newMsg, isMine: newMsg.user.email === user?.email },
+            { ...newMsg },
           ]);
         }
       );
@@ -144,7 +142,7 @@ export default function Chat({ isPersonalChat }: Props) {
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === updatedMsg.id
-                ? { ...updatedMsg, isMine: updatedMsg.user.email === user?.email }
+                ? { ...updatedMsg }
                 : msg
             )
           );
