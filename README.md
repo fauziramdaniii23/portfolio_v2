@@ -11,7 +11,7 @@ This project showcases my work, experiences, and creativity as a developer — b
 - **Next.js 15 (App Router)** — Fast, SEO-friendly, and full-stack React framework  
 - **React 19** — For building interactive UI components  
 - **Tailwind CSS** — Utility-first CSS framework for styling  
-- **Radix UI** — Accessible, unstyled components for building clean UI  
+- **Shadcn UI** — Accessible, unstyled components for building clean UI  
 - **Framer Motion / GSAP** — Smooth animations and transitions  
 - **Three.js / React Three Fiber / OGL** — 3D and WebGL visualizations  
 - **Vanta.js** — Dynamic animated backgrounds  
