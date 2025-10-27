@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { useEffect, useMemo, useState } from "react";
 import NewChat from "./NewChat";
-import { TChatList, TUser } from "@/types/type";
+import { TChatList, TMessage, TUser } from "@/types/type";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAuthStore } from "@/store/authStore";
 import { encryptForUrl } from "@/lib/encryptor";
@@ -30,6 +30,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useChatStore } from "@/store/useChatStore";
 import { Author } from "@/constant/constant";
 import { GoShieldCheck } from "react-icons/go";
+import { pusherClient } from "@/lib/pusher/pusherClient";
 
 export function SidebarChatList() {
   const { user, isAuthenticated } = useAuthStore();
@@ -44,6 +45,66 @@ export function SidebarChatList() {
     if (!q) return chatList;
     return chatList.filter((c) => c.user.name.toLowerCase().includes(q));
   }, [chatList, query]);
+
+  useEffect(() => {
+    if (!chatList.length) return;
+    const chanel = pusherClient.subscribe(`chat`);
+    chatList.forEach((chat) => {
+    const eventName = `chat-list-${chat.id}`;
+    chanel.bind(eventName, (data: any) => {
+      const newMsg: TMessage = data.newMessage;
+      const isSelectedChat = selectedChat?.id === newMsg.personalChatId;
+      const isMine = newMsg.user.email === user?.email
+
+       setChatList((prev) => {
+        const updatedList = prev.map((c) =>
+          c.id === newMsg.personalChatId
+            ? {
+                ...c,
+                lastMessage: newMsg,
+                totalUnread:
+                  !isMine && !isSelectedChat
+                    ? c.totalUnread + 1
+                    : c.totalUnread,
+              }
+            : c
+        );
+
+        const targetChat = updatedList.find(
+          (c) => c.id === newMsg.personalChatId
+        );
+
+        const others = updatedList.filter(
+          (c) => c.id !== newMsg.personalChatId
+        );
+
+        return targetChat ? [targetChat, ...others] : updatedList;
+      });
+
+      if(isSelectedChat){
+        updateTotalUnread(newMsg.id);
+      }
+      
+    });
+  });
+    return () => {
+      chatList.forEach((chat) => {
+       chanel.unbind(`chat-list-${chat.id}`);
+      });
+      chanel.unsubscribe();
+    };
+  }, [user?.id, selectedChat?.id, chatList]);
+
+  const updateTotalUnread = (id: number) => {
+    if(isAuthenticated){
+      const encryptedId = encryptForUrl(id);
+      fetch(`/api/unread-chat`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: encryptedId }),
+      });
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -79,8 +140,21 @@ export function SidebarChatList() {
     }
   };
 
-  const handleSelectChat = (chat: TChatList) => {
+  const handleSelectChat = async (chat: TChatList) => {
     setSelectedChat(chat);
+    await fetch(`/api/chat-list`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: encryptForUrl(chat.id) }),
+    });
+    setChatList((prev) =>
+      prev.map((c) => {
+        if (c.id === chat.id) {
+          return { ...c, totalUnread: 0 };
+        }
+        return c;
+      })
+    );
   };
 
   const handleSelectChatForDelete = (chat: TChatList) => {
@@ -113,7 +187,7 @@ export function SidebarChatList() {
       <div className="h-14 flex justify-between items-center px-4 border-b border-border">
         <div className="flex items-center gap-3">
           <div className="size-2 rounded-full bg-emerald-500" aria-hidden />
-          <div className="font-semibold text-lg">Chat</div>
+          <div className="font-semibold text-lg">Chats</div>
         </div>
         <NewChat handleNewChat={handleNewChat} />
       </div>
@@ -135,7 +209,7 @@ export function SidebarChatList() {
       >
         {filtered.length === 0 || !Array.isArray(filtered) ? (
           <p className="h-[65vh] px-4 py-8 text-sm text-muted-foreground">
-            Tidak ada chat yang cocok.
+            Tidak ada chat.
           </p>
         ) : (
           <ScrollArea className="h-[65vh]">
@@ -148,14 +222,14 @@ export function SidebarChatList() {
                       role="listitem"
                       onClick={() => handleSelectChat(chat)}
                       className={cn(
-                        "w-full px-4 py-3 flex items-center gap-3 border-y first:border-t-0 last:border-b-0 border-transparent hover:bg-accent transition-colors",
+                        "relative w-full px-4 py-3 flex items-center gap-3 border-y first:border-t-0 last:border-b-0 border-transparent hover:bg-accent transition-colors",
                         chat.id === selectedChat?.id && "bg-accent"
                       )}
                       aria-current={
                         chat.id === selectedChat?.id ? "true" : "false"
                       }
                     >
-                      <Avatar className="w-8 h-8 mt-2">
+                      <Avatar className="w-8 h-8">
                         {chat.user.image ? (
                           <AvatarImage
                             src={
@@ -173,18 +247,30 @@ export function SidebarChatList() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="min-w-0 text-left">
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="font-medium truncate">
+                        <div className="flex flex-col justify-between gap-2">
+                          <div className="flex gap-2 font-medium truncate">
                             {chat.user.name}
-                          </p>
+                            {isAuthor(chat.user.email) && (
+                              <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
+                                <GoShieldCheck className="text-blue-500 text-xs" />
+                                <p className="text-[10px] italic">Author</p>
+                              </div>
+                            )}
+                          </div>
+                          
+                            {chat.lastMessage && (
+                              <p className="text-xs">{chat.lastMessage.message.slice(0, 30) + "..."}</p>
+                            )}
+                          
                         </div>
                       </div>
-                      {isAuthor(chat.user.email) && (
-                        <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
-                          <GoShieldCheck className="text-blue-500 text-xs" />
-                          <p className="text-[10px] italic">Author</p>
-                        </div>
-                      )}
+                      
+                      
+                        {chat.totalUnread > 0 && (
+                          <div className="absolute top-1/2 right-3 -translate-y-1/2 size-5 rounded-full bg-red-600 text-white text-xs flex justify-center items-center">
+                            {chat.totalUnread}
+                          </div>
+                        )}                  
                     </button>
                   </ContextMenuTrigger>
                   <ContextMenuContent>

@@ -74,8 +74,7 @@ export const Timeline = ({ experience }: PropsWorkExperience) => {
                     </Badge>
                   </CardTitle>
                   <CardDescription className="text-pretty font-bold">
-                    {experience.company}
-                    {t(`Experience.Work.${experience.id}.location`)}
+                    {experience.company} - {t(`Experience.Work.${experience.id}.location`)}
                   </CardDescription>
                 </div>
               </div>

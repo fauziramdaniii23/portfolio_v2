@@ -21,6 +21,23 @@ export async function GET(req: Request) {
   }
 }
 
+export async function PUT(req: Request) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const body = await req.json();
+    const id = await decryptFromUrl(body.id);
+    const message = await chatController.readAllChat(id);
+    return NextResponse.json(message);
+  } catch (error) {
+    console.error("POST /api/chat error:", error);
+    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions);
