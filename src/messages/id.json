@@ -119,8 +119,8 @@
                     "Teknologi yang lebih baru",
                     "Realtime Chat"
                 ],
-                "startWork": "Juni 2024",
-                "endWork": "Agustus 2024",
+                "startWork": "Sep 2025",
+                "endWork": "Okt 2025",
                 "status": "Selesai",
                 "note": ""
             },
@@ -138,8 +138,8 @@
                     "Tampilan antarmuka modern dan responsif (desktop & mobile friendly)",
                     "Dukungan multi-bahasa dan tema gelap (dark mode)"
                 ],
-                "startWork": "Januari 2024",
-                "endWork": "Mei 2024",
+                "startWork": "Jun 2025",
+                "endWork": "-",
                 "status": "Sedang Berlangsung",
                 "note": "*Aplikasi ini merupakan proyek independen yang saya kembangkan secara mandiri dengan tujuan untuk mengasah keterampilan teknis serta memperluas wawasan saya dalam pengembangan perangkat lunak."
             },
@@ -152,9 +152,9 @@
                     "Eksekusi transaksi Buy & Sell",
                     "Antarmuka yang intuitif dan responsif"
                 ],
-                "startWork": "November 2023",
-                "endWork": "Desember 2023",
-                "status": "Sedang Berlangsung",
+                "startWork": "Jan 2025",
+                "endWork": "Mei 2025",
+                "status": "Selesai",
                 "note": ""
             },
             "4": {
@@ -165,9 +165,9 @@
                     "Pelaporan secara terintegrasi",
                     "Approval penambahan data master oleh Administrator dan IMFB"
                 ],
-                "startWork": "Agustus 2023",
-                "endWork": "Oktober 2023",
-                "status": "Sedang Berlangsung",
+                "startWork": "Jan 2025",
+                "endWork": "Mei 2025",
+                "status": "Selesai",
                 "note": ""
             },
             "5": {
@@ -179,8 +179,8 @@
                     "Pengambilan keputusan berbasis data",
                     "Ketersediaan data yang akurat dan terstruktur"
                 ],
-                "startWork": "Juni 2023",
-                "endWork": "Agustus 2023",
+                "startWork": "Agu 2024",
+                "endWork": "Des 2024",
                 "status": "Selesai",
                 "note": ""
             },
@@ -206,8 +206,8 @@
                     "Pengelolaan data studio : foto, video, dan audio",
                     "Pengelolaan data transaksi"
                 ],
-                "startWork": "Januari 2023",
-                "endWork": "Februari 2023",
+                "startWork": "Okt 2023",
+                "endWork": "Mar 2024",
                 "status": "Selesai",
                 "note": ""
             },
@@ -220,7 +220,7 @@
                     "Pengelolaan data keuangan"
                 ],
                 "startWork": "Desember 2022",
-                "endWork": "Januari 2023",
+                "endWork": "Jun 2023",
                 "status": "Selesai",
                 "note": ""
             },
@@ -232,8 +232,8 @@
                     "Menampilkan keterampilan teknis",
                     "Menampilkan informasi kontak"
                 ],
-                "startWork": "November 2022",
-                "endWork": "Desember 2022",
+                "startWork": "Jan 2023",
+                "endWork": "Apr 2023",
                 "status": "Selesai",
                 "note": ""
             },
@@ -243,8 +243,8 @@
                     "Parsing data dari file excel",
                     "Pengelolaan data transaksi"
                 ],
-                "startWork": "Oktober 2022",
-                "endWork": "Januari 2023",
+                "startWork": "Okt 2022",
+                "endWork": "Jan 2023",
                 "status": "Selesai",
                 "note": ""
             }
