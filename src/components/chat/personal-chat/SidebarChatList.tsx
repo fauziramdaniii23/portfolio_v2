@@ -53,12 +53,38 @@ export function SidebarChatList() {
     const eventName = `chat-list-${chat.id}`;
     chanel.bind(eventName, (data: any) => {
       const newMsg: TMessage = data.newMessage;
+      const isSelectedChat = selectedChat?.id === newMsg.personalChatId;
+      const isMine = newMsg.user.email === user?.email
 
-      setChatList((prev) =>
-        prev.map((c) =>
-          c.id === newMsg.personalChatId ? { ...c, lastMessage: newMsg } : c
-        )
-      );
+       setChatList((prev) => {
+        const updatedList = prev.map((c) =>
+          c.id === newMsg.personalChatId
+            ? {
+                ...c,
+                lastMessage: newMsg,
+                totalUnread:
+                  !isMine && !isSelectedChat
+                    ? c.totalUnread + 1
+                    : c.totalUnread,
+              }
+            : c
+        );
+
+        const targetChat = updatedList.find(
+          (c) => c.id === newMsg.personalChatId
+        );
+
+        const others = updatedList.filter(
+          (c) => c.id !== newMsg.personalChatId
+        );
+
+        return targetChat ? [targetChat, ...others] : updatedList;
+      });
+
+      if(isSelectedChat){
+        updateTotalUnread(newMsg.id);
+      }
+      
     });
   });
     return () => {
@@ -68,6 +94,17 @@ export function SidebarChatList() {
       chanel.unsubscribe();
     };
   }, [user?.id, selectedChat?.id, chatList]);
+
+  const updateTotalUnread = (id: number) => {
+    if(isAuthenticated){
+      const encryptedId = encryptForUrl(id);
+      fetch(`/api/unread-chat`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: encryptedId }),
+      });
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -103,8 +140,21 @@ export function SidebarChatList() {
     }
   };
 
-  const handleSelectChat = (chat: TChatList) => {
+  const handleSelectChat = async (chat: TChatList) => {
     setSelectedChat(chat);
+    await fetch(`/api/chat-list`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: encryptForUrl(chat.id) }),
+    });
+    setChatList((prev) =>
+      prev.map((c) => {
+        if (c.id === chat.id) {
+          return { ...c, totalUnread: 0 };
+        }
+        return c;
+      })
+    );
   };
 
   const handleSelectChatForDelete = (chat: TChatList) => {
@@ -198,9 +248,15 @@ export function SidebarChatList() {
                       </Avatar>
                       <div className="min-w-0 text-left">
                         <div className="flex flex-col justify-between gap-2">
-                          <p className="font-medium truncate">
+                          <div className="flex gap-2 font-medium truncate">
                             {chat.user.name}
-                          </p>
+                            {isAuthor(chat.user.email) && (
+                              <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
+                                <GoShieldCheck className="text-blue-500 text-xs" />
+                                <p className="text-[10px] italic">Author</p>
+                              </div>
+                            )}
+                          </div>
                           
                             {chat.lastMessage && (
                               <p className="text-xs">{chat.lastMessage.message.slice(0, 30) + "..."}</p>
@@ -208,12 +264,7 @@ export function SidebarChatList() {
                           
                         </div>
                       </div>
-                      {isAuthor(chat.user.email) && (
-                        <div className="flex justify-center align-center items-center gap-1 rounded-2xl bg-blue-500/50 px-2">
-                          <GoShieldCheck className="text-blue-500 text-xs" />
-                          <p className="text-[10px] italic">Author</p>
-                        </div>
-                      )}
+                      
                       
                         {chat.totalUnread > 0 && (
                           <div className="absolute top-1/2 right-3 -translate-y-1/2 size-5 rounded-full bg-red-600 text-white text-xs flex justify-center items-center">

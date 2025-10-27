@@ -36,13 +36,7 @@ export const chatController = {
   },
 
   async createChat(currentMessage: TCurrentMessage ) : Promise<TMessage> {
-    const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email;
-    const newMsg = await chatService.createMessage(currentMessage);
-    const newMessage = {
-        ...newMsg,
-        isMine: newMsg.user.email === userEmail
-      }
+    const newMessage = await chatService.createMessage(currentMessage);
 
     await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`, { newMessage });
     if(currentMessage.personalChatId){    
@@ -80,6 +74,15 @@ export const chatController = {
     const data = filterChatList(Number(session.user.id), chatList);
 
     return data
+  },
+
+  async updateChat(id : number) {
+    const updatedChatList = await chatService.updateChat(id)
+    return updatedChatList
+  },
+   async readAllChat(id : number) {
+    const updatedChatList = await chatService.readAllChat(id)
+    return updatedChatList
   },
 
   async createChatList(userId : number) : Promise<TChatList[]> {

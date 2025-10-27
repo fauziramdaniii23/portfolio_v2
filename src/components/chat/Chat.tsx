@@ -128,7 +128,7 @@ export default function Chat({ isPersonalChat }: Props) {
           const newMsg = data.newMessage;
           setMessages((prev) => [
             ...prev,
-            { ...newMsg },
+            { ...newMsg, isMine: newMsg.user.email === user?.email },
           ]);
         }
       );
@@ -142,7 +142,7 @@ export default function Chat({ isPersonalChat }: Props) {
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === updatedMsg.id
-                ? { ...updatedMsg }
+                ? { ...updatedMsg, isMine: updatedMsg.user.email === user?.email }
                 : msg
             )
           );

@@ -171,6 +171,22 @@ export const chatService = {
     return [newMsg as unknown as TPersonalChat];
   },
 
+  async updateChat(id : number){
+    const updatedChat = await prisma.chat.update({
+      where: { id },
+      data: { isRead: true },
+    });
+    return updatedChat
+  },
+
+  async readAllChat(id : number){
+    const updatedChatList = await prisma.chat.updateMany({
+      where: { personalChatId: id },
+      data: { isRead: true },
+    });
+    return updatedChatList
+  },
+
   async deletePersonalChat(id: number) {
     await prisma.chat.updateMany({
       where: { personalChatId: id },
