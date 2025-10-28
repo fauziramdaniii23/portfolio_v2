@@ -275,6 +275,10 @@ export const projects: TProject[] = [
         logo: <SiLaravel size={20} color="#FF2D20" />,
       },
       {
+        name: "Tailwind CSS",
+        logo: <SiTailwindcss size={20} color="#06B6D4" />,
+      },
+      {
         name: "MySQL",
         logo: <SiMysql size={20} color="#4479A1" />,
       },
@@ -299,6 +303,10 @@ export const projects: TProject[] = [
       {
         name: "Laravel",
         logo: <SiLaravel size={20} color="#FF2D20" />,
+      },
+      {
+        name : "Bootstrap",
+        logo: <SiBootstrap size={20} color="#7952B3" />,
       },
       {
         name: "MySQL",
