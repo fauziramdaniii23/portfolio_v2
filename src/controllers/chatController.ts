@@ -38,7 +38,7 @@ export const chatController = {
   async createChat(currentMessage: TCurrentMessage ) : Promise<TMessage> {
     const newMessage = await chatService.createMessage(currentMessage);
 
-    await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`, { newMessage });
+    await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`,  newMessage as TMessage );
     if(currentMessage.personalChatId){    
      await pusher.trigger("chat", `chat-list-${currentMessage.personalChatId}`,  newMessage as TMessage ); 
     }

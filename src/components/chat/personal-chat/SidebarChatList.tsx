@@ -51,8 +51,7 @@ export function SidebarChatList() {
     const chanel = pusherClient.subscribe(`chat`);
     chatList.forEach((chat) => {
     const eventName = `chat-list-${chat.id}`;
-    chanel.bind(eventName, (data: any) => {
-      const newMsg: TMessage = data.newMessage;
+    chanel.bind(eventName, (newMsg: TMessage) => {
       const isSelectedChat = selectedChat?.id === newMsg.personalChatId;
       const isMine = newMsg.user.email === user?.email
 
@@ -115,7 +114,7 @@ export function SidebarChatList() {
     }
   }, []);
 
-  const findExistingChat = (user: TUser): Boolean => {
+  const findExistingChat = (user: TUser): boolean => {
     return chatList.some((chat) => chat.user.id === user.id);
   };
 
