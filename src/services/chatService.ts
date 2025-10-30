@@ -104,7 +104,7 @@ export const chatService = {
       },
     });
 
-    return deletedMsg;
+    return deletedMsg as unknown as TMessage;
   },
 
   async getChatList(

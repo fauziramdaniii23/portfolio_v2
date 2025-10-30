@@ -40,7 +40,7 @@ export const chatController = {
 
     await pusher.trigger("chat", `chat${currentMessage.personalChatId ? `-${currentMessage.personalChatId}` : "-room"}-post`, { newMessage });
     if(currentMessage.personalChatId){    
-     await pusher.trigger("chat", `chat-list-${currentMessage.personalChatId}`, { newMessage }); 
+     await pusher.trigger("chat", `chat-list-${currentMessage.personalChatId}`,  newMessage as TMessage ); 
     }
     return newMessage;
   },
@@ -54,14 +54,14 @@ export const chatController = {
         ...updatedMsg,
         isMine: updatedMsg.user.email === userEmail
       }
-    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-update`, { updatedMessage });
+    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-update`,  updatedMessage as TMessage );
 
     return updatedMessage
   },
 
   async softDeleteMessage(message : TMessage) {
     const deletedMessage = await chatService.softDeleteMessage(message.id)
-    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-delete`, { deletedMessage });
+    await pusher.trigger("chat", `chat${message.personalChatId ? `-${message.personalChatId}` : "room"}-delete`,  deletedMessage as TMessage );
 
     return deletedMessage
   },

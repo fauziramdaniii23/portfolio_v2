@@ -40,10 +40,9 @@ export default function Chat({ isPersonalChat }: Props) {
     if (!isPersonalChat) {
       setTitleUser(user);
     } else {
-      selectedChat &&
-        setTitleUser(
-          selectedChat.user ?? null
-        );
+      if (selectedChat) {
+        setTitleUser(selectedChat.user ?? null);
+      }
     }
   }, [selectedChat, user]);
 
@@ -123,9 +122,9 @@ export default function Chat({ isPersonalChat }: Props) {
       const event = isPersonalChat? `chat-${selectedChat?.id}`: "chat-room";
 
       // 🟢 Event: Pesan baru
-      channel.bind(`${event}-post`, (data: any) => {
+      channel.bind(`${event}-post`, (newMsg: TMessage) => {
           // console.log("post", event, data);
-          const newMsg = data.newMessage;
+          
           setMessages((prev) => [
             ...prev,
             { ...newMsg, isMine: newMsg.user.email === user?.email },
@@ -136,9 +135,7 @@ export default function Chat({ isPersonalChat }: Props) {
       // 🟡 Event: Pesan di-update
       channel.bind(
         `${event}-update`,
-        (data: any) => {
-          // console.log("update", event, data);
-          const updatedMsg = data.updatedMessage;
+        (updatedMsg: TMessage) => {
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === updatedMsg.id
@@ -152,9 +149,7 @@ export default function Chat({ isPersonalChat }: Props) {
       // 🔴 Event: Pesan dihapus
       channel.bind(
         `${event}-delete`,
-        (data: any) => {
-          // console.log("delete", event, data);
-          const deletedMsg = data.deletedMessage;
+        (deletedMsg: TMessage) => {
           setMessages((prevMessages) =>
             prevMessages.filter((msg) => msg.id !== deletedMsg.id)
           );
