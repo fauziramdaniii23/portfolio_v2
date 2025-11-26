@@ -56,6 +56,10 @@ export type LogoTags = {
     color?: string
     logo: React.ReactNode
 }
+export type TSourceCode = {
+    name: string
+    url: string
+}
 
 export type TProject = {
     id: string
@@ -67,6 +71,7 @@ export type TProject = {
     logoTags: LogoTags[]
     info?: string
     link: string
+    source_code?: TSourceCode[]
     status?: string
     startDate?: string
     endDate?: string

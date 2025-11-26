@@ -41,7 +41,8 @@ import { FaJava } from "react-icons/fa";
 export const projects: TProject[] = [
   {
     id: "1",
-    title: "Portfolio Web App V2",category: "Web App",
+    title: "Portfolio Web App V2",
+    category: "Web App",
     role: "Fullstack Developer",
     year: "2023",
     image: "/projects/portfolio_v2.png",
@@ -76,6 +77,12 @@ export const projects: TProject[] = [
       },
     ],
     link: "https://www.fauziram.com/",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/portfolio_v2",
+      },
+    ],
     status: "Completed",
     startDate: "2025-12-01",
     endDate: "2024-02-15",
@@ -114,6 +121,16 @@ export const projects: TProject[] = [
       },
     ],
     link: "https://resto-bahari.vercel.app/",
+    source_code: [
+      {
+        name: "Frontend",
+        url: "https://github.com/fauziramdaniii23/resto-fe",
+      },
+      {
+        name: "Backend",
+        url: "https://github.com/fauziramdaniii23/resto-be",
+      },
+    ],
     status: "In Progress",
     startDate: "2023-12-01",
     endDate: "-",
@@ -144,6 +161,12 @@ export const projects: TProject[] = [
       },
     ],
     link: "#",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/DX-TRADE-dealer",
+      },
+    ],
     status: "In Progress",
     startDate: "2024-01-15",
     endDate: "",
@@ -178,6 +201,12 @@ export const projects: TProject[] = [
       },
     ],
     link: "#",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/VHS-CNT",
+      },
+    ],
     status: "In Progress",
     startDate: "2024-01-15",
     endDate: "",
@@ -254,6 +283,16 @@ export const projects: TProject[] = [
       },
     ],
     link: "https://satuknd-home.kemenkeu.go.id/",
+    source_code: [
+      {
+        name: "Frontend",
+        url: "https://github.com/fauziramdaniii23/kbu-fe",
+      },
+      {
+        name: "Backend",
+        url: "https://github.com/fauziramdaniii23/resto-be",
+      },
+    ],
     status: "Completed",
     startDate: "2024-05-01",
     endDate: "2024-12-15",
@@ -285,6 +324,12 @@ export const projects: TProject[] = [
     ],
     link: "#",
     status: "Completed",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/telenofilm",
+      },
+    ],
     startDate: "2023-06-01",
     endDate: "2023-12-15",
   },
@@ -305,7 +350,7 @@ export const projects: TProject[] = [
         logo: <SiLaravel size={20} color="#FF2D20" />,
       },
       {
-        name : "Bootstrap",
+        name: "Bootstrap",
         logo: <SiBootstrap size={20} color="#7952B3" />,
       },
       {
@@ -314,6 +359,12 @@ export const projects: TProject[] = [
       },
     ],
     link: "#",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/kampoeng-ciherang",
+      },
+    ],
     status: "Completed",
     startDate: "2023-01-15",
     endDate: "2023-05-30",
@@ -340,6 +391,12 @@ export const projects: TProject[] = [
       },
     ],
     link: "https://my-portofolio-ten-rho.vercel.app/",
+    source_code: [
+      {
+        name: "code",
+        url: "https://github.com/fauziramdaniii23/MyPortofolio",
+      },
+    ],
     status: "Completed",
     startDate: "2023-01-15",
     endDate: "2023-05-30",
